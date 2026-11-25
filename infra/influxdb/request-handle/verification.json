@@ -1,0 +1,35 @@
+{
+  "phase": "after",
+  "total_exactly_verified_points": 24918,
+  "points_per_metric": {
+    "cassandra_response_time": 23044,
+    "request_handle_time": 937,
+    "total_rps": 937
+  },
+  "bucket_id": "7fa69d1815018213",
+  "retention_seconds": 31536000,
+  "retention_days": 365,
+  "shard_group_duration_seconds": 86400,
+  "data_sha256": "5d163aacb69a18bc1f001c237007a50e279aefa4107d5e8520682320ba201a96",
+  "datasource_health": "OK",
+  "overview_sections": 2,
+  "grafana_raw_series": [
+    {
+      "metric": "request_handle_time",
+      "points": 937,
+      "min": 13.359,
+      "max": 26.098,
+      "labels": {
+        "status": "200"
+      }
+    },
+    {
+      "metric": "total_rps",
+      "points": 937,
+      "min": 9463.282,
+      "max": 10252.819,
+      "labels": {}
+    }
+  ],
+  "persistence_after_recreate_without_seed": true
+}

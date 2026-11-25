@@ -1,0 +1,1 @@
+{"id": "RuntimeTrend-1s-fleet1000", "detector": "RuntimeTrend", "scenario": "events", "fleet": 1000, "width": 1, "cpu": 29, "sample_seconds": 1, "category": "large_validation"}

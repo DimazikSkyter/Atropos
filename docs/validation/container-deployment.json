@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-21",
+  "command": "make service-up",
+  "ui_health_http": 200,
+  "server_health_http": 200,
+  "postgres": "healthy",
+  "server": "healthy",
+  "ui": "healthy",
+  "ui_login_page": "PASS",
+  "ui_uses_remote_runtime": "PASS",
+  "host_influx_health_from_container": "PASS",
+  "temporary_test_stack_removed": true,
+  "existing_source_token_required": "INFLUXDB_TOKEN"
+}

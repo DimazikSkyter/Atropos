@@ -1,0 +1,26 @@
+{
+  "snapshot_date": "2026-11-09",
+  "measurement": "rps",
+  "field": "value",
+  "tags": {
+    "replay": "cusum-real-system-image"
+  },
+  "influx_url": "http://localhost:8086",
+  "org": "atropos",
+  "bucket": "metrics-replay",
+  "dashboard_uid": "cusum-rps-20260922",
+  "requested_start_utc": "2026-09-22T09:59:30Z",
+  "requested_stop_utc": "2026-09-23T08:58:32Z",
+  "actual_start_utc": "2026-09-22T10:00:00Z",
+  "actual_end_utc": "2026-09-23T07:32:30Z",
+  "points": 5171,
+  "sample_interval_seconds": 15,
+  "min_rps": 482.738532,
+  "max_rps": 1009.966159,
+  "csv_sha256": "83bcad1a678d6f917d375b74f7ee5093daf00a6457907f7765d8aab21d4b4970",
+  "values_sha256": "fc44db136f805c98176aebfb604422d6c2f4ce0661d60e95fab41b9560e212ea",
+  "grafana_frames_equal_influx": true,
+  "read_only": true,
+  "source_kind": "Live InfluxDB snapshot of a previously image-reconstructed RPS replay",
+  "is_raw_production_telemetry": false
+}

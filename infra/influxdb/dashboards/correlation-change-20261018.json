@@ -1,0 +1,290 @@
+{
+  "uid": "correlation-change-20261018",
+  "title": "Корреляция — примеры 18.10.2026",
+  "schemaVersion": 41,
+  "version": 1,
+  "editable": true,
+  "timezone": "Europe/Moscow",
+  "refresh": "",
+  "tags": [
+    "atropos",
+    "replay",
+    "correlation"
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Задержка — 18.10.2026",
+      "description": "Приближённая оцифровка приложенного графика. Все сохранённые точки без усреднения. Шаг 15 с. Перекрытия интерполированы.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "maxDataPoints": 20000,
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "from(bucket: \"metrics-replay\")\n              |> range(start: time(v: \"2026-10-18T16:52:45+03:00\"), stop: time(v: \"2026-10-18T17:20:45+03:00\"))\n              |> filter(fn: (r) => r._measurement == \"correlation_screenshot_replay\" and\n                 r._field == \"value\" and r.scenario == \"latency\" and r.trace == \"blue\")\n              |> keep(columns: [\"_time\", \"_value\"])\n              |> rename(columns: {_value: \"blue\"})"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "from(bucket: \"metrics-replay\")\n              |> range(start: time(v: \"2026-10-18T16:52:45+03:00\"), stop: time(v: \"2026-10-18T17:20:45+03:00\"))\n              |> filter(fn: (r) => r._measurement == \"correlation_screenshot_replay\" and\n                 r._field == \"value\" and r.scenario == \"latency\" and r.trace == \"green\")\n              |> keep(columns: [\"_time\", \"_value\"])\n              |> rename(columns: {_value: \"green\"})"
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "from(bucket: \"metrics-replay\")\n              |> range(start: time(v: \"2026-10-18T16:52:45+03:00\"), stop: time(v: \"2026-10-18T17:20:45+03:00\"))\n              |> filter(fn: (r) => r._measurement == \"correlation_screenshot_replay\" and\n                 r._field == \"value\" and r.scenario == \"latency\" and r.trace == \"yellow\")\n              |> keep(columns: [\"_time\", \"_value\"])\n              |> rename(columns: {_value: \"yellow\"})"
+        }
+      ],
+      "links": [
+        {
+          "title": "Полный масштаб этого графика",
+          "url": "/d/correlation-change-20261018?from=1792331565000&to=1792333245000&timezone=Europe%2FMoscow&viewPanel=panel-1",
+          "targetBlank": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "suffix:ms",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 0,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisLabel": "ms"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "blue"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#5794F2"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "green"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#73BF69"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "yellow"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#F2CC0C"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "Read operations — 18–19.10.2026",
+      "description": "Приближённая оцифровка приложенного графика. Все сохранённые точки без усреднения. Шаг 60 с. Перекрытия интерполированы.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "maxDataPoints": 20000,
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "from(bucket: \"metrics-replay\")\n              |> range(start: time(v: \"2026-10-18T18:45:00+03:00\"), stop: time(v: \"2026-10-19T11:12:00+03:00\"))\n              |> filter(fn: (r) => r._measurement == \"correlation_screenshot_replay\" and\n                 r._field == \"value\" and r.scenario == \"read_operations\" and r.trace == \"blue\")\n              |> keep(columns: [\"_time\", \"_value\"])\n              |> rename(columns: {_value: \"blue\"})"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "from(bucket: \"metrics-replay\")\n              |> range(start: time(v: \"2026-10-18T18:45:00+03:00\"), stop: time(v: \"2026-10-19T11:12:00+03:00\"))\n              |> filter(fn: (r) => r._measurement == \"correlation_screenshot_replay\" and\n                 r._field == \"value\" and r.scenario == \"read_operations\" and r.trace == \"orange\")\n              |> keep(columns: [\"_time\", \"_value\"])\n              |> rename(columns: {_value: \"orange\"})"
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "from(bucket: \"metrics-replay\")\n              |> range(start: time(v: \"2026-10-18T18:45:00+03:00\"), stop: time(v: \"2026-10-19T11:12:00+03:00\"))\n              |> filter(fn: (r) => r._measurement == \"correlation_screenshot_replay\" and\n                 r._field == \"value\" and r.scenario == \"read_operations\" and r.trace == \"red\")\n              |> keep(columns: [\"_time\", \"_value\"])\n              |> rename(columns: {_value: \"red\"})"
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "from(bucket: \"metrics-replay\")\n              |> range(start: time(v: \"2026-10-18T18:45:00+03:00\"), stop: time(v: \"2026-10-19T11:12:00+03:00\"))\n              |> filter(fn: (r) => r._measurement == \"correlation_screenshot_replay\" and\n                 r._field == \"value\" and r.scenario == \"read_operations\" and r.trace == \"purple\")\n              |> keep(columns: [\"_time\", \"_value\"])\n              |> rename(columns: {_value: \"purple\"})"
+        }
+      ],
+      "links": [
+        {
+          "title": "Полный масштаб этого графика",
+          "url": "/d/correlation-change-20261018?from=1792338300000&to=1792397520000&timezone=Europe%2FMoscow&viewPanel=panel-2",
+          "targetBlank": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 0,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisLabel": "ops/s"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "blue"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#5794F2"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "orange"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#FF9830"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "red"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#F2495C"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "purple"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#B877D9"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    }
+  ],
+  "description": "Восстановлены три видимые линии задержки и четыре линии read operations. Скрытые линии легенды недоступны; данные не являются исходной телеметрией.",
+  "time": {
+    "from": "2026-10-18T13:52:45Z",
+    "to": "2026-10-19T08:12:00Z"
+  },
+  "annotations": {
+    "list": []
+  },
+  "links": []
+}

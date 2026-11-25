@@ -1,0 +1,15 @@
+{
+  "plot_top": 20,
+  "plot_bottom": 973,
+  "plot_width": 1751,
+  "yellow_tooltip_ms": 13.5,
+  "yellow_anchor_y": 733.5,
+  "ms_per_pixel": 0.05636743215031315,
+  "green_mean_y": 152.25014277555684,
+  "rps_per_pixel": 12.1839801883333,
+  "yellow_observed_columns": 1751,
+  "green_observed_columns": 1737,
+  "left_axis_max_ms": 53.718,
+  "right_axis_max_rps": 11611.333,
+  "limitations": "Axes are cropped. Yellow scale anchored to the 13.5 ms tooltip; green scale anchored to user-provided ~10000 RPS. Raster values and subpixel timing are approximate."
+}

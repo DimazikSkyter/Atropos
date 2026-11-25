@@ -1,0 +1,6 @@
+from(bucket: "metrics-replay")
+  |> range(start: 2026-10-05T15:10:00Z, stop: 2026-10-05T15:45:00.000000001Z)
+  |> filter(fn: (r) => r._measurement == "service_dispatcher_delay" and r._field == "value")
+  |> keep(columns: ["_time", "_value", "host"])
+  |> group(columns: ["host"])
+  |> sort(columns: ["_time"])

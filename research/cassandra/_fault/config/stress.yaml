@@ -1,0 +1,19 @@
+specname: compaction_debt
+keyspace: compaction_lab
+table: events
+
+columnspec:
+  - name: payload
+    size: fixed(4096)
+  - name: sequence_no
+    population: uniform(1..1000000000)
+
+insert:
+  partitions: fixed(1)
+  select: fixed(1)/1
+  batchtype: UNLOGGED
+
+queries:
+  read_one:
+    cql: SELECT payload, sequence_no, created_at FROM events WHERE id = ?
+    fields: samerow

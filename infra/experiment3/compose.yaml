@@ -1,0 +1,61 @@
+name: atropos-experiment3
+
+x-app: &app
+  image: atropos-experiment3-app:local
+  build: ./app
+  cpus: 2.0
+  restart: "no"
+  healthcheck:
+    test: [CMD, wget, -q, -O, /dev/null, http://localhost:8080/health]
+    interval: 2s
+    timeout: 1s
+    retries: 30
+
+services:
+  service1:
+    image: atropos-experiment3-service1:local
+    build: ./service1
+    cpus: 2.0
+    restart: "no"
+    mem_limit: 256m
+    memswap_limit: 256m
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://localhost:8080/health]
+      interval: 2s
+      timeout: 1s
+      retries: 30
+    environment:
+      CLIENT_SLOTS: '${CLIENT_SLOTS:-48}'
+      PAYLOAD_BYTES: '${PAYLOAD_BYTES:-4096}'
+    volumes: ['./results/gc:/logs']
+    ports: ['18281:8080']
+  service2:
+    <<: *app
+    mem_limit: 128m
+    memswap_limit: 128m
+    environment:
+      ROLE: service2
+      SERVER_SLOTS: '128'
+      BASELINE_SECONDS: '${BASELINE_SECONDS:-300}'
+      PAYLOAD_BYTES: '${PAYLOAD_BYTES:-4096}'
+    volumes: ['./results/gc:/logs:ro']
+    ports: ['18282:8080']
+  k6:
+    image: grafana/k6:1.0.0
+    profiles: [load]
+    mem_limit: 512m
+    cpus: 2.0
+    user: '0:0'
+    environment:
+      PAYLOAD_BYTES: '${PAYLOAD_BYTES:-4096}'
+      K6_PROMETHEUS_RW_SERVER_URL: http://host.docker.internal:8428/api/v1/write
+      LOAD_RPS: '${LOAD_RPS:-750}'
+      K6_PROMETHEUS_RW_PUSH_INTERVAL: 2s
+      K6_LOG_LEVEL: error
+      GOMAXPROCS: '2'
+    extra_hosts: [host.docker.internal:host-gateway]
+    volumes: ['./load:/scripts:ro', './results:/results']
+    command: [run, -o, experimental-prometheus-rw, --summary-export=/results/k6-summary.json, /scripts/test.js]
+    depends_on:
+      service1: {condition: service_healthy}
+      service2: {condition: service_healthy}

@@ -1,0 +1,21 @@
+{
+  "image_size": [
+    1215,
+    586
+  ],
+  "plot_x": [
+    20,
+    1207
+  ],
+  "y_grid": {
+    "220_ms": 571,
+    "740_ms": 16
+  },
+  "duration_seconds": 22800,
+  "observed_columns": 1188,
+  "knots": 508,
+  "method": "Yellow-stroke mask, alternating local extrema of its upper/lower envelopes, 15-second timestamp snapping; linear interpolation between anchors.",
+  "unit": "ms",
+  "unit_confirmed_by_user": true,
+  "limitations": "Approximate screenshot reconstruction. One x pixel is about 19.2 seconds and one y pixel about 0.94 ms. Original sampling interval and exact timestamps are unknown. Overlapping subpixel tips cannot all be recovered; no random noise is added."
+}

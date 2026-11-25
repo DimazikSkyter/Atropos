@@ -1,0 +1,1 @@
+{"id": "Trend-large", "detector": "Trend", "scenario": "events", "parameters": {"window": 160, "data_max_size": 960}, "cpu": 29, "fleet": 1, "width": 1, "category": "sensitivity"}

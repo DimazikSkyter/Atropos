@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-11",
+  "interval_seconds": 15,
+  "files": {
+    "cusum-orange-default.csv": {
+      "sha256": "4f685c8c07a9868d01d6b75d806b61abccd07cc94f684c8a1578422fc9c2b7a6",
+      "source_artifact": "cusum/recent-influx-scenario-orange-default.csv"
+    },
+    "cusum-orange-wide.csv": {
+      "sha256": "cea8bb2476eac5d7acbe2573992386722e1dee10aaf812a66e8a4129d18e65af",
+      "source_artifact": "cusum/recent-influx-scenario-orange-wide.csv"
+    },
+    "correlation-latency.csv": {
+      "sha256": "075d196c98eaa46e2720605fcd0728a60d439f54e81c829899e640c7378bbeb2",
+      "source_artifact": "correlation-change/latency-scores.csv"
+    },
+    "latency-input.csv": {
+      "sha256": "f2897d64b7c1524483a18db3370395aa1fff3485c59cf44070fbf9a79ee1c62e",
+      "source_artifact": "correlation-change/latency-influx-input.csv"
+    },
+    "trend-cassandra-1.csv": {
+      "sha256": "ad2219e37e1395a36a818613b0c808fecde1f867df8e4b40fc3398fc2911cb24",
+      "source_artifact": "trend-change/influx-cassandra-1-points.csv"
+    },
+    "correlation-latency-ccf.csv": {
+      "sha256": "a2c370a8d0c690f22e84c865cf9a65b2d0ec80b288c982a90a31cc74c6288b7e",
+      "source_artifact": "Replayed baseline from same latency input; matches dashed CCF-only configuration in screenshot"
+    }
+  },
+  "lower_configs": {
+    "cusum-default": {
+      "window": 10,
+      "inertia_window": 200
+    },
+    "cusum-wide": {
+      "window": 40,
+      "inertia_window": 800
+    },
+    "trend": {
+      "window": 40,
+      "data_max_size": 240,
+      "sample_interval": 15,
+      "time_scale": 60,
+      "value_scale": 1
+    },
+    "correlation": {
+      "adaptive": true,
+      "min_samples": 5,
+      "min_change": 0.25,
+      "min_correlation": 0.7,
+      "alert_threshold": 0.4,
+      "relative_noise_floor": 0.3,
+      "noise_floor": 0.0,
+      "persistence": 2,
+      "alignment_tolerance": 1,
+      "relative_change_scale": 0.1,
+      "window": 12,
+      "max_lag": 2,
+      "reference_window": 64
+    },
+    "correlation-ccf": {
+      "adaptive": true,
+      "min_samples": 5,
+      "min_change": 0.25,
+      "min_correlation": 0.7,
+      "alert_threshold": 0.4,
+      "relative_noise_floor": 0.3,
+      "noise_floor": 0.0,
+      "persistence": 2,
+      "alignment_tolerance": 0,
+      "relative_change_scale": 0.0,
+      "window": 12,
+      "max_lag": 2,
+      "reference_window": 64
+    }
+  },
+  "class_sha256": {
+    "ACFDetector": "c64cf33d06d6eb8baef3a7d510fa40b24c59babb8d885ec6ddd7b74feb822ad3",
+    "CusumDetector": "932ed710f9b989b12ff09f40871a67dfe20abf05ea2efc6f26b192a25e740286",
+    "TrendDetector": "10df76a0a76e3d75301a4e1d91cf61ac24ab770d814819b8da6c6b0e09c75503",
+    "CorrelationDetector": "a61b3865b171d0313a88594b8f6b73a6672db67002d740329a2a8c26678561d9"
+  },
+  "source_note": "Exact saved detector scores from the three supplied report screenshots. Raw inputs are InfluxDB replay snapshots originally reconstructed from images; no production incident labels."
+}

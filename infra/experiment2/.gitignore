@@ -1,0 +1,4 @@
+results/
+__pycache__/
+.running
+app/target/

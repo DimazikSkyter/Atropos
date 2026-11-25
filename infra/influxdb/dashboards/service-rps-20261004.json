@@ -1,0 +1,271 @@
+{
+  "id": null,
+  "uid": "service-rps-20261004",
+  "title": "RPS сервисов — 04.10.2026",
+  "schemaVersion": 41,
+  "version": 1,
+  "editable": true,
+  "timezone": "Europe/Moscow",
+  "refresh": "",
+  "graphTooltip": 1,
+  "tags": [
+    "atropos",
+    "influxdb",
+    "replay",
+    "rps"
+  ],
+  "description": "Приблизительное восстановление RPS по предоставленному изображению. 4 октября 2026 года, 20:27–23:27, Москва. Шаг 15 секунд, без добавления случайного шума. service1 — зелёный, service2 — жёлтый, service3 — голубой, service4 — оранжевый, service5 — красный. Зелёная линия видна только примерно с 22:50; более ранние значения service1 неизвестны. Фиолетовая кривая «Сумма RPS» (правая шкала) складывает доступные значения сервисов в каждой временной точке без усреднения и заполнения пропусков. До 22:50 service1 в сумму не входит.",
+  "annotations": {
+    "list": []
+  },
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2026-10-04T17:27:00Z",
+    "to": "2026-10-04T20:27:00Z"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "RPS сервисов",
+      "description": "Приблизительное восстановление RPS по предоставленному изображению. 4 октября 2026 года, 20:27–23:27, Москва. Шаг 15 секунд, без добавления случайного шума. service1 — зелёный, service2 — жёлтый, service3 — голубой, service4 — оранжевый, service5 — красный. Зелёная линия видна только примерно с 22:50; более ранние значения service1 неизвестны. Фиолетовая кривая «Сумма RPS» (правая шкала) складывает доступные значения сервисов в каждой временной точке без усреднения и заполнения пропусков. До 22:50 service1 в сумму не входит.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 20
+      },
+      "interval": "15s",
+      "maxDataPoints": 10000,
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_rps\" and r._field == \"value\" and r.service == \"service1\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_rps\" and r._field == \"value\" and r.service == \"service2\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_rps\" and r._field == \"value\" and r.service == \"service3\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_rps\" and r._field == \"value\" and r.service == \"service4\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "E",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_rps\" and r._field == \"value\" and r.service == \"service5\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "F",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_rps\" and r._field == \"value\")\n  |> filter(fn: (r) => r.service =~ /^service[1-5]$/)\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [\"_time\"])\n  |> sum(column: \"_value\")\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "min": 0,
+          "max": 2200,
+          "decimals": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 0,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "left",
+            "axisLabel": "RPS",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service1"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#73BF69"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service2"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#F2CC0C"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service3"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#8AB8FF"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "D"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service4"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#FF780A"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "E"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service5"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#F2495C"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "F"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Сумма RPS"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#B877D9"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 3
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "custom.axisLabel",
+                "value": "Суммарный RPS"
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 10000
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      }
+    }
+  ]
+}

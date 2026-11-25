@@ -1,0 +1,14 @@
+{
+  "cassandra_response_time": {
+    "points": 23044,
+    "sha256": "f50d70500d3ce96dc8897268940479d7174f192d7faed4ae4aa7974838c4a3cc"
+  },
+  "request_handle_time": {
+    "points": 937,
+    "sha256": "21930ce366f2a08a31a51a90daea1db97d31f0178207e11739fe7917427a9a90"
+  },
+  "total_rps": {
+    "points": 937,
+    "sha256": "4d3fa074990f7494775dea7e18703f8d87f00b32fa28d763425527f5f3baaaca"
+  }
+}

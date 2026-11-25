@@ -1,0 +1,38 @@
+{
+  "fetched_at_utc": "2026-11-11T10:24:47.241170+00:00",
+  "measurement": "screenshot_step_replay",
+  "field": "value",
+  "tag": "trace",
+  "traces": [
+    "orange",
+    "green",
+    "yellow",
+    "blue"
+  ],
+  "unit": "TPS",
+  "org": "atropos",
+  "bucket": "metrics-replay",
+  "dashboard_uid": "screenshot-steps-20261017",
+  "dashboard_url": "http://127.0.0.1:3001/d/screenshot-steps-20261017",
+  "read_only": true,
+  "grafana_frames_equal_influx": true,
+  "points": 15824,
+  "points_per_trace": 3956,
+  "sample_interval_seconds": 15,
+  "start_utc": "2026-10-17T11:23:30Z",
+  "end_utc": "2026-10-18T03:52:15Z",
+  "csv_sha256": "9a0049646b897fe3e4d741fe7e2061f03a741bf47650ef861a7d57cb79323955",
+  "values_sha256": {
+    "orange": "d2d676d5ffcfb7446812d51bf7570e3906624136757d0d497759d7e7690ec8bd",
+    "green": "d97baafb9fd52fa85d0d269f912737b43c100f91a9fcec5304c45fc9d7dff87e",
+    "yellow": "3988ebadd74189d818b056745c445d1b1a1d39388770b15908c18759c707b98e",
+    "blue": "073e5223a3c76697ed9d390434861aeee6b78b530669851aabb1f34f52da9228"
+  },
+  "source_kind": "Frozen live InfluxDB snapshot of corrected image-reconstructed Scenario; TPS",
+  "is_raw_production_telemetry": false,
+  "reference_files": [
+    "scenario-influx-20261017-reference.png",
+    "scenario-influx-20261017-detail-reference.png",
+    "scenario-influx-20261017-comparison.png"
+  ]
+}

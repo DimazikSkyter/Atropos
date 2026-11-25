@@ -1,0 +1,131 @@
+name: monitoring
+
+services:
+  cAdvisor:
+    # v0.49.2 remains compatible with Docker Desktop's Docker 20.10 engine.
+    image: ${CADVISOR_IMAGE:-gcr.io/cadvisor/cadvisor:v0.49.2}
+    command:
+      - --docker_only=true
+      - --housekeeping_interval=5s
+    privileged: true
+    ports:
+      - "${CADVISOR_PORT:-38080}:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+    mem_limit: 384m
+    cpus: 0.25
+    restart: unless-stopped
+
+#  node-exporter:
+#    image: ${NODE_EXPORTER_IMAGE:-prom/node-exporter:v1.11.1}
+#    profiles: [linux-host]
+#    command:
+#      - --path.rootfs=/host
+#    pid: host
+#    networks: [cassandra-lab]
+#    volumes:
+#      - /:/host:ro
+#    restart: unless-stopped
+
+  victoria-metrics:
+    image: victoriametrics/victoria-metrics:v1.151.0
+    stop_grace_period: 1m
+    command:
+      - -storageDataPath=/victoria-metrics-data
+      - -retentionPeriod=${VM_RETENTION_PERIOD:-100y}
+      - -promscrape.config=/etc/victoriametrics/scrape.yml
+    ports:
+      - "${VICTORIA_METRICS_PORT:-8428}:8428"
+    volumes:
+      - type: bind
+        source: "${VM_DATA_PATH:-F:/vm_data}"
+        target: /victoria-metrics-data
+        bind:
+          create_host_path: true
+      - ./victoria-metrics/scrape.yml:/etc/victoriametrics/scrape.yml:ro
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    restart: unless-stopped
+
+  influxdb:
+    # Explicit v2 tag: the replay datasource uses Flux.
+    image: influxdb:2.7.12
+    stop_grace_period: 1m
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: ${INFLUXDB_USER:-atropos}
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${INFLUXDB_PASSWORD:-atropos-influxdb}
+      DOCKER_INFLUXDB_INIT_ORG: ${INFLUXDB_ORG:-atropos}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${INFLUXDB_BUCKET:-metrics-replay}
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUXDB_TOKEN:-atropos-local-replay-token}
+      DOCKER_INFLUXDB_INIT_RETENTION: ${INFLUXDB_RETENTION:-365d}
+      INFLUXD_STORAGE_WAL_FSYNC_DELAY: "0s"
+      INFLUXD_STORAGE_WAL_FLUSH_ON_SHUTDOWN: "true"
+    ports:
+      - "127.0.0.1:${INFLUXDB_PORT:-8086}:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+      - influxdb_config:/etc/influxdb2
+    healthcheck:
+      test: ["CMD", "influx", "ping", "--host", "http://localhost:8086"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+    restart: unless-stopped
+
+  influxdb-seed:
+    image: influxdb:2.7.12
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    environment:
+      INFLUX_HOST: http://influxdb:8086
+      INFLUX_TOKEN: ${INFLUXDB_TOKEN:-atropos-local-replay-token}
+      INFLUX_ORG: ${INFLUXDB_ORG:-atropos}
+      INFLUX_BUCKET_NAME: ${INFLUXDB_BUCKET:-metrics-replay}
+      INFLUX_RETENTION: ${INFLUXDB_RETENTION:-365d}
+    entrypoint: ["/bin/sh", "/replay/seed-replays.sh"]
+    volumes:
+      - ./influxdb:/replay:ro
+    restart: "no"
+
+  grafana:
+    image: grafana/grafana:12.4.0
+    entrypoint: ["/bin/sh", "/etc/grafana/replay/provision-grafana.sh"]
+    depends_on:
+      victoria-metrics:
+        condition: service_started
+      influxdb-seed:
+        condition: service_completed_successfully
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_PATHS_PROVISIONING: /tmp/grafana-provisioning
+      INFLUXDB_ORG: ${INFLUXDB_ORG:-atropos}
+      INFLUXDB_BUCKET: ${INFLUXDB_BUCKET:-metrics-replay}
+      INFLUXDB_TOKEN: ${INFLUXDB_TOKEN:-atropos-local-replay-token}
+    ports:
+      - "${GRAFANA_PORT:-3001}:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning-base:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - ./influxdb:/etc/grafana/replay:ro
+      - ./influxdb/dashboards:/var/lib/grafana/replay-dashboards:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:3000/api/health >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  grafana_data:
+  influxdb_data:
+  influxdb_config:

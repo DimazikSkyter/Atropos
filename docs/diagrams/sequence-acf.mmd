@@ -1,0 +1,27 @@
+sequenceDiagram
+autonumber
+participant U as unary()
+participant D as ACFDetector
+U->>D: construct fresh instance (no explicit fit in UI)
+loop each finite value
+    U->>D: update(value)
+    alt reference not ready
+        Note over D: Append reference sample
+        opt reference_window reached
+            D->>D: _set_reference()
+            D->>D: _location(reference), _profile(reference, location)
+            Note over D: Freeze healthy ACF and per-lag thresholds
+        end
+        D-->>U: 0.0, ready=false
+    else collect separate local window
+        alt local window incomplete
+            D-->>U: 0.0, ready=false
+        else local window complete
+            D->>D: _location(local), _profile(local, location)
+            Note over D: Compare lags 1..max_lag against frozen thresholds
+            Note over D: score = sum(capped significant excess) / max_lag
+            D-->>U: score, result property holds ACFResult
+        end
+    end
+    Note over U: Warmup stored as None, no overlap of initial reference/local windows
+end

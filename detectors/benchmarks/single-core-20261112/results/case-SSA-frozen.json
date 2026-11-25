@@ -1,0 +1,1 @@
+{"id": "SSA-frozen", "detector": "SSA", "scenario": "events", "parameters": {"refit_interval": null}, "cpu": 29, "fleet": 1, "width": 1, "category": "sensitivity"}

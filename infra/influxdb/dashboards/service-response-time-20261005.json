@@ -1,0 +1,197 @@
+{
+  "id": null,
+  "uid": "service-response-time-20261005",
+  "title": "Время отклика сервисов — 05.10.2026",
+  "schemaVersion": 41,
+  "version": 1,
+  "editable": true,
+  "timezone": "Europe/Moscow",
+  "refresh": "",
+  "graphTooltip": 1,
+  "tags": [
+    "atropos",
+    "influxdb",
+    "replay",
+    "latency"
+  ],
+  "description": "Приблизительное восстановление четырёх рядов времени отклика по изображению. 5 октября 2026 года, 00:00–11:50, Europe/Moscow; шаг 15 секунд. Единица мс подтверждена пользователем. Вертикальная шкала на изображении обрезана: основные нижние уровни приняты за 40 мс, верхний — за 70 мс. Зелёный — service1, жёлтый — service2, оранжевый — service3, красный — service4. Голубая линия внизу — граница графика, не сервис. Имена условные, связи с ранее загруженным RPS не задаются.",
+  "annotations": {
+    "list": []
+  },
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2026-10-04T21:00:00Z",
+    "to": "2026-10-05T08:50:00Z"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Время отклика сервисов",
+      "description": "Приблизительное восстановление четырёх рядов времени отклика по изображению. 5 октября 2026 года, 00:00–11:50, Europe/Moscow; шаг 15 секунд. Единица мс подтверждена пользователем. Вертикальная шкала на изображении обрезана: основные нижние уровни приняты за 40 мс, верхний — за 70 мс. Зелёный — service1, жёлтый — service2, оранжевый — service3, красный — service4. Голубая линия внизу — граница графика, не сервис. Имена условные, связи с ранее загруженным RPS не задаются.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 20
+      },
+      "interval": "15s",
+      "maxDataPoints": 20000,
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_response_time\" and r._field == \"value\" and r.service == \"service1\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_response_time\" and r._field == \"value\" and r.service == \"service2\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_response_time\" and r._field == \"value\" and r.service == \"service3\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_response_time\" and r._field == \"value\" and r.service == \"service4\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "min": 0,
+          "max": 100,
+          "decimals": 2,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 0,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "left",
+            "axisLabel": "мс",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service1"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#73BF69"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service2"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#F2CC0C"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service3"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#FF9830"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "D"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service4"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#F2495C"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"id": "MAD-large", "detector": "MAD", "scenario": "events", "parameters": {"window": 80, "data_max_size": 400}, "cpu": 29, "fleet": 1, "width": 1, "category": "sensitivity"}

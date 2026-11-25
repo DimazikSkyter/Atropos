@@ -1,0 +1,1 @@
+{"id": "Correlation-fleet256", "detector": "Correlation", "scenario": "events", "width": 2, "cpu": 29, "fleet": 256, "category": "large_fleet"}

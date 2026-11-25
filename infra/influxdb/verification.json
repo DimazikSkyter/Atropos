@@ -1,0 +1,40 @@
+{
+  "influxdb_exact_match": 23044,
+  "points_per_host": {
+    "cassandra-1": 5761,
+    "cassandra-2": 5761,
+    "cassandra-3": 5761,
+    "cassandra-4": 5761
+  },
+  "datasource_health": {
+    "message": "datasource is working. 3 buckets found",
+    "status": "OK"
+  },
+  "dashboard_uid": "cassandra-response-time-replay",
+  "grafana_raw_series": [
+    {
+      "host": "cassandra-1",
+      "points": 5761,
+      "min_ms": 0,
+      "max_ms": 14.5
+    },
+    {
+      "host": "cassandra-2",
+      "points": 5761,
+      "min_ms": 0.252,
+      "max_ms": 36
+    },
+    {
+      "host": "cassandra-3",
+      "points": 5761,
+      "min_ms": 0.252,
+      "max_ms": 36
+    },
+    {
+      "host": "cassandra-4",
+      "points": 5761,
+      "min_ms": 0.252,
+      "max_ms": 4.916
+    }
+  ]
+}

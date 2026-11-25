@@ -1,0 +1,58 @@
+         1022497 function calls in 0.608 seconds
+
+   Ordered by: cumulative time
+   List reduced from 26 to 24 due to restriction <24>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.019    0.019    0.608    0.608 benchmark.py:172(batch)
+    19801    0.173    0.000    0.589    0.000 detectors.py:264(update)
+    39602    0.086    0.000    0.134    0.000 detectors.py:58(append)
+    39602    0.062    0.000    0.095    0.000 detectors.py:81(fit)
+    19801    0.015    0.000    0.061    0.000 detectors.py:154(_number)
+    19801    0.055    0.000    0.055    0.000 <string>:2(__init__)
+    39602    0.013    0.000    0.043    0.000 {built-in method builtins.isinstance}
+   133545    0.034    0.000    0.034    0.000 {built-in method builtins.max}
+    19801    0.006    0.000    0.029    0.000 <frozen abc>:117(__instancecheck__)
+    19801    0.010    0.000    0.023    0.000 {built-in method _abc._abc_instancecheck}
+     1782    0.013    0.000    0.023    0.000 {built-in method math.fsum}
+   138608    0.018    0.000    0.018    0.000 {built-in method builtins.len}
+    74142    0.018    0.000    0.018    0.000 {built-in method builtins.min}
+    19801    0.006    0.000    0.014    0.000 <frozen abc>:121(__subclasscheck__)
+    59403    0.012    0.000    0.012    0.000 {method 'append' of 'collections.deque' objects}
+    79204    0.012    0.000    0.012    0.000 {built-in method builtins.abs}
+    19801    0.008    0.000    0.011    0.000 detectors.py:159(ready)
+    59403    0.009    0.000    0.009    0.000 {built-in method math.isfinite}
+    39602    0.008    0.000    0.008    0.000 {built-in method math.sqrt}
+    39602    0.007    0.000    0.007    0.000 {method 'popleft' of 'collections.deque' objects}
+    19801    0.007    0.000    0.007    0.000 {built-in method _abc._abc_subclasscheck}
+    40194    0.005    0.000    0.005    0.000 detectors.py:77(<genexpr>)
+    40194    0.005    0.000    0.005    0.000 detectors.py:76(<genexpr>)
+    19801    0.004    0.000    0.004    0.000 {built-in method math.atan}
+
+
+         1022497 function calls in 0.608 seconds
+
+   Ordered by: internal time
+   List reduced from 26 to 18 due to restriction <18>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    19801    0.173    0.000    0.589    0.000 detectors.py:264(update)
+    39602    0.086    0.000    0.134    0.000 detectors.py:58(append)
+    39602    0.062    0.000    0.095    0.000 detectors.py:81(fit)
+    19801    0.055    0.000    0.055    0.000 <string>:2(__init__)
+   133545    0.034    0.000    0.034    0.000 {built-in method builtins.max}
+        1    0.019    0.019    0.608    0.608 benchmark.py:172(batch)
+   138608    0.018    0.000    0.018    0.000 {built-in method builtins.len}
+    74142    0.018    0.000    0.018    0.000 {built-in method builtins.min}
+    19801    0.015    0.000    0.061    0.000 detectors.py:154(_number)
+    39602    0.013    0.000    0.043    0.000 {built-in method builtins.isinstance}
+     1782    0.013    0.000    0.023    0.000 {built-in method math.fsum}
+    59403    0.012    0.000    0.012    0.000 {method 'append' of 'collections.deque' objects}
+    79204    0.012    0.000    0.012    0.000 {built-in method builtins.abs}
+    19801    0.010    0.000    0.023    0.000 {built-in method _abc._abc_instancecheck}
+    59403    0.009    0.000    0.009    0.000 {built-in method math.isfinite}
+    19801    0.008    0.000    0.011    0.000 detectors.py:159(ready)
+    39602    0.008    0.000    0.008    0.000 {built-in method math.sqrt}
+    39602    0.007    0.000    0.007    0.000 {method 'popleft' of 'collections.deque' objects}
+
+

@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "check": "registry_and_default_constructors",
+      "status": "PASS",
+      "detail": [
+        "ACF",
+        "CUSUM",
+        "Correlation",
+        "MAD",
+        "PredictionInterval",
+        "RuntimeTrend",
+        "SSA",
+        "Trend"
+      ]
+    },
+    {
+      "check": "reject_invalid_flux_timestamps",
+      "status": "FINDING",
+      "detail": "Invalid timestamps were accepted: [{\"input\": \"\", \"accepted_timestamp_ns\": -9223372036854775808}, {\"input\": \"NaT\", \"accepted_timestamp_ns\": -9223372036854775808}]"
+    },
+    {
+      "check": "repository_validates_metric_edits",
+      "status": "FINDING",
+      "detail": "AccountStore.update_metric accepted: [{\"detectors\": {\"NotADetector\": {}}}, {\"extra_labels\": {\"team\": 1}}, {\"name\": \"\"}]"
+    },
+    {
+      "check": "repository_rejects_foreign_peer",
+      "status": "PASS",
+      "detail": "Foreign peer rejected; validation seam only"
+    },
+    {
+      "check": "correlation_exact_intersection",
+      "status": "PASS",
+      "detail": "Exact intersection; warmup retained as None"
+    },
+    {
+      "check": "replay_rejects_stale_revision",
+      "status": "PASS",
+      "detail": "Stale revision rejected before save_results"
+    }
+  ],
+  "findings": 2
+}

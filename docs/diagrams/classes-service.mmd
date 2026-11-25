@@ -1,0 +1,89 @@
+classDiagram
+direction TB
+class DatasourceRepository {
+    <<Protocol>>
+    +sources() list
+    +edit_sources(change) tuple
+}
+class DatasourceService {
+    +repository : DatasourceRepository
+    +checker : Callable
+    +list(kind, search)
+    +save(source)
+    +update(uid, changes)
+    +delete(uid)
+    +test_connection(uid)
+}
+class Datasource {
+    <<frozen dataclass>>
+    +id : str
+    +kind : str
+    +revision : int
+    +is_default : bool
+    +token_env : str
+}
+class DatasourceHealth {
+    <<frozen dataclass>>
+    +uid : str
+    +status : str
+}
+class MemoryDatasourceRepository {
+    +sources()
+    +edit_sources(change)
+}
+class MemoryConfigRepository {
+    +definitions()
+    +save_definition(item, previous_name)
+    +settings()
+}
+class PostgresConfigRepository {
+    +_dsn : str
+    +migrate()
+    +sources()
+    +edit_sources(change)
+    +save_definition(item, previous_name)
+    +import_configuration(sources, definitions)
+}
+class AccountStore {
+    +username : str
+    +snapshot() workspace_and_revision
+    +_edit(change, expected_revision)
+    +import_metrics(metrics, expected_revision)
+    +update_metric(id, changes, expected_revision)
+    +save_metric_set(item, expected_revision)
+    +save_results(result, revision) bool
+    +load_results()
+}
+class MetricDefinition {
+    <<frozen dataclass>>
+    +name : str
+    +datasource_id : str
+    +query : str
+    +transform_result(data)
+}
+class ServiceSettings {
+    <<frozen dataclass>>
+    +server_url : str
+    +server_token_env : str
+}
+class Context {
+    +store
+    +demo : bool
+    +datasources : DatasourceService
+    +source_client(source)
+    +server_client()
+}
+DatasourceRepository <|.. MemoryDatasourceRepository : structural
+DatasourceRepository <|.. PostgresConfigRepository : structural
+MemoryDatasourceRepository <|-- MemoryConfigRepository
+PostgresConfigRepository <|-- AccountStore
+DatasourceService --> DatasourceRepository : uses
+DatasourceService ..> DatasourceHealth : returns
+DatasourceRepository o-- Datasource : catalog
+MemoryConfigRepository o-- MetricDefinition
+MemoryConfigRepository o-- ServiceSettings
+AccountStore ..> MemoryConfigRepository : validates config edits
+Context --> DatasourceService : creates
+Context --> AccountStore : production store
+Context --> MemoryConfigRepository : demo store
+note for AccountStore "Account workspace is JSONB; revision and row lock protect writes."

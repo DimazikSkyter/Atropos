@@ -1,0 +1,8 @@
+collectors:
+  # Includes logical_disk and physical_disk, plus the other upstream defaults.
+  enabled: '[defaults]'
+collector:
+  service:
+    include: windows_exporter
+log:
+  level: warn

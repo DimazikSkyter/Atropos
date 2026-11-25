@@ -1,0 +1,16 @@
+........................................................................ [ 40%]
+........................................................................ [ 81%]
+.................................                                        [100%]
+============================== warnings summary ===============================
+tests/test_account_detectors.py: 600 warnings
+  E:\OneDrive\Документы\ChatGPT\highload2026\atropos-service-fixes\checkout\ui\tests\test_account_detectors.py:32: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+    stamp = pd.Timestamp('2026-01-01', tz='UTC') + pd.Timedelta(seconds=15 * index)
+
+tests/test_account_detectors.py: 5 warnings
+tests/test_live_runtime.py: 11 warnings
+tests/test_reaction_monitoring.py: 4 warnings
+  C:\Users\dimaz\IdeaProjects\Atropos\ui\.venv\Lib\site-packages\streamlit\time_util.py:73: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+    seconds: float = pd.Timedelta(t).total_seconds()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+177 passed, 620 warnings in 38.30s

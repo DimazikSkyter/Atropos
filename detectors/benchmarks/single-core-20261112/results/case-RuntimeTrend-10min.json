@@ -1,0 +1,1 @@
+{"id": "RuntimeTrend-10min", "detector": "RuntimeTrend", "scenario": "events", "parameters": {"window_seconds": 600}, "cpu": 29, "fleet": 1, "width": 1, "category": "sensitivity"}

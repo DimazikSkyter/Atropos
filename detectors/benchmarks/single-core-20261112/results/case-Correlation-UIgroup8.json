@@ -1,0 +1,1 @@
+{"id": "Correlation-UIgroup8", "detector": "Correlation", "scenario": "events", "parameters": {}, "cpu": 29, "fleet": 1, "width": 8, "category": "sensitivity", "pairwise_ui": true}

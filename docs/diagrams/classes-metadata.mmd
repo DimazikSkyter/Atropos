@@ -1,0 +1,54 @@
+classDiagram
+direction TB
+class MetricService {
+    +snapshot() MetricCollection
+    +load(payload, start, end, step)
+    +replace(metrics)
+    +update(reference, changes)
+    +set_window(targets, start, end, step)
+    +compose(name, function, bindings)
+    +resolve(composition)
+}
+class MetricCollection {
+    +metrics : tuple
+    +keys : tuple
+    +get(reference) MetricMetadata
+    +filter(filters) MetricCollection
+    +group_by(labels)
+    +union(others)
+    +compose(name, function, bindings)
+    +resolve(composition)
+}
+class MetricMetadata {
+    <<frozen dataclass>>
+    +name : str
+    +labels : Mapping
+    +additional_labels : Mapping
+    +start : number
+    +end : number
+    +step : number
+    +key : MetricPointer
+}
+class MetricPointer {
+    <<frozen dataclass>>
+    +name : str
+    +labels : Mapping
+    +__hash__()
+}
+class MetricComposition {
+    <<frozen dataclass>>
+    +name : str
+    +function : Callable
+    +bindings : Mapping
+    +parameters : tuple
+}
+class AmbiguousMetricError
+MetricService o-- MetricMetadata : current catalog
+MetricService o-- MetricComposition : saved bindings
+MetricService ..> MetricCollection : snapshot
+MetricCollection o-- MetricMetadata
+MetricMetadata --> MetricPointer : exact identity
+MetricComposition o-- MetricPointer : parameter bindings
+MetricCollection ..> AmbiguousMetricError : ambiguous name
+note for MetricService "In-process metadata only; no HTTP, samples, or lambda execution."
+note for MetricPointer "Identity = source name + source labels; excludes local labels and time window."

@@ -1,0 +1,31 @@
+{
+  "dashboard_uid": "cassandra-response-time-replay",
+  "dashboard_title": "Cassandra response time — replay",
+  "description": "Approximate reconstruction of the supplied screenshot: four Cassandra hosts, 15-second samples, milliseconds. 01 Oct 2026 12:30 to 02 Oct 2026 12:30 MSK. Raw data preserves every sample.",
+  "grafana_url": "http://localhost:3001/d/cassandra-response-time-replay?orgId=1&from=2026-10-01T09%3A30%3A00Z&to=2026-10-02T09%3A30%3A00Z&timezone=Europe%2FMoscow&var-host=%24__all",
+  "influx_url": "http://localhost:8086",
+  "org": "atropos",
+  "bucket": "metrics-replay",
+  "measurement": "cassandra_response_time",
+  "field": "value",
+  "start_utc": "2026-10-01T09:30:00Z",
+  "stop_utc_inclusive": "2026-10-02T09:30:00Z",
+  "timezone": "Europe/Moscow",
+  "interval_seconds": 15,
+  "counts": {
+    "cassandra-1": 5761,
+    "cassandra-2": 5761,
+    "cassandra-3": 5761,
+    "cassandra-4": 5761
+  },
+  "total_points": 23044,
+  "csv_sha256": "398588f8e7bb836b43c67471282f67bea78ee39d22656caac457bf5af21a23de",
+  "grafana_frames_equal_influx": true,
+  "source_kind": "Live InfluxDB snapshot of screenshot-reconstructed replay; not raw production telemetry",
+  "config": {
+    "sample_interval": 15,
+    "time_scale": 60,
+    "value_scale": 1
+  },
+  "read_only": true
+}

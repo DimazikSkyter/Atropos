@@ -1,0 +1,118 @@
+{
+  "passed": true,
+  "checks": {
+    "points_and_dates_match_metadata": true,
+    "uniform_15_second_step": true,
+    "finite_values_in_image_scale": true,
+    "central_level_matches_image": true,
+    "increased_late_variance_preserved": true,
+    "visible_large_excursions_preserved": true,
+    "unit_ms_confirmed": true,
+    "all_existing_measurements_unchanged": true,
+    "new_database_points_match_exactly": true,
+    "dashboard_title_matches_request": true,
+    "dashboard_uses_correct_dates_and_timezone": true,
+    "grafana_returns_all_raw_points": true,
+    "grafana_unit_ms": true,
+    "overview_contains_kafka_panel": true
+  },
+  "statistics": {
+    "points": 1521,
+    "mean_ms": 473.6270190664037,
+    "min_ms": 266.378,
+    "max_ms": 694.559,
+    "middle_sigma_ms": 18.13955483800533,
+    "late_sigma_ms": 64.5514689805394
+  },
+  "before": {
+    "cassandra_response_time": {
+      "field_values": 23044,
+      "sha256": "63f9f1676f701e6f9e0a185e8e31bd532a2cd19075f0e936be44b8cbfe6d45c0"
+    },
+    "cassandra_service_impact": {
+      "field_values": 75620,
+      "sha256": "d131e0aa87f0053227139965bfd08e03aa7031797a18104e78717ed72d50654b"
+    },
+    "cassandra_tps": {
+      "field_values": 26467,
+      "sha256": "ace013c97fe40206a346b413207a0eb7bc95f2bb1812215ad13066513a5b74bc"
+    },
+    "request_handle_time": {
+      "field_values": 937,
+      "sha256": "e7a032b8b392f8674b9fb624d7eeb5d1b4d615c1966cf2b6df8fb71d6492aa6f"
+    },
+    "rps": {
+      "field_values": 5171,
+      "sha256": "8394acdf364bed96df939b38f7ac7bbf9070f9e518ff99a234a9be622c334f09"
+    },
+    "service_dispatcher_delay": {
+      "field_values": 2105,
+      "sha256": "8845b3a907df64e31140bb8be85a3eee55342bca26d3c0378e1a7842ee80e620"
+    },
+    "sync_service_client_response_time": {
+      "field_values": 968,
+      "sha256": "1f42265fd6825ff37d54174457a1a278c07a06fd7af99153fc3c6dffd497aad9"
+    },
+    "total_rps": {
+      "field_values": 937,
+      "sha256": "4ed2fdbb18fac58601f2dc82c1239b8172d8fd7d91d10c5b3f5648bb6ee50fe1"
+    }
+  },
+  "after": {
+    "cassandra_response_time": {
+      "field_values": 23044,
+      "sha256": "63f9f1676f701e6f9e0a185e8e31bd532a2cd19075f0e936be44b8cbfe6d45c0"
+    },
+    "cassandra_service_impact": {
+      "field_values": 75620,
+      "sha256": "d131e0aa87f0053227139965bfd08e03aa7031797a18104e78717ed72d50654b"
+    },
+    "cassandra_tps": {
+      "field_values": 26467,
+      "sha256": "ace013c97fe40206a346b413207a0eb7bc95f2bb1812215ad13066513a5b74bc"
+    },
+    "kafka_write_time": {
+      "field_values": 1521,
+      "sha256": "9ec2376e24148134cb06c832694d704a71b3bbb1d3d75c742255de73cf6c2355"
+    },
+    "request_handle_time": {
+      "field_values": 937,
+      "sha256": "e7a032b8b392f8674b9fb624d7eeb5d1b4d615c1966cf2b6df8fb71d6492aa6f"
+    },
+    "rps": {
+      "field_values": 5171,
+      "sha256": "8394acdf364bed96df939b38f7ac7bbf9070f9e518ff99a234a9be622c334f09"
+    },
+    "service_dispatcher_delay": {
+      "field_values": 2105,
+      "sha256": "8845b3a907df64e31140bb8be85a3eee55342bca26d3c0378e1a7842ee80e620"
+    },
+    "sync_service_client_response_time": {
+      "field_values": 968,
+      "sha256": "1f42265fd6825ff37d54174457a1a278c07a06fd7af99153fc3c6dffd497aad9"
+    },
+    "total_rps": {
+      "field_values": 937,
+      "sha256": "4ed2fdbb18fac58601f2dc82c1239b8172d8fd7d91d10c5b3f5648bb6ee50fe1"
+    }
+  },
+  "dashboard_url": "http://127.0.0.1:3001/d/kafka-write-time-replay",
+  "metadata": {
+    "measurement": "kafka_write_time",
+    "field": "value",
+    "unit": "ms",
+    "unit_confirmed_by_user": true,
+    "start": "2026-09-15T20:00:00+03:00",
+    "end": "2026-09-16T02:20:00+03:00",
+    "timezone": "Europe/Moscow",
+    "interval_seconds": 15,
+    "points": 1521,
+    "min_ms": 266.378,
+    "max_ms": 694.559,
+    "source": "reference.png",
+    "calibration": "calibration.json",
+    "reconstruction": "Approximate raster digitization, preserving visible excursions and increasing late variance. No added random noise.",
+    "dashboard_uid": "kafka-write-time-replay",
+    "dashboard_title": "Время записи в кафку"
+  }
+}

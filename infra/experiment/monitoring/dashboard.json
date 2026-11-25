@@ -1,0 +1,738 @@
+{
+  "uid": "experiment",
+  "title": "Atropos \u00b7 Kafka disk / PostgreSQL network incidents",
+  "schemaVersion": 40,
+  "version": 1,
+  "refresh": "2s",
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timezone": "browser",
+  "tags": [
+    "atropos",
+    "experiment"
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "title": "01 \u00b7 Fixed offered load / real accepted and persisted throughput",
+      "type": "timeseries",
+      "description": "",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "lab_offered_requests_per_second",
+          "legendFormat": "offered HTTP RPS"
+        },
+        {
+          "refId": "B",
+          "expr": "sum by (stage) (rate(lab_events_total{stage=~\"create_received|accepted|persisted\"}[20s]))",
+          "legendFormat": "{{stage}}"
+        },
+        {
+          "refId": "C",
+          "expr": "sum(rate(lab_duration_seconds_count{stage=\"api_get\"}[20s]))",
+          "legendFormat": "reads"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "02 \u00b7 Phase and active faults",
+      "type": "timeseries",
+      "description": "",
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "lab_experiment_phase",
+          "legendFormat": "phase: 1 baseline / 2 fault / 3 recovery"
+        },
+        {
+          "refId": "B",
+          "expr": "lab_disk_stall_active",
+          "legendFormat": "disk stall requested"
+        },
+        {
+          "refId": "C",
+          "expr": "lab_network_fault_active",
+          "legendFormat": "DB network latency"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "03 \u00b7 API mean and p99 latency",
+      "type": "timeseries",
+      "description": "",
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (stage,result) (rate(lab_duration_seconds_sum{stage=~\"api_.*\"}[20s])) / sum by (stage,result) (rate(lab_duration_seconds_count{stage=~\"api_.*\"}[20s]))",
+          "legendFormat": "mean {{stage}} {{result}}"
+        },
+        {
+          "refId": "B",
+          "expr": "histogram_quantile(0.99,sum by (le,stage,result) (rate(lab_duration_seconds_bucket{stage=~\"api_.*\"}[20s])))",
+          "legendFormat": "p99 {{stage}} {{result}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "04 \u00b7 Asynchronous write: accepted \u2192 committed, p50 / p95 / p99",
+      "type": "timeseries",
+      "description": "Only completed writes appear here. Inspect lag and throughput for censored/uncompleted operations.",
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "histogram_quantile(0.5,sum by (le) (rate(lab_duration_seconds_bucket{stage=\"end_to_end_write\"}[20s])))",
+          "legendFormat": "p50"
+        },
+        {
+          "refId": "B",
+          "expr": "histogram_quantile(0.95,sum by (le) (rate(lab_duration_seconds_bucket{stage=\"end_to_end_write\"}[20s])))",
+          "legendFormat": "p95"
+        },
+        {
+          "refId": "C",
+          "expr": "histogram_quantile(0.99,sum by (le) (rate(lab_duration_seconds_bucket{stage=\"end_to_end_write\"}[20s])))",
+          "legendFormat": "p99"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "title": "05 \u00b7 Standard deviation of actual durations",
+      "type": "timeseries",
+      "description": "",
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sqrt(clamp_min(sum by (stage) (rate(lab_duration_squared_seconds_total{result=\"ok\"}[20s])) / sum by (stage) (rate(lab_duration_seconds_count{result=\"ok\"}[20s])) - (sum by (stage) (rate(lab_duration_seconds_sum{result=\"ok\"}[20s])) / sum by (stage) (rate(lab_duration_seconds_count{result=\"ok\"}[20s])))^2, 0))",
+          "legendFormat": "{{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "title": "06 \u00b7 CPU per application process (1 = one core)",
+      "type": "timeseries",
+      "description": "",
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rate(process_cpu_seconds_total{job=\"experiment-app\"}[20s])",
+          "legendFormat": "{{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "title": "07 \u00b7 Kafka publish vs consumer callback (nested API stages)",
+      "type": "timeseries",
+      "description": "",
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (stage,instance) (rate(lab_duration_seconds_sum{stage=~\"kafka_produce|consumer_callback\",result=\"ok\"}[20s])) / sum by (stage,instance) (rate(lab_duration_seconds_count{stage=~\"kafka_produce|consumer_callback\",result=\"ok\"}[20s]))",
+          "legendFormat": "{{stage}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "title": "08 \u00b7 DB read / write latency by consumer",
+      "type": "timeseries",
+      "description": "",
+      "gridPos": {
+        "x": 12,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (stage,instance,result) (rate(lab_duration_seconds_sum{stage=~\"db_.*\"}[20s])) / sum by (stage,instance,result) (rate(lab_duration_seconds_count{stage=~\"db_.*\"}[20s]))",
+          "legendFormat": "{{stage}} {{instance}} {{result}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "title": "09 \u00b7 Backlog by partition, independently probed",
+      "type": "timeseries",
+      "description": "",
+      "gridPos": {
+        "x": 0,
+        "y": 32,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "lab_kafka_group_lag",
+          "legendFormat": "partition {{partition}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "title": "10 \u00b7 Kafka ISR and leader IDs",
+      "type": "timeseries",
+      "description": "",
+      "gridPos": {
+        "x": 12,
+        "y": 32,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "lab_kafka_isr",
+          "legendFormat": "ISR p{{partition}}"
+        },
+        {
+          "refId": "B",
+          "expr": "lab_kafka_leader",
+          "legendFormat": "leader p{{partition}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "title": "11 \u00b7 Actual blocked Kafka file operations",
+      "type": "timeseries",
+      "description": "Test 1 is rejected if no actual write/flush calls enter the gate. The JVM is not paused.",
+      "gridPos": {
+        "x": 0,
+        "y": 40,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "lab_disk_blocked_calls",
+          "legendFormat": "currently blocked"
+        },
+        {
+          "refId": "B",
+          "expr": "increase(lab_disk_gate_entries_total[20s])",
+          "legendFormat": "entered gate / 20s"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "title": "12 \u00b7 Errors / retries and observation availability",
+      "type": "timeseries",
+      "description": "",
+      "gridPos": {
+        "x": 12,
+        "y": 40,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (stage) (rate(lab_duration_seconds_count{result=\"error\"}[20s]))",
+          "legendFormat": "errors {{stage}}"
+        },
+        {
+          "refId": "B",
+          "expr": "sum(rate(lab_events_total{stage=\"db_retry\"}[20s]))",
+          "legendFormat": "DB retries"
+        },
+        {
+          "refId": "C",
+          "expr": "lab_kafka_probe_ok",
+          "legendFormat": "Kafka probe available"
+        },
+        {
+          "refId": "D",
+          "expr": "min(up{job=\"experiment-app\"})",
+          "legendFormat": "all app metrics available"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 13,
+      "title": "13 \u00b7 CPU quota usage across containers",
+      "type": "timeseries",
+      "description": "",
+      "gridPos": {
+        "x": 0,
+        "y": 48,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (container_label_com_docker_compose_service) (rate(container_cpu_usage_seconds_total{container_label_com_docker_compose_project=\"atropos-experiment\",image!=\"\"}[20s]))",
+          "legendFormat": "{{container_label_com_docker_compose_service}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "title": "14 \u00b7 Application latency distribution (bucket counts / second)",
+      "type": "timeseries",
+      "description": "Cumulative histogram buckets; inspect mean, p99 and standard deviation together.",
+      "gridPos": {
+        "x": 12,
+        "y": 48,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (le,stage) (rate(lab_duration_seconds_bucket{stage=~\"api_get|api_post|end_to_end_write\",result=\"ok\"}[20s]))",
+          "legendFormat": "{{stage}} \u2264 {{le}} s"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "title": "15 \u00b7 Active HTTP requests by node",
+      "type": "timeseries",
+      "description": "Idle keep-alive connections are excluded. Compare DB recovery with the remaining API backlog and CPU.",
+      "gridPos": {
+        "x": 0,
+        "y": 56,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "experiment"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "lab_requests_inflight",
+          "legendFormat": "{{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "measurement": "cassandra_response_time",
+  "field": "value",
+  "unit": "ms",
+  "tag": "host",
+  "hosts": [
+    "cassandra-1",
+    "cassandra-2",
+    "cassandra-3",
+    "cassandra-4"
+  ],
+  "start": "2026-10-01T12:30:00+03:00",
+  "end": "2026-10-02T12:30:00+03:00",
+  "timezone": "Europe/Moscow",
+  "interval_seconds": 15,
+  "points_per_host": {
+    "cassandra-1": 5761,
+    "cassandra-2": 5761,
+    "cassandra-3": 5761,
+    "cassandra-4": 5761
+  },
+  "total_points": 23044,
+  "source": "reference.png",
+  "source_columns": 1603,
+  "source_trace_points": 2383,
+  "reconstruction": "Approximate digitization of four colored traces; occlusions and 15-second intervals filled with preceding values. High plateaus calibrated from the visible grid. Endpoints of dense vertical strokes placed in adjacent 15-second slots; subpixel timing is estimated."
+}

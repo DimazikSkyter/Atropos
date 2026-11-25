@@ -1,0 +1,24 @@
+sequenceDiagram
+autonumber
+participant U as unary()
+participant D as PredictionIntervalDetector
+U->>D: construct fresh instance
+loop each finite value
+    U->>D: update(value)
+    alt history shorter than window
+        Note over D: Append value for warmup
+        D-->>U: PredictionIntervalResult(ready=false)
+    else preceding window complete
+        D->>D: _base_prediction(previous history)
+        D->>D: _bounds(center, half_width, scale)
+        Note over D: Compare new value against preceding interval
+        D->>D: _interval_change(value, center, half_width)
+        Note over D: Distance score times interval-stability factor
+        opt auto_scale enabled
+            Note over D: Compute scale for NEXT observation from miss flag
+        end
+        Note over D: Only now append value and update scale
+        D-->>U: PredictionIntervalResult(ready, bounds, score, scale)
+    end
+    Note over U: Read result.ready, warmup stored as None
+end

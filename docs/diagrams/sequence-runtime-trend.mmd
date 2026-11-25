@@ -1,0 +1,29 @@
+sequenceDiagram
+autonumber
+participant U as unary()
+participant C as TrendConfig
+participant D as RuntimeTrendDetector
+participant F as runtime_trend functions
+U->>C: validate parameters and UI defaults
+U->>D: construct(config)
+loop each timestamp_ns and value
+    U->>D: update_ns(timestamp_ns, value)
+    Note over D: Require strictly increasing integer nanoseconds
+    Note over D: Keep bounded time window, reset streak after large gap
+    U->>D: evaluate()
+    alt same timestamp already evaluated
+        D-->>U: cached TrendResult, no confirmation advance
+    else new timestamp
+        alt samples and coverage sufficient
+            D->>F: _fit(x_minutes from integer time differences, scaled_y, config)
+            F-->>D: slope, residual variance, cleaned values
+            D->>F: _step_like(x, cleaned, config)
+            F-->>D: step flag
+            Note over D: Gate by step, variance, tangent, update direction streak
+        else insufficient coverage
+            Note over D: reason=warmup, ready=false
+        end
+        D-->>U: runtime_trend.TrendResult(ready, detected, reason)
+    end
+    Note over U: Store float(detected) = 0/1 if ready, otherwise None
+end

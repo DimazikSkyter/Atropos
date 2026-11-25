@@ -1,0 +1,1 @@
+{"id": "SSA-influx", "detector": "SSA", "scenario": "influx", "width": 1, "cpu": 29, "fleet": 64, "profile": false, "category": "baseline"}

@@ -1,0 +1,34 @@
+{
+  "cassandra_response_time": {
+    "field_values": 23044,
+    "sha256": "63f9f1676f701e6f9e0a185e8e31bd532a2cd19075f0e936be44b8cbfe6d45c0"
+  },
+  "cassandra_service_impact": {
+    "field_values": 75620,
+    "sha256": "d131e0aa87f0053227139965bfd08e03aa7031797a18104e78717ed72d50654b"
+  },
+  "cassandra_tps": {
+    "field_values": 26467,
+    "sha256": "ace013c97fe40206a346b413207a0eb7bc95f2bb1812215ad13066513a5b74bc"
+  },
+  "request_handle_time": {
+    "field_values": 937,
+    "sha256": "e7a032b8b392f8674b9fb624d7eeb5d1b4d615c1966cf2b6df8fb71d6492aa6f"
+  },
+  "rps": {
+    "field_values": 5171,
+    "sha256": "8394acdf364bed96df939b38f7ac7bbf9070f9e518ff99a234a9be622c334f09"
+  },
+  "service_dispatcher_delay": {
+    "field_values": 2105,
+    "sha256": "8845b3a907df64e31140bb8be85a3eee55342bca26d3c0378e1a7842ee80e620"
+  },
+  "sync_service_client_response_time": {
+    "field_values": 968,
+    "sha256": "1f42265fd6825ff37d54174457a1a278c07a06fd7af99153fc3c6dffd497aad9"
+  },
+  "total_rps": {
+    "field_values": 937,
+    "sha256": "4ed2fdbb18fac58601f2dc82c1239b8172d8fd7d91d10c5b3f5648bb6ee50fe1"
+  }
+}

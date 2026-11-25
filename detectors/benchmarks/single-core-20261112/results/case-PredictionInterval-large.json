@@ -1,0 +1,1 @@
+{"id": "PredictionInterval-large", "detector": "PredictionInterval", "scenario": "events", "parameters": {"window": 120}, "cpu": 29, "fleet": 1, "width": 1, "category": "sensitivity"}

@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "checks": {
+    "five_named_services": true,
+    "complete_uniform_15s_series": true,
+    "normal_response_average_approximately_300ms": true,
+    "first_node_failure_has_no_response_level_step": true,
+    "clear_response_jump_at_0700": true,
+    "no_2213_2214_jump": true,
+    "errors_zero_before_tps_drop": true,
+    "positive_errors_begin_exactly_at_tps_drop": true,
+    "request_rates_conserved_at_every_sample": true,
+    "terminal_errors_cover_full_offered_tps": true,
+    "success_tps_exactly_matches_existing_traces": true,
+    "all_values_nonnegative_finite": true,
+    "expected_point_count": true
+  },
+  "statistics": {
+    "normal_response_mean_ms": 300.0706173333333,
+    "services": {
+      "service1": {
+        "baseline_response_ms": 250.12000625000002,
+        "jump_at_0700_ms": 528.0450000000001,
+        "response_ratio_around_first_failure": 1.0464465208520848,
+        "errors_at_tps_drop": 506.721,
+        "errors_after_total_failure": 694.346
+      },
+      "service2": {
+        "baseline_response_ms": 275.11585708333337,
+        "jump_at_0700_ms": 720.8299999999999,
+        "response_ratio_around_first_failure": 1.0491139231788822,
+        "errors_at_tps_drop": 405.791,
+        "errors_after_total_failure": 489.94
+      },
+      "service3": {
+        "baseline_response_ms": 300.07761125,
+        "jump_at_0700_ms": 917.613,
+        "response_ratio_around_first_failure": 1.0428353395921957,
+        "errors_at_tps_drop": 44.877,
+        "errors_after_total_failure": 134.522
+      },
+      "service4": {
+        "baseline_response_ms": 325.0312675,
+        "jump_at_0700_ms": 1117.5620000000001,
+        "response_ratio_around_first_failure": 1.0310710394338405,
+        "errors_at_tps_drop": 2.003,
+        "errors_after_total_failure": 84.976
+      },
+      "service5": {
+        "baseline_response_ms": 350.0083445833333,
+        "jump_at_0700_ms": 1319.492,
+        "response_ratio_around_first_failure": 1.020432815536267,
+        "errors_at_tps_drop": 44.355,
+        "errors_after_total_failure": 62.43
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+sequenceDiagram
+autonumber
+actor UI
+participant RT as ReplayRuntime
+participant Pool as ThreadPoolExecutor
+participant R as replay()
+participant S as AccountStore
+participant I as read_source() / InfluxDB
+participant D as unary() / correlation()
+UI->>RT: start(store)
+RT->>S: snapshot() -> revision
+RT->>Pool: submit(run)
+Pool->>R: replay(store, progress)
+R->>S: snapshot() -> workspace, revision
+loop each used datasource once
+    R->>I: read_source(source)
+    I-->>R: raw numeric series, skipped count
+end
+loop each metric and binding
+    R->>D: fresh instance per series / pair
+    D-->>R: scores, ready_points, status
+    Note over R,D: ValueError / TypeError / ArithmeticError become detector status=error
+end
+R->>S: snapshot() -> current revision
+alt revision changed
+    R-->>Pool: ValueError, no publication
+    Note over RT,Pool: Worker retries from raw data if its revision changed
+else revision unchanged
+    R->>S: save_results(result, revision)
+    Note over S: Row lock, persist only if enabled and revision matches
+    R-->>Pool: result (also kept in process RAM)
+end
+UI->>RT: result(store)
+RT-->>UI: matching revision or persisted matching result

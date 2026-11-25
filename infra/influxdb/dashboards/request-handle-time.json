@@ -1,0 +1,175 @@
+{
+  "id": null,
+  "uid": "request-handle-time-replay",
+  "version": 1,
+  "schemaVersion": 41,
+  "title": "Request handle time and total RPS — replay",
+  "editable": true,
+  "timezone": "Europe/Moscow",
+  "refresh": "",
+  "graphTooltip": 1,
+  "fiscalYearStartMonth": 0,
+  "annotations": {
+    "list": []
+  },
+  "links": [],
+  "tags": [
+    "atropos",
+    "replay",
+    "influxdb",
+    "rps",
+    "latency"
+  ],
+  "description": "Approximate digitization of the supplied screenshot. Yellow: request_handle_time, status=200, ms; green: total_rps (~10000), requests/s. Date replaced with 03 Oct 2026. Raw 15-second samples.",
+  "time": {
+    "from": "2026-10-03T16:12:00Z",
+    "to": "2026-10-03T20:06:00Z"
+  },
+  "templating": {
+    "list": []
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "request_handle_time (200) / total_rps",
+      "description": "15-second raw samples; no aggregation. Yellow scale anchored at 13.5 ms from the tooltip; green mean ~10000 RPS. The reference axes were cropped, so values are approximate.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "gridPos": {
+        "h": 17,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "maxDataPoints": 10000,
+      "interval": "15s",
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"request_handle_time\" and r._field == \"value\")\n  |> filter(fn: (r) => r.status == \"200\")\n  |> keep(columns: [\"_time\", \"_value\", \"status\"])\n  |> group(columns: [\"status\"])\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"total_rps\" and r._field == \"value\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "min": 0,
+          "max": 53.718,
+          "decimals": 2,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 0,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "left",
+            "axisLabel": "ms",
+            "axisColorMode": "text",
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "request_handle_time (200)"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#E0B400"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "total_rps"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#73BF69"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "reqps"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 11611.333
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "custom.axisLabel",
+                "value": "RPS"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none",
+          "hideZeros": false
+        }
+      }
+    }
+  ]
+}

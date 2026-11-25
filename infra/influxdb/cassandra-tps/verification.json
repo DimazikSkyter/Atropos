@@ -1,0 +1,161 @@
+{
+  "passed": true,
+  "checks": {
+    "seven_traces": true,
+    "point_count_matches": true,
+    "uniform_15_second_step": true,
+    "all_values_nonnegative_finite": true,
+    "first_node_failure_no_tps_level_step": true,
+    "growing_response_time_does_not_collapse_tps": true,
+    "node2_plateau_alone_no_tps_step": true,
+    "both_plateaus_trigger_partial_drop": true,
+    "load_remains_positive_until_last_terminal_drop": true,
+    "all_traces_zero_from_last_terminal_drop": true,
+    "all_existing_series_unchanged": true,
+    "new_points_exactly_match_database": true,
+    "grafana_datasource_healthy": true,
+    "grafana_raw_points_exactly_match": true,
+    "grafana_no_aggregation": true
+  },
+  "points_added": 26467,
+  "points_per_trace": 3781,
+  "measurement": "cassandra_tps",
+  "events": [
+    {
+      "name": "first_node_failure",
+      "host": "cassandra-1",
+      "time": "2026-10-02T04:53:30+03:00",
+      "tps_effect": "none"
+    },
+    {
+      "name": "node2_plateau",
+      "host": "cassandra-2",
+      "time": "2026-10-02T07:51:30+03:00",
+      "tps_effect": "none_until_both_plateaus"
+    },
+    {
+      "name": "node3_plateau",
+      "host": "cassandra-3",
+      "time": "2026-10-02T08:41:15+03:00",
+      "tps_effect": "partial_drop"
+    },
+    {
+      "name": "node3_terminal_drop",
+      "host": "cassandra-3",
+      "time": "2026-10-02T12:16:15+03:00",
+      "tps_effect": "load_remains_positive"
+    },
+    {
+      "name": "node2_terminal_drop",
+      "host": "cassandra-2",
+      "time": "2026-10-02T12:30:00+03:00",
+      "tps_effect": "all_tps_zero"
+    }
+  ],
+  "statistics": {
+    "green": {
+      "baseline_mean_tps": 686.015488057041,
+      "baseline_sigma_tps": 9.201430445503583,
+      "partial_mean_tps": 206.7505398907104,
+      "partial_sigma_tps": 10.941894618576672,
+      "partial_min_tps": 182.771,
+      "partial_max_tps": 230.018,
+      "mean_ratio_around_first_failure": 0.9953099583933525,
+      "last_before_zero": 214.476
+    },
+    "yellow": {
+      "baseline_mean_tps": 483.47333547237076,
+      "baseline_sigma_tps": 6.549338945164815,
+      "partial_mean_tps": 98.21356612021857,
+      "partial_sigma_tps": 14.994674631393835,
+      "partial_min_tps": 80.817,
+      "partial_max_tps": 134.265,
+      "mean_ratio_around_first_failure": 0.9952324009045983,
+      "last_before_zero": 129.307
+    },
+    "gray": {
+      "baseline_mean_tps": 131.46979750445632,
+      "baseline_sigma_tps": 2.7329873662390574,
+      "partial_mean_tps": 92.83284262295082,
+      "partial_sigma_tps": 6.975453568842635,
+      "partial_min_tps": 57.479,
+      "partial_max_tps": 101.954,
+      "mean_ratio_around_first_failure": 0.995263236963835,
+      "last_before_zero": 99.622
+    },
+    "red": {
+      "baseline_mean_tps": 84.81758431372549,
+      "baseline_sigma_tps": 0.6792521711804866,
+      "partial_mean_tps": 88.32159999999999,
+      "partial_sigma_tps": 3.1297897381497237,
+      "partial_min_tps": 82.682,
+      "partial_max_tps": 94.494,
+      "mean_ratio_around_first_failure": 1.0001215083233201,
+      "last_before_zero": 85.79
+    },
+    "olive": {
+      "baseline_mean_tps": 61.466913725490194,
+      "baseline_sigma_tps": 1.5778805113394139,
+      "partial_mean_tps": 25.964491803278687,
+      "partial_sigma_tps": 5.144123688342949,
+      "partial_min_tps": 17.409,
+      "partial_max_tps": 36.057,
+      "mean_ratio_around_first_failure": 1.0007546421720113,
+      "last_before_zero": 20.203
+    },
+    "teal": {
+      "baseline_mean_tps": 30.0,
+      "baseline_sigma_tps": 0.0,
+      "partial_mean_tps": 9.918525683060109,
+      "partial_sigma_tps": 0.6806926367559907,
+      "partial_min_tps": 3.185,
+      "partial_max_tps": 10.0,
+      "mean_ratio_around_first_failure": 1.0,
+      "last_before_zero": 3.185
+    },
+    "orange": {
+      "baseline_mean_tps": 22.575023172905528,
+      "baseline_sigma_tps": 0.8198808242369314,
+      "partial_mean_tps": 21.33123278688525,
+      "partial_sigma_tps": 0.853037631964716,
+      "partial_min_tps": 19.276,
+      "partial_max_tps": 22.38,
+      "mean_ratio_around_first_failure": 1.0379610232256906,
+      "last_before_zero": 19.349
+    }
+  },
+  "before": {
+    "cassandra_response_time": {
+      "points": 23044,
+      "sha256": "f50d70500d3ce96dc8897268940479d7174f192d7faed4ae4aa7974838c4a3cc"
+    },
+    "request_handle_time": {
+      "points": 937,
+      "sha256": "21930ce366f2a08a31a51a90daea1db97d31f0178207e11739fe7917427a9a90"
+    },
+    "total_rps": {
+      "points": 937,
+      "sha256": "4d3fa074990f7494775dea7e18703f8d87f00b32fa28d763425527f5f3baaaca"
+    }
+  },
+  "after": {
+    "cassandra_response_time": {
+      "points": 23044,
+      "sha256": "f50d70500d3ce96dc8897268940479d7174f192d7faed4ae4aa7974838c4a3cc"
+    },
+    "cassandra_tps": {
+      "points": 26467,
+      "sha256": "3d7aecdfa395a68a6a029c826fe4151f1dd9fd0067f894574e7686f835a60664"
+    },
+    "request_handle_time": {
+      "points": 937,
+      "sha256": "21930ce366f2a08a31a51a90daea1db97d31f0178207e11739fe7917427a9a90"
+    },
+    "total_rps": {
+      "points": 937,
+      "sha256": "4d3fa074990f7494775dea7e18703f8d87f00b32fa28d763425527f5f3baaaca"
+    }
+  },
+  "grafana_frames": 7,
+  "grafana_url": "http://localhost:3001/d/cassandra-tps-correlation"
+}

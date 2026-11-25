@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checks": {
+    "A_matches_all_expected_values": true,
+    "B_matches_all_expected_values": true,
+    "all_database_measurements_unchanged": true,
+    "average_also_in_overview": true
+  },
+  "mean_window_minutes": 15,
+  "samples_per_window": 60,
+  "raw_points": 1521,
+  "mean_points": 1462,
+  "overall_mean_ms": 473.6270190664037,
+  "moving_mean_min_ms": 459.03605,
+  "moving_mean_max_ms": 497.0795166666667
+}

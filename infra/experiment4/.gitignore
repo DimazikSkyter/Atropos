@@ -1,0 +1,4 @@
+results/
+app/target/
+__pycache__/
+*.pyc

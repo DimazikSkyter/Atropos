@@ -1,0 +1,1 @@
+{"id": "Correlation-group4", "detector": "Correlation", "scenario": "events", "parameters": {}, "cpu": 29, "fleet": 1, "width": 4, "category": "sensitivity"}

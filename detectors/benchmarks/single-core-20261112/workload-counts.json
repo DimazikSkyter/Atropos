@@ -1,0 +1,15 @@
+{
+  "source_points": 183429,
+  "correlation_pairs": 159,
+  "correlation_vector_updates": 340303,
+  "updates_by_detector": {
+    "Trend": 183429,
+    "CUSUM": 183429,
+    "MAD": 183429,
+    "SSA": 183429,
+    "ACF": 183429,
+    "Correlation": 340303,
+    "PredictionInterval": 183429,
+    "RuntimeTrend": 183429
+  }
+}

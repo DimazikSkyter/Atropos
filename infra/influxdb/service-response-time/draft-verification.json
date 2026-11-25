@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "points": 11364,
+  "checks": {
+    "four_series_and_unique_points": true,
+    "unit_ms_and_exclusion_of_blue_border_confirmed": true,
+    "all_local_dates_october_5_moscow": true,
+    "all_services_have_2841_points_at_15_seconds": true,
+    "all_services_cover_0000_to_1150": true,
+    "finite_nonnegative_ms": true,
+    "approximate_requested_baselines": true,
+    "increased_late_variance_preserved": true,
+    "large_visible_excursions_retained": true,
+    "line_protocol_lf_and_point_count": true
+  }
+}

@@ -1,0 +1,451 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "description": "Два восстановленных графика с согласованным началом скачка ВО и роста диспетчерной задержки.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": 3762535678287872,
+  "links": [
+    {
+      "targetBlank": false,
+      "title": "Основной эпизод: 18:18:30–18:25:30",
+      "type": "link",
+      "url": "/d/sync-client-dispatcher-replay?from=1791213510000&to=1791213930000&timezone=Europe%2FMoscow"
+    },
+    {
+      "targetBlank": false,
+      "title": "Все данные: 18:10–18:45",
+      "type": "link",
+      "url": "/d/sync-client-dispatcher-replay?from=1791213000000&to=1791215100000&timezone=Europe%2FMoscow"
+    }
+  ],
+  "panels": [
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "description": "Реконструкция скриншота, сырые точки через 5 с, без агрегации. Только основные линии 6–24 мс. За пределами 18:15–18:25 точки отсутствуют.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "axisPlacement": "left",
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1.5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "decimals": 2,
+          "displayName": "ВО клиента → синхронный сервис · ${__field.labels.host}",
+          "max": 27.5,
+          "min": 0,
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host1$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#7E9B68",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host2$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#548E61",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host3$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#56B7BC",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host4$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#9778B4",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host5$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#973D42",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host6$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#C38489",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host7$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#D8AE6D",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host8$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#5E5867",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "interval": "5s",
+      "maxDataPoints": 10000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"sync_service_client_response_time\" and r._field == \"value\")\n  |> keep(columns: [\"_time\", \"_value\", \"host\"])\n  |> group(columns: [\"host\"])\n  |> sort(columns: [\"_time\"])",
+          "refId": "A"
+        }
+      ],
+      "title": "ВО клиента к синхронному сервису",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "description": "Реконструкция скриншота, сырые точки через 5 с, без агрегации. Пять различимых цветных линий. До роста, с 18:15 до 18:19:15, фон 10–20 мс по запросу пользователя; далее оцифрованные значения.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "axisPlacement": "left",
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1.5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "decimals": 2,
+          "displayName": "Диспетчер сервиса клиента · ${__field.labels.host}",
+          "max": 10,
+          "min": 0,
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host1$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#7E9B68",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host2$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#548E61",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host3$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#56B7BC",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host4$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#9778B4",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host5$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#973D42",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host6$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#C38489",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host7$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#D8AE6D",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*host8$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#5E5867",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 2,
+      "interval": "5s",
+      "maxDataPoints": 10000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_dispatcher_delay\" and r._field == \"value\")\n  |> keep(columns: [\"_time\", \"_value\", \"host\"])\n  |> group(columns: [\"host\"])\n  |> sort(columns: [\"_time\"])",
+          "refId": "A"
+        }
+      ],
+      "title": "Задержка диспетчера сервиса, работающего с клиентом",
+      "type": "timeseries"
+    },
+    {
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 30
+      },
+      "id": 3,
+      "options": {
+        "content": "**05.10.2026, Москва.** Скачок уровня ВО клиента около **18:19:15** и начало роста диспетчерной задержки согласованы по времени. Верхний график: **миллисекунды**; нижний: **секунды**.\n\nС **18:15 до 18:19:15** нижнему графику задан фон **10–20 мс (0,010–0,020 с)**; шаг точек обоих графиков — 5 с.\n\nВерхний график содержит только основные линии 6–24 мс по указанию пользователя. Его исходник охватывает 18:15–18:25; значения после 18:25 не продолжены. Нижний исходник охватывает 18:10–18:45, включая повторные пики после 18:35. Хосты обезличены как host1–host8 в порядке видимой легенды; для нижнего графика восстановлены пять различимых цветных трасс. Числа приблизительно оцифрованы, без добавленного случайного шума. Ссылка «Основной эпизод» увеличивает совместный участок.",
+        "mode": "markdown"
+      },
+      "title": "Время, единицы и исходники",
+      "type": "text"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": [
+    "atropos",
+    "influxdb",
+    "replay",
+    "client",
+    "dispatcher",
+    "latency"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2026-10-05T15:10:00Z",
+    "to": "2026-10-05T15:45:00Z"
+  },
+  "timepicker": {
+    "hidden": false
+  },
+  "timezone": "Europe/Moscow",
+  "title": "ВО клиента / диспетчер сервиса — 05.10.2026",
+  "uid": "sync-client-dispatcher-replay",
+  "version": 1
+}

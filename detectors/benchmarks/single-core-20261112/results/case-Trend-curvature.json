@@ -1,0 +1,1 @@
+{"id": "Trend-curvature", "detector": "Trend", "scenario": "curvature", "parameters": {}, "cpu": 29, "fleet": 64, "width": 1, "category": "sensitivity", "profile": true}

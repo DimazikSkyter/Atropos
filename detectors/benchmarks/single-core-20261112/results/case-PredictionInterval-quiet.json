@@ -1,0 +1,1 @@
+{"id": "PredictionInterval-quiet", "detector": "PredictionInterval", "scenario": "quiet", "width": 1, "cpu": 29, "fleet": 64, "profile": false, "category": "baseline"}

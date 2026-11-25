@@ -1,0 +1,556 @@
+{
+  "id": null,
+  "uid": "screenshot-steps-20261017",
+  "title": "Ступенчатые ряды со скриншота — 17.10.2026",
+  "schemaVersion": 41,
+  "version": 2,
+  "editable": true,
+  "timezone": "Europe/Moscow",
+  "refresh": "",
+  "graphTooltip": 1,
+  "tags": [
+    "atropos",
+    "influxdb",
+    "replay",
+    "screenshot"
+  ],
+  "description": "Реконструкция по изображениям, 17.10.2026 14:23:30 — 18.10.2026 06:52:15, Москва, шаг 15 секунд. Первая верхняя оранжевая ступень восстановлена по подробной картинке пользователя: сохранены видимая ширина, наклонные фронты и откаты ниже плато. Остальные участки и цвета прочитаны с полного скриншота. Единица TPS задана пользователем; масштаб восстановлен по картинке: нижнее оранжевое плато = 100 TPS. Скрытые нижние перекрытия приближённые. Красная горизонталь и синяя рамка — оформление. В Grafana используется линейное соединение всех точек без усреднения.",
+  "annotations": {
+    "list": []
+  },
+  "templating": {
+    "list": []
+  },
+  "links": [
+    {
+      "type": "link",
+      "title": "Верхняя оранжевая ступень крупнее",
+      "url": "/d/screenshot-steps-20261017?from=1792257600000&to=1792265700000&timezone=Europe%2FMoscow&viewPanel=panel-2",
+      "targetBlank": false
+    }
+  ],
+  "time": {
+    "from": "2026-10-17T11:23:30Z",
+    "to": "2026-10-18T03:52:15Z"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Сценарий",
+      "description": "Реконструкция по изображениям, 17.10.2026 14:23:30 — 18.10.2026 06:52:15, Москва, шаг 15 секунд. Первая верхняя оранжевая ступень восстановлена по подробной картинке пользователя: сохранены видимая ширина, наклонные фронты и откаты ниже плато. Остальные участки и цвета прочитаны с полного скриншота. Единица TPS задана пользователем; масштаб восстановлен по картинке: нижнее оранжевое плато = 100 TPS. Скрытые нижние перекрытия приближённые. Красная горизонталь и синяя рамка — оформление. В Grafana используется линейное соединение всех точек без усреднения.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 16
+      },
+      "interval": "15s",
+      "maxDataPoints": 20000,
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"screenshot_step_replay\" and r._field == \"value\" and r.trace == \"blue\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"screenshot_step_replay\" and r._field == \"value\" and r.trace == \"yellow\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"screenshot_step_replay\" and r._field == \"value\" and r.trace == \"green\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"screenshot_step_replay\" and r._field == \"value\" and r.trace == \"orange\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "suffix:TPS",
+          "decimals": 2,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 5,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "left",
+            "axisLabel": "TPS",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          },
+          "min": 0,
+          "max": 190
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Голубой"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#8AB8FF"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Жёлтый"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#F2CC0C"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Зелёный"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#73BF69"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "D"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Оранжевый"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#FF9830"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "Оранжевый ряд",
+      "description": "Реконструкция по изображениям, 17.10.2026 14:23:30 — 18.10.2026 06:52:15, Москва, шаг 15 секунд. Первая верхняя оранжевая ступень восстановлена по подробной картинке пользователя: сохранены видимая ширина, наклонные фронты и откаты ниже плато. Остальные участки и цвета прочитаны с полного скриншота. Единица TPS задана пользователем; масштаб восстановлен по картинке: нижнее оранжевое плато = 100 TPS. Скрытые нижние перекрытия приближённые. Красная горизонталь и синяя рамка — оформление. В Grafana используется линейное соединение всех точек без усреднения.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 12,
+        "h": 9
+      },
+      "interval": "15s",
+      "maxDataPoints": 20000,
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"screenshot_step_replay\" and r._field == \"value\" and r.trace == \"orange\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "suffix:TPS",
+          "decimals": 2,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 0,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "left",
+            "axisLabel": "TPS",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Оранжевый"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#FF9830"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "Зелёный ряд",
+      "description": "Реконструкция по изображениям, 17.10.2026 14:23:30 — 18.10.2026 06:52:15, Москва, шаг 15 секунд. Первая верхняя оранжевая ступень восстановлена по подробной картинке пользователя: сохранены видимая ширина, наклонные фронты и откаты ниже плато. Остальные участки и цвета прочитаны с полного скриншота. Единица TPS задана пользователем; масштаб восстановлен по картинке: нижнее оранжевое плато = 100 TPS. Скрытые нижние перекрытия приближённые. Красная горизонталь и синяя рамка — оформление. В Grafana используется линейное соединение всех точек без усреднения.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "w": 12,
+        "h": 9
+      },
+      "interval": "15s",
+      "maxDataPoints": 20000,
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"screenshot_step_replay\" and r._field == \"value\" and r.trace == \"green\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "suffix:TPS",
+          "decimals": 2,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 0,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "left",
+            "axisLabel": "TPS",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Зелёный"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#73BF69"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "Жёлтый ряд",
+      "description": "Реконструкция по изображениям, 17.10.2026 14:23:30 — 18.10.2026 06:52:15, Москва, шаг 15 секунд. Первая верхняя оранжевая ступень восстановлена по подробной картинке пользователя: сохранены видимая ширина, наклонные фронты и откаты ниже плато. Остальные участки и цвета прочитаны с полного скриншота. Единица TPS задана пользователем; масштаб восстановлен по картинке: нижнее оранжевое плато = 100 TPS. Скрытые нижние перекрытия приближённые. Красная горизонталь и синяя рамка — оформление. В Grafana используется линейное соединение всех точек без усреднения.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 25,
+        "w": 12,
+        "h": 9
+      },
+      "interval": "15s",
+      "maxDataPoints": 20000,
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"screenshot_step_replay\" and r._field == \"value\" and r.trace == \"yellow\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "suffix:TPS",
+          "decimals": 2,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 0,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "left",
+            "axisLabel": "TPS",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Жёлтый"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#F2CC0C"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Голубой ряд",
+      "description": "Реконструкция по изображениям, 17.10.2026 14:23:30 — 18.10.2026 06:52:15, Москва, шаг 15 секунд. Первая верхняя оранжевая ступень восстановлена по подробной картинке пользователя: сохранены видимая ширина, наклонные фронты и откаты ниже плато. Остальные участки и цвета прочитаны с полного скриншота. Единица TPS задана пользователем; масштаб восстановлен по картинке: нижнее оранжевое плато = 100 TPS. Скрытые нижние перекрытия приближённые. Красная горизонталь и синяя рамка — оформление. В Grafana используется линейное соединение всех точек без усреднения.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 25,
+        "w": 12,
+        "h": 9
+      },
+      "interval": "15s",
+      "maxDataPoints": 20000,
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"screenshot_step_replay\" and r._field == \"value\" and r.trace == \"blue\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "suffix:TPS",
+          "decimals": 2,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 0,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "left",
+            "axisLabel": "TPS",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Голубой"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#8AB8FF"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "type": "text",
+      "title": "Источник и шкала",
+      "gridPos": {
+        "x": 0,
+        "y": 34,
+        "w": 24,
+        "h": 5
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "Реконструкция по изображениям, 17.10.2026 14:23:30 — 18.10.2026 06:52:15, Москва, шаг 15 секунд. Первая верхняя оранжевая ступень восстановлена по подробной картинке пользователя: сохранены видимая ширина, наклонные фронты и откаты ниже плато. Остальные участки и цвета прочитаны с полного скриншота. Единица TPS задана пользователем; масштаб восстановлен по картинке: нижнее оранжевое плато = 100 TPS. Скрытые нижние перекрытия приближённые. Красная горизонталь и синяя рамка — оформление. В Grafana используется линейное соединение всех точек без усреднения."
+      }
+    }
+  ]
+}

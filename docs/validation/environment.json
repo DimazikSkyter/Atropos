@@ -1,0 +1,25 @@
+{
+  "ui": {
+    "python": "3.12.0",
+    "packages": {
+      "pytest": "9.1.1",
+      "ruff": "0.16.9",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "streamlit": "1.64.0",
+      "psycopg": "3.3.6"
+    }
+  },
+  "detectors": {
+    "python": "3.12.0",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "pandas": "3.0.6",
+      "psycopg": "3.3.6",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

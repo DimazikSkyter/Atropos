@@ -1,0 +1,1 @@
+{"id": "PredictionInterval-influx", "detector": "PredictionInterval", "scenario": "influx", "width": 1, "cpu": 29, "fleet": 64, "profile": false, "category": "baseline"}

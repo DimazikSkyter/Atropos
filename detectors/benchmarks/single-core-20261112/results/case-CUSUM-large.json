@@ -1,0 +1,1 @@
+{"id": "CUSUM-large", "detector": "CUSUM", "scenario": "events", "parameters": {"window": 40, "reference_window": 400, "min_reference_samples": 80}, "cpu": 29, "fleet": 1, "width": 1, "category": "sensitivity"}

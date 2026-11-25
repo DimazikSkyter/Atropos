@@ -1,0 +1,1 @@
+{"id": "CUSUM-fleet256", "detector": "CUSUM", "scenario": "events", "width": 1, "cpu": 29, "fleet": 256, "category": "large_fleet"}

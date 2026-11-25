@@ -1,0 +1,58 @@
+         103666 function calls in 0.250 seconds
+
+   Ordered by: cumulative time
+   List reduced from 93 to 24 due to restriction <24>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.002    0.002    0.250    0.250 benchmark.py:172(batch)
+     1073    0.006    0.000    0.248    0.000 detectors.py:901(update)
+     1073    0.047    0.000    0.134    0.000 detectors.py:870(_evaluate)
+     4627    0.055    0.000    0.055    0.000 {built-in method numpy.array}
+       67    0.011    0.000    0.050    0.001 detectors.py:824(_fit_reference)
+     1207    0.014    0.000    0.038    0.000 detectors.py:799(_rms)
+     1140    0.011    0.000    0.033    0.000 _stride_tricks_impl.py:177(sliding_window_view)
+       67    0.016    0.000    0.019    0.000 detectors.py:807(_choose_lag)
+     1207    0.002    0.000    0.016    0.000 fromnumeric.py:3737(mean)
+     1274    0.005    0.000    0.015    0.000 _methods.py:115(_mean)
+     1140    0.009    0.000    0.013    0.000 _stride_tricks_impl.py:38(as_strided)
+     2414    0.002    0.000    0.012    0.000 fromnumeric.py:3049(max)
+     6035    0.011    0.000    0.011    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       67    0.001    0.000    0.010    0.000 _util.py:1102(wrapper)
+     2414    0.005    0.000    0.010    0.000 fromnumeric.py:66(_wrapreduction)
+       67    0.007    0.000    0.009    0.000 _decomp.py:311(eigh)
+     2146    0.002    0.000    0.006    0.000 detectors.py:864(_magnitude)
+     1274    0.004    0.000    0.005    0.000 _methods.py:73(_count_reduce_items)
+     1073    0.001    0.000    0.004    0.000 detectors.py:779(_number)
+     1140    0.001    0.000    0.004    0.000 fromnumeric.py:2474(any)
+     1073    0.004    0.000    0.004    0.000 <string>:2(__init__)
+     3621    0.001    0.000    0.004    0.000 {built-in method builtins.isinstance}
+     1140    0.002    0.000    0.003    0.000 fromnumeric.py:86(_wrapreduction_any_all)
+     2146    0.002    0.000    0.003    0.000 getlimits.py:169(__new__)
+
+
+         103666 function calls in 0.250 seconds
+
+   Ordered by: internal time
+   List reduced from 93 to 18 due to restriction <18>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     4627    0.055    0.000    0.055    0.000 {built-in method numpy.array}
+     1073    0.047    0.000    0.134    0.000 detectors.py:870(_evaluate)
+       67    0.016    0.000    0.019    0.000 detectors.py:807(_choose_lag)
+     1207    0.014    0.000    0.038    0.000 detectors.py:799(_rms)
+     1140    0.011    0.000    0.033    0.000 _stride_tricks_impl.py:177(sliding_window_view)
+       67    0.011    0.000    0.050    0.001 detectors.py:824(_fit_reference)
+     6035    0.011    0.000    0.011    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+     1140    0.009    0.000    0.013    0.000 _stride_tricks_impl.py:38(as_strided)
+       67    0.007    0.000    0.009    0.000 _decomp.py:311(eigh)
+     1073    0.006    0.000    0.248    0.000 detectors.py:901(update)
+     1274    0.005    0.000    0.015    0.000 _methods.py:115(_mean)
+     2414    0.005    0.000    0.010    0.000 fromnumeric.py:66(_wrapreduction)
+     1274    0.004    0.000    0.005    0.000 _methods.py:73(_count_reduce_items)
+     1073    0.004    0.000    0.004    0.000 <string>:2(__init__)
+     1274    0.003    0.000    0.003    0.000 {built-in method numpy.asarray}
+     2146    0.002    0.000    0.006    0.000 detectors.py:864(_magnitude)
+     2414    0.002    0.000    0.012    0.000 fromnumeric.py:3049(max)
+     2146    0.002    0.000    0.003    0.000 getlimits.py:169(__new__)
+
+

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "points": 3023,
+  "checks": {
+    "unique_points": true,
+    "five_requested_service_names": true,
+    "all_dates_october_4_moscow": true,
+    "finite_values_within_image_scale": true,
+    "line_protocol_uses_lf_and_has_all_points": true,
+    "all_series_have_uniform_15_second_step": true,
+    "green_has_no_invented_early_history": true,
+    "sharp_drop_preserved_for_four_services": true,
+    "green_late_level_matches_screenshot": true
+  }
+}

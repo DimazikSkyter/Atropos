@@ -1,0 +1,1 @@
+{"id": "Correlation-events", "detector": "Correlation", "scenario": "events", "width": 2, "cpu": 29, "fleet": 64, "profile": true, "category": "baseline"}

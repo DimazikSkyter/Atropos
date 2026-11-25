@@ -1,0 +1,123 @@
+{
+  "source_measurement": "kafka_write_time",
+  "source_field": "value",
+  "source": "Live InfluxDB Flux query, raw points",
+  "start_moscow": "2026-09-15T20:00:00+03:00",
+  "end_moscow": "2026-09-16T02:20:00+03:00",
+  "points": 1521,
+  "sample_interval_seconds": 15,
+  "window_samples": 10,
+  "window_minutes": 2.5,
+  "detector_data_max_size_default": 50,
+  "data_max_size_used_by_detector": false,
+  "metrics_seria_max_size": 1521,
+  "execution_mode": "One offline detect() call over all 1521 raw points; global MAD uses the entire history, including later points.",
+  "source_loading": "Unchanged original MADDetector, Detector and Metrics class AST nodes; unused optional Keras/matplotlib module imports are omitted.",
+  "definition": "MAD = mean(abs(x - mean(x))); score = 2/(1+exp(-abs(localMAD-globalMAD)/globalMAD))-1. This is mean absolute deviation, not median absolute deviation.",
+  "threshold": null,
+  "threshold_note": "The source returns scores without an anomaly decision threshold. No classification threshold has been invented.",
+  "warmup_points": 9,
+  "global_mean_ms": 473.6270190664037,
+  "global_mad_ms": 22.708475268658276,
+  "score_min": 0.0,
+  "score_max": 0.9534885054152986,
+  "sections": [
+    {
+      "name": "initial_flat",
+      "points": 71,
+      "mean_score": 0.36245013593931386,
+      "mean_local_mad_ms": 5.222373521126763,
+      "max_score": 0.4621171572600098
+    },
+    {
+      "name": "middle",
+      "points": 480,
+      "mean_score": 0.24798442944285692,
+      "mean_local_mad_ms": 11.88088725,
+      "max_score": 0.4410979118350862
+    },
+    {
+      "name": "last_80_minutes",
+      "points": 321,
+      "mean_score": 0.4211398543475784,
+      "mean_local_mad_ms": 43.97052280373832,
+      "max_score": 0.9534885054152986
+    }
+  ],
+  "top_scores": [
+    {
+      "time_moscow": "2026-09-16T02:15:15+03:00",
+      "score": 0.9534885054152986,
+      "value_ms": 324.468,
+      "local_mad_ms": 107.58532000000002
+    },
+    {
+      "time_moscow": "2026-09-16T02:15:30+03:00",
+      "score": 0.9511591543093314,
+      "value_ms": 387.712,
+      "local_mad_ms": 106.44851999999999
+    },
+    {
+      "time_moscow": "2026-09-16T02:05:15+03:00",
+      "score": 0.9479372254146659,
+      "value_ms": 599.303,
+      "local_mad_ms": 104.9603
+    },
+    {
+      "time_moscow": "2026-09-16T01:56:45+03:00",
+      "score": 0.947700902572167,
+      "value_ms": 575.45,
+      "local_mad_ms": 104.85470000000002
+    },
+    {
+      "time_moscow": "2026-09-16T01:57:00+03:00",
+      "score": 0.9427417828966347,
+      "value_ms": 569.477,
+      "local_mad_ms": 102.7396
+    },
+    {
+      "time_moscow": "2026-09-16T02:14:15+03:00",
+      "score": 0.9419607337655682,
+      "value_ms": 673.009,
+      "local_mad_ms": 102.42280000000001
+    },
+    {
+      "time_moscow": "2026-09-16T02:14:30+03:00",
+      "score": 0.941493856449666,
+      "value_ms": 585.874,
+      "local_mad_ms": 102.23540000000001
+    },
+    {
+      "time_moscow": "2026-09-16T02:05:30+03:00",
+      "score": 0.9382420215132552,
+      "value_ms": 551.676,
+      "local_mad_ms": 100.969
+    },
+    {
+      "time_moscow": "2026-09-16T02:15:00+03:00",
+      "score": 0.9339072855973563,
+      "value_ms": 411.604,
+      "local_mad_ms": 99.37772
+    },
+    {
+      "time_moscow": "2026-09-16T02:14:45+03:00",
+      "score": 0.9319462469578186,
+      "value_ms": 498.739,
+      "local_mad_ms": 98.69069999999999
+    }
+  ],
+  "input_sha256": "c091903d6b77ef1a1ce1183597dd80db4bced873acc3a804bbcfa71b745c5b25",
+  "source_sha256": {
+    "WindowedMadDetector.py": "e985ae28e19828714d13f30ba54c8fbfcc97a227641fa3ce59454247af9e79f5",
+    "CompositeStreamDetector.py": "c351516ff0fe8d96068a0321d80f1a58a8b370eca9bafd831fbd2636dd65ede6",
+    "Metrics.py": "31a8b40e3a12a44705cf1c6d8ba4cf185ddeb8bd473c20034f97fe6635e310df"
+  },
+  "checks": {
+    "live_data_matches_existing_csv": true,
+    "all_1521_points_processed": true,
+    "original_sources_unchanged": true,
+    "all_scores_match_independent_formula": true,
+    "warmup_zeros_preserved": true
+  },
+  "limitations": "The input is reconstructed from a screenshot and interpolated at 15s, not original Kafka measurements. The score reacts to both lower and higher dispersion. The offline global reference is not an online detector baseline."
+}

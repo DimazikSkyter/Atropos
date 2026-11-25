@@ -1,0 +1,34 @@
+{
+  "snapshot_date": "2026-11-13",
+  "dashboard_uid": "sync-client-dispatcher-replay",
+  "panel_id": 2,
+  "panel_title": "Задержка диспетчера сервиса, работающего с клиентом",
+  "measurement": "service_dispatcher_delay",
+  "field": "value",
+  "units": "s",
+  "focus_start_utc": "2026-10-05T15:17:37.276Z",
+  "focus_stop_utc": "2026-10-05T15:29:23.827Z",
+  "total_points": 2105,
+  "focus_points": 705,
+  "hosts": [
+    "host1",
+    "host4",
+    "host6",
+    "host7",
+    "host8"
+  ],
+  "grafana_frames_equal_influx": true,
+  "native_step_seconds": 5,
+  "read_only": true,
+  "baseline_start_utc": "2026-10-05T15:15:00Z",
+  "baseline_stop_utc": "2026-10-05T15:19:15Z",
+  "source_kind": "Live InfluxDB snapshot of the previously image-reconstructed dispatcher replay; baseline 10–20 ms was user-specified",
+  "files": {
+    "dashboard.json": "8f6edaa8f9b0d820e3aaaf5bfcf804d35d0c51770328bb29510484ce2b6e553a",
+    "dispatcher-all.csv": "e65933f685ce280bd5da0b790d6e3373b73fe2bf4186875483c3780074982417",
+    "dispatcher-focus.csv": "d830f3e1c5279c6a6aae9765398253a530689ededaed31c987eb680d6f6d8ec6",
+    "grafana-focus.json": "f278c6744d9a9a9f5c8c009da3a88ff9a7e0cc39dc015ffe3376645e19f88a8f",
+    "influx-response.csv": "2af781732e1a1ba7b37fad60172af1d1b1702c422883125f6656aff92b468c88",
+    "query.flux": "9f2782fff0877ab0bb7c864e2c219b47b3337f94d4fa2a76d1dad44dc4072dc1"
+  }
+}

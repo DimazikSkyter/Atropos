@@ -1,0 +1,235 @@
+name: cassandra-compaction-lab
+
+x-cassandra-environment: &cassandra-environment
+  CASSANDRA_CLUSTER_NAME: CompactionLab
+  CASSANDRA_SEEDS: cassandra1
+  CASSANDRA_NUM_TOKENS: "16"
+  CASSANDRA_DC: dc1
+  CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
+  MAX_HEAP_SIZE: 512M
+  HEAP_NEWSIZE: 128M
+  COMPACTION_MIB: "${COMPACTION_MIB:-1}"
+  CONCURRENT_COMPACTORS: "${CONCURRENT_COMPACTORS:-1}"
+  LAB_REPORT_INTERVAL: "${LAB_REPORT_INTERVAL:-15}"
+
+x-cassandra-service: &cassandra-service
+  image: cassandra-compaction-lab:4.1.12-jmx
+  build:
+    context: .
+    dockerfile: docker/cassandra/Dockerfile
+    args:
+      CASSANDRA_IMAGE: ${CASSANDRA_IMAGE:-cassandra:4.1.12}
+      JMX_EXPORTER_VERSION: ${JMX_EXPORTER_VERSION:-1.6.0}
+  entrypoint: ["bash", "/lab/node-entrypoint.sh"]
+  environment: *cassandra-environment
+  networks: [cassandra-lab]
+  mem_limit: 1400m
+  cpus: 1.0
+  ulimits:
+    memlock: -1
+    nofile:
+      soft: 100000
+      hard: 100000
+  healthcheck:
+    # nodetool starts a JVM and may exceed the timeout on an intentionally
+    # CPU-starved node. A successful TCP connect proves native transport is up.
+    test: ["CMD-SHELL", "bash -c '</dev/tcp/127.0.0.1/9042'"]
+    interval: 10s
+    timeout: 5s
+    retries: 30
+    start_period: 60s
+  volumes:
+    - ./scripts/node-entrypoint.sh:/lab/node-entrypoint.sh:ro
+  expose:
+    - "7070"
+    - "9101"
+
+services:
+  cassandra1:
+    <<: *cassandra-service
+    hostname: cassandra1
+    environment:
+      <<: *cassandra-environment
+      CASSANDRA_RACK: rack1
+    ports:
+      - "9042:9042"
+      - "7071:7070"
+    volumes:
+      - cassandra1-data:/var/lib/cassandra
+      - ./scripts/node-entrypoint.sh:/lab/node-entrypoint.sh:ro
+
+  cassandra2:
+    <<: *cassandra-service
+    hostname: cassandra2
+    environment:
+      <<: *cassandra-environment
+      CASSANDRA_RACK: rack2
+    depends_on:
+      cassandra1:
+        condition: service_healthy
+    ports:
+      - "7072:7070"
+    volumes:
+      - cassandra2-data:/var/lib/cassandra
+      - ./scripts/node-entrypoint.sh:/lab/node-entrypoint.sh:ro
+
+  cassandra3:
+    <<: *cassandra-service
+    hostname: cassandra3
+    environment:
+      <<: *cassandra-environment
+      CASSANDRA_RACK: rack3
+    depends_on:
+      cassandra2:
+        condition: service_healthy
+    ports:
+      - "7073:7070"
+    volumes:
+      - cassandra3-data:/var/lib/cassandra
+      - ./scripts/node-entrypoint.sh:/lab/node-entrypoint.sh:ro
+
+  cassandra4:
+    <<: *cassandra-service
+    profiles: [five]
+    hostname: cassandra4
+    environment:
+      <<: *cassandra-environment
+      CASSANDRA_RACK: rack1
+    depends_on:
+      cassandra3:
+        condition: service_healthy
+    ports:
+      - "7074:7070"
+    volumes:
+      - cassandra4-data:/var/lib/cassandra
+      - ./scripts/node-entrypoint.sh:/lab/node-entrypoint.sh:ro
+
+  cassandra5:
+    <<: *cassandra-service
+    profiles: [five]
+    hostname: cassandra5
+    environment:
+      <<: *cassandra-environment
+      CASSANDRA_RACK: rack2
+    depends_on:
+      cassandra4:
+        condition: service_healthy
+    ports:
+      - "7075:7070"
+    volumes:
+      - cassandra5-data:/var/lib/cassandra
+      - ./scripts/node-entrypoint.sh:/lab/node-entrypoint.sh:ro
+
+  init:
+    image: ${CASSANDRA_IMAGE:-cassandra:4.1.12}
+    depends_on:
+      cassandra1:
+        condition: service_healthy
+      cassandra2:
+        condition: service_healthy
+      cassandra3:
+        condition: service_healthy
+    entrypoint: ["bash", "/lab/init.sh"]
+    environment:
+      EXPECTED_NODES: "${EXPECTED_NODES:-3}"
+    networks: [cassandra-lab]
+    volumes:
+      - ./config/schema.cql:/lab/schema.cql:ro
+      - ./scripts/init.sh:/lab/init.sh:ro
+    restart: "no"
+
+  loader:
+    image: ${CASSANDRA_IMAGE:-cassandra:4.1.12}
+    profiles: [load]
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    entrypoint: ["bash", "/lab/load.sh"]
+    environment:
+      LOAD_DURATION: "${LOAD_DURATION:-30m}"
+      LOAD_THREADS: "${LOAD_THREADS:-48}"
+      WRITE_WEIGHT: "${WRITE_WEIGHT:-8}"
+      READ_WEIGHT: "${READ_WEIGHT:-2}"
+      CONTACT_POINTS: cassandra1,cassandra2,cassandra3
+    networks: [cassandra-lab]
+    volumes:
+      - ./config/stress.yaml:/lab/stress.yaml:ro
+      - ./scripts/load.sh:/lab/load.sh:ro
+    restart: "no"
+
+  victoriametrics:
+    image: ${VICTORIAMETRICS_IMAGE:-victoriametrics/victoria-metrics:v1.144.0}
+    command:
+      - -storageDataPath=/victoria-metrics-data
+      - -retentionPeriod=1d
+      - -promscrape.config=/etc/victoriametrics/promscrape.yaml
+      - -promscrape.configCheckInterval=10s
+    networks: [cassandra-lab]
+    ports:
+      - "8428:8428"
+    volumes:
+      - victoriametrics-data:/victoria-metrics-data
+      - ./monitoring/promscrape.yaml:/etc/victoriametrics/promscrape.yaml:ro
+    restart: unless-stopped
+
+  grafana:
+    image: ${GRAFANA_IMAGE:-grafana/grafana:13.0.8}
+    depends_on:
+      - victoriametrics
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_USERS_DEFAULT_THEME: dark
+    networks: [cassandra-lab]
+    ports:
+      - "${GRAFANA_PORT:-33000}:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    restart: unless-stopped
+
+  cadvisor:
+    # v0.49.2 remains compatible with Docker Desktop's Docker 20.10 engine.
+    image: ${CADVISOR_IMAGE:-gcr.io/cadvisor/cadvisor:v0.49.2}
+    command:
+      - --docker_only=true
+      - --housekeeping_interval=5s
+    privileged: true
+    networks: [cassandra-lab]
+    ports:
+      - "${CADVISOR_PORT:-38080}:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+    mem_limit: 384m
+    cpus: 0.25
+    restart: unless-stopped
+
+  node-exporter:
+    image: ${NODE_EXPORTER_IMAGE:-prom/node-exporter:v1.11.1}
+    profiles: [linux-host]
+    command:
+      - --path.rootfs=/host
+    pid: host
+    networks: [cassandra-lab]
+    volumes:
+      # Docker Desktop's Linux VM root isn't a shared mount, so rslave fails on Windows.
+      - /:/host:ro
+    restart: unless-stopped
+
+networks:
+  cassandra-lab:
+
+volumes:
+  cassandra1-data:
+  cassandra2-data:
+  cassandra3-data:
+  cassandra4-data:
+  cassandra5-data:
+  victoriametrics-data:
+  grafana-data:

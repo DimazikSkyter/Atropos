@@ -1,0 +1,9 @@
+{
+  "measurements_fields": 24,
+  "series": 76,
+  "points": 183429,
+  "decoded_sha256": "be0b65098139dafc72e0d987e28d50592aa98936a204a4282ea78c19d3a0d057",
+  "gzip_sha256": "fe168727a88957734dc973ad9fae6f81d65a5ac1768a06ada0e82156958ffbc5",
+  "read_only": true,
+  "fetched_at_unix": 1794433422.1375146
+}

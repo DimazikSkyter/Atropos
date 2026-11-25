@@ -1,0 +1,67 @@
+startDelaySeconds: 0
+lowercaseOutputName: true
+lowercaseOutputLabelNames: true
+
+# Avoid asking expensive unrelated Cassandra MBeans (notably StorageService)
+# for every 5-second scrape.
+includeObjectNames:
+  - 'org.apache.cassandra.metrics:type=Compaction,*'
+  - 'org.apache.cassandra.metrics:type=Table,*'
+  - 'org.apache.cassandra.metrics:type=ClientRequest,*'
+  - 'org.apache.cassandra.metrics:type=ThreadPools,*'
+  - 'org.apache.cassandra.metrics:type=DroppedMessage,*'
+  - 'org.apache.cassandra.metrics:type=Storage,*'
+  - 'java.lang:type=Memory'
+  - 'java.lang:type=GarbageCollector,*'
+
+rules:
+  - pattern: 'org.apache.cassandra.metrics<type=Compaction, name=(PendingTasks|CompletedTasks|BytesCompacted)><>(Value|Count)'
+    name: cassandra_compaction_$1
+
+  - pattern: 'org.apache.cassandra.metrics<type=Table, keyspace=(.+), scope=(.+), name=(LiveSSTableCount|PendingCompactions|MemtableLiveDataSize|LiveDiskSpaceUsed|TotalDiskSpaceUsed)><>(Value|Count)'
+    name: cassandra_table_$3
+    labels:
+      keyspace: '$1'
+      table: '$2'
+    type: GAUGE
+
+  - pattern: 'org.apache.cassandra.metrics<type=ClientRequest, scope=(Read|Write), name=Latency><>(Count|Mean(?!Rate)|95thPercentile)'
+    name: cassandra_clientrequest_latency_$2
+    labels:
+      scope: '$1'
+
+  - pattern: 'org.apache.cassandra.metrics<type=ThreadPools, path=(.+), scope=(.+), name=(PendingTasks|ActiveTasks|CurrentlyBlockedTasks|TotalBlockedTasks)><>Value'
+    name: cassandra_threadpools_$3
+    labels:
+      path: '$1'
+      scope: '$2'
+    type: GAUGE
+
+  - pattern: 'org.apache.cassandra.metrics<type=DroppedMessage, scope=(.+), name=Dropped><>Count'
+    name: cassandra_dropped_messages_total
+    labels:
+      scope: '$1'
+    type: COUNTER
+
+  - pattern: 'org.apache.cassandra.metrics<type=Storage, name=(Load|TotalHints|TotalHintsInProgress|Exceptions)><>(Value|Count)'
+    name: cassandra_storage_$1
+
+  - pattern: 'java.lang<type=Memory><HeapMemoryUsage>used'
+    name: jvm_memory_heap_used_bytes
+    type: GAUGE
+
+  - pattern: 'java.lang<type=Memory><HeapMemoryUsage>max'
+    name: jvm_memory_heap_max_bytes
+    type: GAUGE
+
+  - pattern: 'java.lang<type=GarbageCollector, name=(.+)><>CollectionCount'
+    name: jvm_gc_collection_total
+    labels:
+      collector: '$1'
+    type: COUNTER
+
+  - pattern: 'java.lang<type=GarbageCollector, name=(.+)><>CollectionTime'
+    name: jvm_gc_collection_milliseconds_total
+    labels:
+      collector: '$1'
+    type: COUNTER

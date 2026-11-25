@@ -1,0 +1,65 @@
+name: atropos-experiment4
+
+services:
+  java:
+    image: atropos-experiment4-java:local
+    build:
+      context: ./app
+    environment:
+      BASELINE_SECONDS: ${BASELINE_SECONDS:-180}
+      RAMP_SECONDS: ${RAMP_SECONDS:-900}
+      HOLD_SECONDS: ${HOLD_SECONDS:-180}
+      ALLOC_START_MIB: ${ALLOC_START_MIB:-16}
+      ALLOC_END_MIB: ${ALLOC_END_MIB:-640}
+      RETAIN_MILLIS: ${RETAIN_MILLIS:-60}
+    ports:
+      - "127.0.0.1:18381:8080"
+    volumes:
+      - "${RESULTS_DIR:-./results/current}:/results"
+    cpus: 4.0
+    mem_limit: 1280m
+    memswap_limit: 1280m
+    stop_grace_period: 15s
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://127.0.0.1:8080/health >/dev/null 2>&1"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+      start_period: 10s
+    labels:
+      experiment: experiment4
+
+  k6:
+    image: grafana/k6:1.0.0
+    profiles: [load]
+    user: "0:0"
+    depends_on:
+      java:
+        condition: service_healthy
+    entrypoint: [k6]
+    command:
+      - run
+      - --out
+      - json=/results/k6.ndjson.gz
+      - --out
+      - experimental-prometheus-rw
+      - /scripts/test.js
+    environment:
+      BASE_URL: http://java:8080
+      BASELINE_SECONDS: ${BASELINE_SECONDS:-180}
+      RAMP_SECONDS: ${RAMP_SECONDS:-900}
+      HOLD_SECONDS: ${HOLD_SECONDS:-180}
+      LOAD_RPS: ${LOAD_RPS:-250}
+      K6_PROMETHEUS_RW_SERVER_URL: http://host.docker.internal:${VICTORIA_METRICS_PORT:-8428}/api/v1/write
+      K6_PROMETHEUS_RW_PUSH_INTERVAL: 2s
+      K6_PROMETHEUS_RW_TREND_STATS: p(50),p(95),p(99),avg,max
+      K6_PROMETHEUS_RW_STALE_MARKERS: "true"
+      K6_PROMETHEUS_RW_TREND_AS_NATIVE_HISTOGRAM: "false"
+    volumes:
+      - ./load:/scripts:ro
+      - "${RESULTS_DIR:-./results/current}:/results"
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    cpus: 2.0
+    mem_limit: 512m
+    memswap_limit: 512m

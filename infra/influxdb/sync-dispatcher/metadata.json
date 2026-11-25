@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-05",
+  "timezone": "Europe/Moscow",
+  "interval_seconds": 5,
+  "ranges": {
+    "service_dispatcher_delay": {
+      "start": "2026-10-05T18:10:00+03:00",
+      "end": "2026-10-05T18:45:00+03:00"
+    },
+    "sync_service_client_response_time": {
+      "start": "2026-10-05T18:15:00+03:00",
+      "end": "2026-10-05T18:25:00+03:00"
+    }
+  },
+  "points_per_series": {
+    "service_dispatcher_delay": {
+      "host1": 421,
+      "host4": 421,
+      "host6": 421,
+      "host7": 421,
+      "host8": 421
+    },
+    "sync_service_client_response_time": {
+      "host1": 121,
+      "host2": 121,
+      "host3": 121,
+      "host4": 121,
+      "host5": 121,
+      "host6": 121,
+      "host7": 121,
+      "host8": 121
+    }
+  },
+  "total_points": 3073,
+  "host_colors": {
+    "host1": "#7E9B68",
+    "host2": "#548E61",
+    "host3": "#56B7BC",
+    "host4": "#9778B4",
+    "host5": "#973D42",
+    "host6": "#C38489",
+    "host7": "#D8AE6D",
+    "host8": "#5E5867"
+  },
+  "measurement_labels": {
+    "sync_service_client_response_time": "ВО клиента к синхронному сервису",
+    "service_dispatcher_delay": "Задержка диспетчера сервиса, работающего с клиентом"
+  },
+  "units": {
+    "sync_service_client_response_time": "ms",
+    "service_dispatcher_delay": "s"
+  },
+  "level_jump_time": "2026-10-05T18:19:15+03:00",
+  "dispatcher_growth_anchor": "2026-10-05T18:19:15+03:00",
+  "dispatcher_baseline": {
+    "start": "2026-10-05T18:15:00+03:00",
+    "end": "2026-10-05T18:19:15+03:00",
+    "min": 0.01,
+    "max": 0.02,
+    "unit": "s",
+    "method": "User-requested deterministic baseline before growth"
+  },
+  "client_only_main_band": true,
+  "client_after_18_25": "No points; no extrapolated recovery or zero fill",
+  "limitations": "Approximate readings from blurred screenshots. Hosts are anonymized in visible legend/color order. Dispatcher color matching and overlapping curves are less certain; only five distinguishable traces are reconstructed. No client values are extrapolated outside 18:15–18:25. No random noise is added."
+}

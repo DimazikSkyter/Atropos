@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "check": "registry_and_default_constructors",
+      "status": "PASS",
+      "detail": [
+        "ACF",
+        "CUSUM",
+        "Correlation",
+        "MAD",
+        "PredictionInterval",
+        "RuntimeTrend",
+        "SSA",
+        "Trend"
+      ]
+    },
+    {
+      "check": "reject_invalid_flux_timestamps",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "check": "repository_validates_metric_edits",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "check": "repository_rejects_foreign_peer",
+      "status": "PASS",
+      "detail": "Foreign peer rejected; validation seam only"
+    },
+    {
+      "check": "correlation_exact_intersection",
+      "status": "PASS",
+      "detail": "Exact intersection; warmup retained as None"
+    },
+    {
+      "check": "replay_rejects_stale_revision",
+      "status": "PASS",
+      "detail": "Stale revision rejected before save_results"
+    }
+  ],
+  "findings": 0
+}

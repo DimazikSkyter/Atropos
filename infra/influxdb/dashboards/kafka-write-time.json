@@ -1,0 +1,551 @@
+{
+  "id": null,
+  "uid": "kafka-write-time-replay",
+  "title": "Время записи в кафку",
+  "schemaVersion": 41,
+  "version": 1,
+  "editable": true,
+  "timezone": "Europe/Moscow",
+  "refresh": "",
+  "graphTooltip": 1,
+  "fiscalYearStartMonth": 0,
+  "tags": [
+    "anomaly-detection",
+    "atropos",
+    "influxdb",
+    "kafka",
+    "mad",
+    "replay"
+  ],
+  "description": "**Приблизительное восстановление по скриншоту.** Единица измерения — миллисекунды, подтверждено пользователем. Дата выбрана для воспроизведения: 15.09.2026 20:00 — 16.09.2026 02:20, Москва. Исходные числовые данные и частота измерений неизвестны; оцифрованная линия приведена к шагу 15 секунд. Видимые выбросы сохранены без добавления случайного шума. Голубая линия — скользящее среднее за 15 минут (60 отсчётов); в начале истории требуется прогрев окна.",
+  "annotations": {
+    "list": []
+  },
+  "time": {
+    "from": "2026-09-15T17:00:00Z",
+    "to": "2026-09-15T23:20:00Z"
+  },
+  "timepicker": {
+    "hidden": false
+  },
+  "templating": {
+    "list": []
+  },
+  "links": [
+    {
+      "type": "link",
+      "title": "Все графики InfluxDB",
+      "url": "/d/influxdb-replay",
+      "targetBlank": false
+    }
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Время записи в кафку",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "description": "**Приблизительное восстановление по скриншоту.** Единица измерения — миллисекунды, подтверждено пользователем. Дата выбрана для воспроизведения: 15.09.2026 20:00 — 16.09.2026 02:20, Москва. Исходные числовые данные и частота измерений неизвестны; оцифрованная линия приведена к шагу 15 секунд. Видимые выбросы сохранены без добавления случайного шума. Голубая линия — скользящее среднее за 15 минут (60 отсчётов); в начале истории требуется прогрев окна.",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 12
+      },
+      "interval": "15s",
+      "maxDataPoints": 10000,
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"kafka_write_time\" and r._field == \"value\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group()\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\nfrom(bucket: v.defaultBucket)\n  |> range(start: date.sub(d: 15m, from: v.timeRangeStart), stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"kafka_write_time\" and r._field == \"value\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group()\n  |> sort(columns: [\"_time\"])\n  |> movingAverage(n: 60)\n  |> filter(fn: (r) => r._time >= v.timeRangeStart)"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "min": 220,
+          "max": 750,
+          "decimals": 1,
+          "displayName": "Время записи в кафку",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#B3A01B"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 18,
+            "showPoints": "never",
+            "spanNulls": false,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Среднее за 15 минут"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#56D9E9"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 3
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "calcs": [
+            "mean"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "MADDetector · оценка изменения разброса",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "interval": "1m",
+      "maxDataPoints": 10000,
+      "gridPos": {
+        "x": 0,
+        "y": 12,
+        "w": 24,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"kafka_write_mad\" and r._field == \"score\")\n  |> filter(fn: (r) => r.mode == \"offline\" and r.window == \"10\")\n  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false, timeSrc: \"_start\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group()\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"kafka_write_mad_test\" and r._field == \"score\")\n  |> filter(fn: (r) => r.mode == \"test_legacy\" and r.window == \"20\" and r.reference == \"100\")\n  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false, timeSrc: \"_start\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group()\n  |> sort(columns: [\"_time\"])"
+        }
+      ],
+      "description": "Сравнение на одних данных Kafka: фиолетовая линия — прежний офлайн-прогон (локальное окно 10, общий MAD всей истории); зелёная — последовательность вызовов из теста (локальное окно 20, скользящий референс 100, фактически 99 из-за границы среза). Обе линии отображаются минутными средними.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "min": 0,
+          "decimals": 3,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "max": 1
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Вся история · окно 10 · среднее 1м"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#B877D9"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Как в тесте · 20/100 · среднее 1м"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#73BF69"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": [
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "MAD · прежний офлайн-прогон",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "interval": "15s",
+      "maxDataPoints": 10000,
+      "gridPos": {
+        "x": 0,
+        "y": 20,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"kafka_write_mad\" and r._field == \"local_mad_ms\")\n  |> filter(fn: (r) => r.mode == \"offline\" and r.window == \"10\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group()\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"kafka_write_mad\" and r._field == \"global_mad_ms\")\n  |> filter(fn: (r) => r.mode == \"offline\" and r.window == \"10\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group()\n  |> sort(columns: [\"_time\"])"
+        }
+      ],
+      "description": "Исходный MADDetector без изменения формул. Окно 10 точек (2,5 минуты). Однократный офлайн-прогон по всем 1521 точкам; общий MAD вычислен по всей истории. Это среднее абсолютное отклонение от среднего, не медианное. Порог классификации не задавался.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "min": 0,
+          "decimals": 1,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Локальный MAD · 10 точек"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#FF9830"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Общий MAD · вся история"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#56D9E9"
+                }
+              },
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "fill": "dash",
+                  "dash": [
+                    6,
+                    4
+                  ]
+                }
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": [
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "MAD · скользящий референс как в тесте",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "interval": "15s",
+      "maxDataPoints": 10000,
+      "gridPos": {
+        "x": 12,
+        "y": 20,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"kafka_write_mad_test\" and r._field == \"local_mad_ms\")\n  |> filter(fn: (r) => r.mode == \"test_legacy\" and r.window == \"20\" and r.reference == \"100\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group()\n  |> sort(columns: [\"_time\"])"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"kafka_write_mad_test\" and r._field == \"reference_mad_ms\")\n  |> filter(fn: (r) => r.mode == \"test_legacy\" and r.window == \"20\" and r.reference == \"100\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group()\n  |> sort(columns: [\"_time\"])"
+        }
+      ],
+      "description": "Точная последовательность вызовов исходного теста: window=20; sub_range_metrics(point, point+100). В текущем Metrics правая граница среза исключается дважды: референс содержит 99 точек, последний отсчёт Kafka не обработан. Формулы и исходные классы не изменены.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "min": 0,
+          "decimals": 1,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Локальный MAD · 20 точек"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#FF9830"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Скользящий референс · фактически 99 точек"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#56D9E9"
+                }
+              },
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "fill": "dash",
+                  "dash": [
+                    6,
+                    4
+                  ]
+                }
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": [
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": "text",
+      "title": "Источник и диапазон времени",
+      "gridPos": {
+        "x": 0,
+        "y": 28,
+        "w": 24,
+        "h": 8
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "**Приблизительное восстановление по скриншоту.** Единица измерения — миллисекунды, подтверждено пользователем. Дата выбрана для воспроизведения: 15.09.2026 20:00 — 16.09.2026 02:20, Москва. Исходные числовые данные и частота измерений неизвестны; оцифрованная линия приведена к шагу 15 секунд. Видимые выбросы сохранены без добавления случайного шума. Голубая линия — скользящее среднее за 15 минут (60 отсчётов); в начале истории требуется прогрев окна.\n\n**Результат MADDetector.** Окно по умолчанию: 10 точек, 2,5 минуты. Обработан исходный ряд Kafka, не линия скользящего среднего. Это офлайн-прогон по всей истории: общий MAD = 22,708 мс; он включает и будущие для ранних точек значения. Локальный MAD — среднее абсолютное отклонение от локального среднего. Оценка показывает модуль относительного отличия локального MAD от общего после сигмоидальной нормировки; реагирует и на меньший, и на больший разброс. Первые 9 оценок равны нулю по логике исходного кода. Порог объявления аномалии в коде отсутствует и здесь не добавлялся. Максимум исходной оценки до сглаживания: 0,95349 в 02:15:15 16.09.2026 (Москва); локальный MAD в этот момент 107,585 мс. График оценки сглажен минутным средним средствами InfluxDB: 381 точка вместо 1521, по 4 отсчёта в полном окне. Последнее окно содержит один отсчёт. Входной ряд восстановлен по скриншоту, поэтому результат характеризует реконструкцию.\n\n**Сравнение с тестом.** В исходном тесте window=20, а общий MAD пересчитывается в каждом скользящем фрагменте из 100 точек. Из-за границы среза фактически используются 99 точек и получается 1520 оценок вместо 1521. На графике это зелёная линия; максимум исходной оценки 0,54699 в 00:54:15. За последние 20 минут средний скор 0,0683 вместо 0,7262 в прежнем офлайн-прогоне: скользящий референс адаптируется к выросшему разбросу. Тестовая картинка использует синтетические гауссовские данные, поэтому совпадение формы с Kafka не ожидается. В репозитории исправления не выполнялись."
+      }
+    }
+  ]
+}

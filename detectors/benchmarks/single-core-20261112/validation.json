@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "cases": 63,
+  "affinity": [
+    29
+  ],
+  "all_blas_threads": 1,
+  "cpu_wall_ratio_range": [
+    0.9199683319430669,
+    1.003624148753256
+  ],
+  "clone_checks": [
+    {
+      "detector": "Trend",
+      "future_scores_equal": 8,
+      "numpy_arrays_independent": 0,
+      "full_array_layout_preserved": true
+    },
+    {
+      "detector": "CUSUM",
+      "future_scores_equal": 8,
+      "numpy_arrays_independent": 0,
+      "full_array_layout_preserved": true
+    },
+    {
+      "detector": "MAD",
+      "future_scores_equal": 8,
+      "numpy_arrays_independent": 0,
+      "full_array_layout_preserved": true
+    },
+    {
+      "detector": "SSA",
+      "future_scores_equal": 8,
+      "numpy_arrays_independent": 1,
+      "full_array_layout_preserved": true
+    },
+    {
+      "detector": "ACF",
+      "future_scores_equal": 8,
+      "numpy_arrays_independent": 0,
+      "full_array_layout_preserved": true
+    },
+    {
+      "detector": "Correlation",
+      "future_scores_equal": 8,
+      "numpy_arrays_independent": 0,
+      "full_array_layout_preserved": true
+    },
+    {
+      "detector": "PredictionInterval",
+      "future_scores_equal": 8,
+      "numpy_arrays_independent": 0,
+      "full_array_layout_preserved": true
+    },
+    {
+      "detector": "RuntimeTrend",
+      "future_scores_equal": 8,
+      "numpy_arrays_independent": 0,
+      "full_array_layout_preserved": true
+    }
+  ],
+  "runtime_default_at_60s": {
+    "updates": 1024,
+    "ready_count": 0,
+    "retained_points": 3,
+    "required_min_samples": 8
+  },
+  "source_snapshot_hashes_match": true,
+  "influx_hashes_match": true
+}

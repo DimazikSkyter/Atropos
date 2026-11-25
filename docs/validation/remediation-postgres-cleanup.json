@@ -1,0 +1,6 @@
+{
+  "storage": "tmpfs",
+  "removed": true,
+  "scope": "isolated test PostgreSQL only",
+  "container": "atropos-integrity-0249f9db"
+}

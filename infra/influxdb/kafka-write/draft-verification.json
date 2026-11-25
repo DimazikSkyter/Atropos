@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "checks": {
+    "points_and_dates_match_metadata": true,
+    "uniform_15_second_step": true,
+    "finite_values_in_image_scale": true,
+    "central_level_matches_image": true,
+    "increased_late_variance_preserved": true,
+    "visible_large_excursions_preserved": true,
+    "unit_ms_confirmed": true
+  },
+  "statistics": {
+    "points": 1521,
+    "mean_ms": 473.6270190664037,
+    "min_ms": 266.378,
+    "max_ms": 694.559,
+    "middle_sigma_ms": 18.13955483800533,
+    "late_sigma_ms": 64.5514689805394
+  }
+}

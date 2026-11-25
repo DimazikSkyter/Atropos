@@ -1,0 +1,225 @@
+{
+  "id": null,
+  "uid": "cassandra-response-time-replay",
+  "title": "Cassandra response time — replay",
+  "schemaVersion": 41,
+  "version": 1,
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "timezone": "Europe/Moscow",
+  "refresh": "",
+  "tags": [
+    "atropos",
+    "cassandra",
+    "influxdb",
+    "replay"
+  ],
+  "annotations": {
+    "list": []
+  },
+  "links": [],
+  "description": "Approximate reconstruction of the supplied screenshot: four Cassandra hosts, 15-second samples, milliseconds. 01 Oct 2026 12:30 to 02 Oct 2026 12:30 MSK. Raw data preserves every sample.",
+  "time": {
+    "from": "2026-10-01T09:30:00Z",
+    "to": "2026-10-02T09:30:00Z"
+  },
+  "timepicker": {
+    "hidden": false
+  },
+  "templating": {
+    "list": [
+      {
+        "name": "host",
+        "label": "Host",
+        "type": "custom",
+        "query": "cassandra-1,cassandra-2,cassandra-3,cassandra-4",
+        "multi": true,
+        "includeAll": true,
+        "allValue": ".*",
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "cassandra-1",
+            "value": "cassandra-1"
+          },
+          {
+            "selected": false,
+            "text": "cassandra-2",
+            "value": "cassandra-2"
+          },
+          {
+            "selected": false,
+            "text": "cassandra-3",
+            "value": "cassandra-3"
+          },
+          {
+            "selected": false,
+            "text": "cassandra-4",
+            "value": "cassandra-4"
+          }
+        ],
+        "hide": 0,
+        "skipUrlSync": false
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "cassandra_response_time",
+      "type": "timeseries",
+      "description": "Four reconstructed hosts; value is milliseconds, host is an InfluxDB tag. 5,761 samples per host at 15 s. Occluded portions are approximate. No query aggregation.",
+      "gridPos": {
+        "h": 19,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "maxDataPoints": 10000,
+      "interval": "15s",
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"cassandra_response_time\" and r._field == \"value\")\n  |> filter(fn: (r) => r.host =~ /^${host:regex}$/)\n  |> keep(columns: [\"_time\", \"_value\", \"host\"])\n  |> group(columns: [\"host\"])\n  |> sort(columns: [\"_time\"])"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 2,
+          "min": 0,
+          "max": 40,
+          "displayName": "${__field.labels.host}",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "fillOpacity": 0,
+            "showPoints": "never",
+            "pointSize": 2,
+            "axisPlacement": "auto",
+            "axisColorMode": "text",
+            "axisBorderShow": false,
+            "axisLabel": "",
+            "axisCenteredZero": false,
+            "spanNulls": false,
+            "insertNulls": false,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cassandra-1"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#1f78c1"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cassandra-2"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#ef843c"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cassandra-3"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#e24d42"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cassandra-4"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#ba43a9"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none",
+          "hideZeros": false
+        }
+      }
+    }
+  ]
+}

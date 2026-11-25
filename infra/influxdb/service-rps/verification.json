@@ -1,0 +1,307 @@
+{
+  "passed": true,
+  "checks": {
+    "unique_points": true,
+    "five_requested_service_names": true,
+    "all_dates_october_4_moscow": true,
+    "finite_values_within_image_scale": true,
+    "line_protocol_uses_lf_and_has_all_points": true,
+    "all_series_have_uniform_15_second_step": true,
+    "green_has_no_invented_early_history": true,
+    "sharp_drop_preserved_for_four_services": true,
+    "green_late_level_matches_screenshot": true,
+    "database_all_points_and_tags_match_exactly": true,
+    "existing_history_counts_unchanged": true,
+    "dashboard_dates_and_timezone_correct": true,
+    "dashboard_rps_unit_and_raw_samples": true,
+    "dashboard_service_names_and_colors": true,
+    "grafana_returns_all_five_raw_series_exactly": true,
+    "sum_matches_available_services_at_every_timestamp": true,
+    "sum_has_one_time_series": true,
+    "sum_uses_separate_right_axis_and_visible_range": true
+  },
+  "points": 3023,
+  "before": {
+    "cassandra_response_time/value": 23044,
+    "cassandra_service_impact/errors_tps": 18905,
+    "cassandra_service_impact/offered_tps": 18905,
+    "cassandra_service_impact/response_time_ms": 18905,
+    "cassandra_service_impact/successful_tps": 18905,
+    "cassandra_tps/value": 26467,
+    "kafka_write_mad/global_mad_ms": 1521,
+    "kafka_write_mad/local_mad_ms": 1521,
+    "kafka_write_mad/relative_deviation": 1521,
+    "kafka_write_mad/score": 1521,
+    "kafka_write_mad_test/local_mad_ms": 1520,
+    "kafka_write_mad_test/reference_mad_ms": 1520,
+    "kafka_write_mad_test/score": 1520,
+    "kafka_write_mad_test/whole_history_window20_score": 1520,
+    "kafka_write_time/value": 1521,
+    "request_handle_time/value": 937,
+    "rps/value": 5171,
+    "service_dispatcher_delay/value": 2105,
+    "sync_service_client_response_time/value": 968,
+    "total_rps/value": 937
+  },
+  "after": {
+    "cassandra_response_time/value": 23044,
+    "cassandra_service_impact/errors_tps": 18905,
+    "cassandra_service_impact/offered_tps": 18905,
+    "cassandra_service_impact/response_time_ms": 18905,
+    "cassandra_service_impact/successful_tps": 18905,
+    "cassandra_tps/value": 26467,
+    "kafka_write_mad/global_mad_ms": 1521,
+    "kafka_write_mad/local_mad_ms": 1521,
+    "kafka_write_mad/relative_deviation": 1521,
+    "kafka_write_mad/score": 1521,
+    "kafka_write_mad_test/local_mad_ms": 1520,
+    "kafka_write_mad_test/reference_mad_ms": 1520,
+    "kafka_write_mad_test/score": 1520,
+    "kafka_write_mad_test/whole_history_window20_score": 1520,
+    "kafka_write_time/value": 1521,
+    "request_handle_time/value": 937,
+    "rps/value": 5171,
+    "service_dispatcher_delay/value": 2105,
+    "service_rps/value": 3023,
+    "sync_service_client_response_time/value": 968,
+    "total_rps/value": 937
+  },
+  "dashboard_url": "http://127.0.0.1:3001/d/service-rps-20261004/rps-servisov-e28094-04-10-2026",
+  "metadata": {
+    "measurement": "service_rps",
+    "field": "value",
+    "tag": "service",
+    "unit": "requests/s",
+    "bucket": "metrics-replay",
+    "timezone": "Europe/Moscow",
+    "date": "2026-10-04",
+    "interval_seconds": 15,
+    "points": 3023,
+    "start": "2026-10-04T20:27:00+03:00",
+    "end": "2026-10-04T23:26:45+03:00",
+    "dashboard_uid": "service-rps-20261004",
+    "services": {
+      "service1": {
+        "color": "green",
+        "hex": "#73BF69",
+        "points": 147,
+        "first": "2026-10-04T22:50:15+03:00",
+        "last": "2026-10-04T23:26:45+03:00",
+        "min_rps": 1678.460498,
+        "max_rps": 1917.280607,
+        "observed_columns": 426,
+        "occluded_column_ranges": []
+      },
+      "service2": {
+        "color": "yellow",
+        "hex": "#F2CC0C",
+        "points": 720,
+        "first": "2026-10-04T20:27:00+03:00",
+        "last": "2026-10-04T23:26:45+03:00",
+        "min_rps": 1210.634806,
+        "max_rps": 1793.891583,
+        "observed_columns": 1993,
+        "occluded_column_ranges": [
+          [
+            449,
+            451
+          ],
+          [
+            456,
+            473
+          ],
+          [
+            2079,
+            2085
+          ],
+          [
+            2087,
+            2093
+          ],
+          [
+            2097,
+            2101
+          ],
+          [
+            2108,
+            2113
+          ],
+          [
+            2149,
+            2150
+          ],
+          [
+            2162,
+            2181
+          ],
+          [
+            2449,
+            2451
+          ],
+          [
+            2463,
+            2469
+          ],
+          [
+            2485,
+            2496
+          ]
+        ]
+      },
+      "service3": {
+        "color": "blue",
+        "hex": "#8AB8FF",
+        "points": 719,
+        "first": "2026-10-04T20:27:15+03:00",
+        "last": "2026-10-04T23:26:45+03:00",
+        "min_rps": 1375.300726,
+        "max_rps": 1718.772626,
+        "observed_columns": 1931,
+        "occluded_column_ranges": [
+          [
+            468,
+            477
+          ],
+          [
+            486,
+            486
+          ],
+          [
+            537,
+            541
+          ],
+          [
+            575,
+            583
+          ],
+          [
+            594,
+            607
+          ],
+          [
+            610,
+            618
+          ],
+          [
+            689,
+            694
+          ],
+          [
+            730,
+            733
+          ],
+          [
+            1268,
+            1273
+          ],
+          [
+            1290,
+            1294
+          ],
+          [
+            1424,
+            1431
+          ],
+          [
+            1436,
+            1437
+          ],
+          [
+            1471,
+            1476
+          ],
+          [
+            1482,
+            1488
+          ],
+          [
+            1496,
+            1496
+          ],
+          [
+            1559,
+            1576
+          ],
+          [
+            1584,
+            1602
+          ],
+          [
+            2078,
+            2085
+          ],
+          [
+            2088,
+            2089
+          ],
+          [
+            2092,
+            2100
+          ]
+        ]
+      },
+      "service4": {
+        "color": "orange",
+        "hex": "#FF780A",
+        "points": 718,
+        "first": "2026-10-04T20:27:30+03:00",
+        "last": "2026-10-04T23:26:45+03:00",
+        "min_rps": 1228.082851,
+        "max_rps": 1883.475021,
+        "observed_columns": 2079,
+        "occluded_column_ranges": []
+      },
+      "service5": {
+        "color": "red",
+        "hex": "#F2495C",
+        "points": 719,
+        "first": "2026-10-04T20:27:15+03:00",
+        "last": "2026-10-04T23:26:45+03:00",
+        "min_rps": 1081.955478,
+        "max_rps": 1702.451559,
+        "observed_columns": 2080,
+        "occluded_column_ranges": []
+      }
+    },
+    "source_sha256": "f40cbcaa67816a209beb31e2a469df2da49a24204b6eeb3c8e035e0ce93c24c3",
+    "calibration": {
+      "x_grid_centers": [
+        469.8,
+        817.6794871794872,
+        1161.5569620253164,
+        1509.4,
+        1857.2,
+        2205.0
+      ],
+      "x_grid_times": [
+        "20:30",
+        "21:00",
+        "21:30",
+        "22:00",
+        "22:30",
+        "23:00"
+      ],
+      "seconds_per_pixel": 5.188412901260099,
+      "x_intercept_seconds_from_2030": -2435.7289382285326,
+      "y_grid_centers": [
+        996.6,
+        767.3205128205128,
+        538.0641025641025,
+        308.8,
+        79.6
+      ],
+      "y_grid_rps": [
+        0,
+        500,
+        1000,
+        1500,
+        2000
+      ],
+      "rps_per_pixel": -2.181005558491338,
+      "y_intercept_rps": 2173.548760126685
+    },
+    "provenance": "Approximate digitization of the user-supplied screenshot. Colors assign service identities; original names are unavailable.",
+    "method": "Nearest palette color; median of the strongest stroke pixels in each column; linear interpolation to a 15-second grid. No random noise.",
+    "limitations": "Moscow timezone assumed. Raster precision is about 5.2 seconds per x pixel and 2.18 RPS per y pixel. Overlapping strokes are interpolated only between visible same-color anchors. Green service1 begins around 22:50; its invisible earlier history is not fabricated. Original sampling cadence is unknown."
+  }
+}

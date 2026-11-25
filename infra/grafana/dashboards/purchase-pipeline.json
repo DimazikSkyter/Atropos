@@ -1,0 +1,45 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {"type": "prometheus", "uid": "victoria-metrics"},
+      "fieldConfig": {"defaults": {"unit": "ops"}, "overrides": []},
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "id": 1,
+      "options": {"legend": {"displayMode": "list", "placement": "bottom", "showLegend": true}, "tooltip": {"mode": "single", "sort": "none"}},
+      "targets": [
+        {"expr": "sum(rate(atropos_purchases_produced_total[1m]))", "legendFormat": "produced/sec", "refId": "A"},
+        {"expr": "sum(rate(atropos_purchases_persisted_total[1m]))", "legendFormat": "persisted/sec", "refId": "B"}
+      ],
+      "title": "Purchase pipeline throughput",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "prometheus", "uid": "victoria-metrics"},
+      "fieldConfig": {"defaults": {"unit": "short"}, "overrides": []},
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "id": 2,
+      "options": {"legend": {"displayMode": "list", "placement": "bottom", "showLegend": true}, "tooltip": {"mode": "single", "sort": "none"}},
+      "targets": [
+        {"expr": "sum(increase(atropos_producer_errors_total[5m]))", "legendFormat": "producer errors", "refId": "A"},
+        {"expr": "sum(increase(atropos_consumer_errors_total[5m]))", "legendFormat": "consumer errors", "refId": "B"}
+      ],
+      "title": "Errors during last 5 minutes",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 41,
+  "tags": ["atropos", "kafka", "purchases"],
+  "templating": {"list": []},
+  "time": {"from": "now-15m", "to": "now"},
+  "timezone": "browser",
+  "title": "Atropos purchase pipeline",
+  "uid": "atropos-purchases",
+  "version": 1
+}

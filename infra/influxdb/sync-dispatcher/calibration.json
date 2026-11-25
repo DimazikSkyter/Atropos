@@ -1,0 +1,51 @@
+{
+  "method": "Manual calibrated control-point digitization followed by deterministic linear resampling",
+  "client_source": "reference-full.png",
+  "dispatcher_source": "reference.png",
+  "client_grid": {
+    "zero_y": 374,
+    "twenty_five_ms_y": 44,
+    "unit": "ms",
+    "time_start": "18:15:00",
+    "time_end": "18:25:00"
+  },
+  "dispatcher_grid": {
+    "zero_y": 934,
+    "ten_seconds_y": 666,
+    "unit": "s",
+    "time_start": "18:10:00",
+    "time_end": "18:45:00"
+  },
+  "host_colors": {
+    "host1": "#7E9B68",
+    "host2": "#548E61",
+    "host3": "#56B7BC",
+    "host4": "#9778B4",
+    "host5": "#973D42",
+    "host6": "#C38489",
+    "host7": "#D8AE6D",
+    "host8": "#5E5867"
+  },
+  "client_hosts": [
+    "host1",
+    "host2",
+    "host3",
+    "host4",
+    "host5",
+    "host6",
+    "host7",
+    "host8"
+  ],
+  "dispatcher_hosts": [
+    "host1",
+    "host4",
+    "host6",
+    "host7",
+    "host8"
+  ],
+  "excluded_client_low_band": true,
+  "excluded_band_confirmed_by_user": true,
+  "level_jump_time": "18:19:15",
+  "dispatcher_growth_anchor": "18:19:15",
+  "limitations": "Approximate readings from blurred screenshots. Hosts are anonymized in visible legend/color order. Dispatcher color matching and overlapping curves are less certain; only five distinguishable traces are reconstructed. No client values are extrapolated outside 18:15–18:25. No random noise is added."
+}

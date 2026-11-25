@@ -1,0 +1,141 @@
+{
+  "passed": true,
+  "checks": {
+    "five_named_services": true,
+    "complete_uniform_15s_series": true,
+    "normal_response_average_approximately_300ms": true,
+    "first_node_failure_has_no_response_level_step": true,
+    "clear_response_jump_at_0700": true,
+    "no_2213_2214_jump": true,
+    "errors_zero_before_tps_drop": true,
+    "positive_errors_begin_exactly_at_tps_drop": true,
+    "request_rates_conserved_at_every_sample": true,
+    "terminal_errors_cover_full_offered_tps": true,
+    "success_tps_exactly_matches_existing_traces": true,
+    "all_values_nonnegative_finite": true,
+    "expected_point_count": true,
+    "existing_measurements_unchanged": true,
+    "database_matches_every_generated_field_value": true,
+    "grafana_datasource_healthy": true,
+    "same_dashboard_contains_four_charts": true,
+    "grafana_panel_4_exact_raw_data": true,
+    "grafana_panel_5_exact_raw_data": true,
+    "overview_includes_new_panels": true
+  },
+  "statistics": {
+    "normal_response_mean_ms": 300.0706173333333,
+    "services": {
+      "service1": {
+        "baseline_response_ms": 250.12000625000002,
+        "jump_at_0700_ms": 528.0450000000001,
+        "response_ratio_around_first_failure": 1.0464465208520848,
+        "errors_at_tps_drop": 506.721,
+        "errors_after_total_failure": 694.346
+      },
+      "service2": {
+        "baseline_response_ms": 275.11585708333337,
+        "jump_at_0700_ms": 720.8299999999999,
+        "response_ratio_around_first_failure": 1.0491139231788822,
+        "errors_at_tps_drop": 405.791,
+        "errors_after_total_failure": 489.94
+      },
+      "service3": {
+        "baseline_response_ms": 300.07761125,
+        "jump_at_0700_ms": 917.613,
+        "response_ratio_around_first_failure": 1.0428353395921957,
+        "errors_at_tps_drop": 44.877,
+        "errors_after_total_failure": 134.522
+      },
+      "service4": {
+        "baseline_response_ms": 325.0312675,
+        "jump_at_0700_ms": 1117.5620000000001,
+        "response_ratio_around_first_failure": 1.0310710394338405,
+        "errors_at_tps_drop": 2.003,
+        "errors_after_total_failure": 84.976
+      },
+      "service5": {
+        "baseline_response_ms": 350.0083445833333,
+        "jump_at_0700_ms": 1319.492,
+        "response_ratio_around_first_failure": 1.020432815536267,
+        "errors_at_tps_drop": 44.355,
+        "errors_after_total_failure": 62.43
+      }
+    }
+  },
+  "field_values_added": 75620,
+  "events": {
+    "first_node_failure_no_service_effect": "2026-10-02T04:53:30+03:00",
+    "response_jump": "2026-10-02T07:00:00+03:00",
+    "errors_start_and_tps_drop": "2026-10-02T08:41:15+03:00",
+    "successful_tps_zero": "2026-10-02T12:30:00+03:00"
+  },
+  "before": {
+    "cassandra_response_time": {
+      "field_values": 23044,
+      "sha256": "63f9f1676f701e6f9e0a185e8e31bd532a2cd19075f0e936be44b8cbfe6d45c0"
+    },
+    "cassandra_tps": {
+      "field_values": 26467,
+      "sha256": "ace013c97fe40206a346b413207a0eb7bc95f2bb1812215ad13066513a5b74bc"
+    },
+    "request_handle_time": {
+      "field_values": 937,
+      "sha256": "e7a032b8b392f8674b9fb624d7eeb5d1b4d615c1966cf2b6df8fb71d6492aa6f"
+    },
+    "rps": {
+      "field_values": 5171,
+      "sha256": "8394acdf364bed96df939b38f7ac7bbf9070f9e518ff99a234a9be622c334f09"
+    },
+    "service_dispatcher_delay": {
+      "field_values": 2105,
+      "sha256": "8845b3a907df64e31140bb8be85a3eee55342bca26d3c0378e1a7842ee80e620"
+    },
+    "sync_service_client_response_time": {
+      "field_values": 968,
+      "sha256": "1f42265fd6825ff37d54174457a1a278c07a06fd7af99153fc3c6dffd497aad9"
+    },
+    "total_rps": {
+      "field_values": 937,
+      "sha256": "4ed2fdbb18fac58601f2dc82c1239b8172d8fd7d91d10c5b3f5648bb6ee50fe1"
+    }
+  },
+  "after": {
+    "cassandra_response_time": {
+      "field_values": 23044,
+      "sha256": "63f9f1676f701e6f9e0a185e8e31bd532a2cd19075f0e936be44b8cbfe6d45c0"
+    },
+    "cassandra_service_impact": {
+      "field_values": 75620,
+      "sha256": "d131e0aa87f0053227139965bfd08e03aa7031797a18104e78717ed72d50654b"
+    },
+    "cassandra_tps": {
+      "field_values": 26467,
+      "sha256": "ace013c97fe40206a346b413207a0eb7bc95f2bb1812215ad13066513a5b74bc"
+    },
+    "request_handle_time": {
+      "field_values": 937,
+      "sha256": "e7a032b8b392f8674b9fb624d7eeb5d1b4d615c1966cf2b6df8fb71d6492aa6f"
+    },
+    "rps": {
+      "field_values": 5171,
+      "sha256": "8394acdf364bed96df939b38f7ac7bbf9070f9e518ff99a234a9be622c334f09"
+    },
+    "service_dispatcher_delay": {
+      "field_values": 2105,
+      "sha256": "8845b3a907df64e31140bb8be85a3eee55342bca26d3c0378e1a7842ee80e620"
+    },
+    "sync_service_client_response_time": {
+      "field_values": 968,
+      "sha256": "1f42265fd6825ff37d54174457a1a278c07a06fd7af99153fc3c6dffd497aad9"
+    },
+    "total_rps": {
+      "field_values": 937,
+      "sha256": "4ed2fdbb18fac58601f2dc82c1239b8172d8fd7d91d10c5b3f5648bb6ee50fe1"
+    }
+  },
+  "grafana_frames": {
+    "4": 5,
+    "5": 5
+  },
+  "grafana_url": "http://127.0.0.1:3001/d/cassandra-tps-correlation"
+}

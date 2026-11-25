@@ -1,0 +1,1 @@
+{"id": "RuntimeTrend-events", "detector": "RuntimeTrend", "scenario": "events", "width": 1, "cpu": 29, "fleet": 64, "profile": true, "category": "baseline"}

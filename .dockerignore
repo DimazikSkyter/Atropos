@@ -1,0 +1,15 @@
+**
+!ui/
+!ui/pyproject.toml
+!ui/uv.lock
+!ui/app.py
+!ui/src/
+!ui/src/**
+!detectors/
+!detectors/apps/
+!detectors/apps/**
+!infra/
+!infra/service/
+!infra/service/Dockerfile
+**/__pycache__/
+**/*.pyc

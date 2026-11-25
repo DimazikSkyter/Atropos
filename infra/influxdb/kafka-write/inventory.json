@@ -1,0 +1,145 @@
+{
+  "influx": {
+    "cassandra_response_time": {
+      "field_values": 23044,
+      "fields": [
+        "value"
+      ],
+      "start": "2026-10-01T09:30:00Z",
+      "end": "2026-10-02T09:30:00Z",
+      "min": 0.0,
+      "max": 36.0
+    },
+    "cassandra_service_impact": {
+      "field_values": 75620,
+      "fields": [
+        "errors_tps",
+        "offered_tps",
+        "response_time_ms",
+        "successful_tps"
+      ],
+      "start": "2026-10-01T18:00:00Z",
+      "end": "2026-10-02T09:45:00Z",
+      "min": 0.0,
+      "max": 5249.977
+    },
+    "cassandra_tps": {
+      "field_values": 26467,
+      "fields": [
+        "value"
+      ],
+      "start": "2026-10-01T18:00:00Z",
+      "end": "2026-10-02T09:45:00Z",
+      "min": 0.0,
+      "max": 703.708
+    },
+    "request_handle_time": {
+      "field_values": 937,
+      "fields": [
+        "value"
+      ],
+      "start": "2026-10-03T16:12:00Z",
+      "end": "2026-10-03T20:06:00Z",
+      "min": 13.359,
+      "max": 26.098
+    },
+    "rps": {
+      "field_values": 5171,
+      "fields": [
+        "value"
+      ],
+      "start": "2026-09-22T10:00:00Z",
+      "end": "2026-09-23T07:32:30Z",
+      "min": 482.738532,
+      "max": 1009.966159
+    },
+    "service_dispatcher_delay": {
+      "field_values": 2105,
+      "fields": [
+        "value"
+      ],
+      "start": "2026-10-05T15:10:00Z",
+      "end": "2026-10-05T15:45:00Z",
+      "min": 0.0,
+      "max": 7.75
+    },
+    "sync_service_client_response_time": {
+      "field_values": 968,
+      "fields": [
+        "value"
+      ],
+      "start": "2026-10-05T15:15:00Z",
+      "end": "2026-10-05T15:25:00Z",
+      "min": 5.6,
+      "max": 24.5
+    },
+    "total_rps": {
+      "field_values": 937,
+      "fields": [
+        "value"
+      ],
+      "start": "2026-10-03T16:12:00Z",
+      "end": "2026-10-03T20:06:00Z",
+      "min": 9463.282,
+      "max": 10252.819
+    }
+  },
+  "grafana_dashboards": [
+    {
+      "uid": "atropos-purchases",
+      "title": "Atropos purchase pipeline"
+    },
+    {
+      "uid": "9AJV_mnIk",
+      "title": "cadvisor dashboard"
+    },
+    {
+      "uid": "cassandra-tps-correlation",
+      "title": "Cassandra response time / TPS — correlated replay"
+    },
+    {
+      "uid": "cassandra-response-time-replay",
+      "title": "Cassandra response time — replay"
+    },
+    {
+      "uid": "cusum-rps-20260922",
+      "title": "CUSUM — RPS, 22–23 сентября 2026"
+    },
+    {
+      "uid": "experiment2-cache",
+      "title": "Experiment 2 — client sharding and cache locality"
+    },
+    {
+      "uid": "experiment3-retry-oom",
+      "title": "Experiment3 · Callback → Timeout → Retry → Queue → OOM"
+    },
+    {
+      "uid": "experiment4-gc-distribution",
+      "title": "Experiment4 · Minor GC → структура ВО"
+    },
+    {
+      "uid": "influxdb-replay",
+      "title": "InfluxDB Replay"
+    },
+    {
+      "uid": "request-handle-time-replay",
+      "title": "Request handle time and total RPS — replay"
+    },
+    {
+      "uid": "wNf0q_kZk",
+      "title": "VictoriaMetrics - single-node"
+    },
+    {
+      "uid": "IV0hu1m7z",
+      "title": "Windows Exporter Dashboard"
+    },
+    {
+      "uid": "Kdh0OoSGz",
+      "title": "Windows Exporter Dashboard 2025 (v0.31+ compatible)"
+    },
+    {
+      "uid": "sync-client-dispatcher-replay",
+      "title": "ВО клиента / диспетчер сервиса — 05.10.2026"
+    }
+  ]
+}

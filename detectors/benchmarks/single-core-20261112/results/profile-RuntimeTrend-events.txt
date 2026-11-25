@@ -1,0 +1,58 @@
+         1522041 function calls in 0.584 seconds
+
+   Ordered by: cumulative time
+   List reduced from 30 to 24 due to restriction <24>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.002    0.002    0.584    0.584 benchmark.py:173(batch)
+     1390    0.009    0.000    0.577    0.000 runtime_trend.py:149(evaluate)
+     1390    0.110    0.000    0.505    0.000 runtime_trend.py:65(_fit)
+    13709    0.037    0.000    0.238    0.000 runtime_trend.py:55(_line)
+    74105    0.112    0.000    0.221    0.000 {built-in method builtins.sum}
+    30198    0.017    0.000    0.104    0.000 statistics.py:601(median)
+    30198    0.035    0.000    0.084    0.000 {built-in method builtins.sorted}
+     1390    0.017    0.000    0.060    0.000 runtime_trend.py:94(_step_like)
+   123190    0.028    0.000    0.040    0.000 runtime_trend.py:75(<genexpr>)
+   137090    0.031    0.000    0.031    0.000 runtime_trend.py:59(<genexpr>)
+   146820    0.030    0.000    0.030    0.000 {built-in method builtins.max}
+   260097    0.029    0.000    0.029    0.000 {built-in method builtins.abs}
+   144231    0.028    0.000    0.028    0.000 {built-in method builtins.min}
+   137090    0.025    0.000    0.025    0.000 runtime_trend.py:60(<genexpr>)
+   137090    0.020    0.000    0.020    0.000 runtime_trend.py:57(<genexpr>)
+   137090    0.020    0.000    0.020    0.000 runtime_trend.py:58(<genexpr>)
+    60779    0.008    0.000    0.008    0.000 {built-in method builtins.len}
+    13900    0.004    0.000    0.007    0.000 runtime_trend.py:88(<genexpr>)
+    13900    0.003    0.000    0.005    0.000 runtime_trend.py:85(<genexpr>)
+     1390    0.003    0.000    0.004    0.000 runtime_trend.py:137(update)
+    13900    0.004    0.000    0.004    0.000 runtime_trend.py:102(<genexpr>)
+     1390    0.003    0.000    0.003    0.000 <string>:2(__init__)
+    13900    0.002    0.000    0.002    0.000 runtime_trend.py:70(<genexpr>)
+     8340    0.002    0.000    0.002    0.000 runtime_trend.py:68(<genexpr>)
+
+
+         1522041 function calls in 0.584 seconds
+
+   Ordered by: internal time
+   List reduced from 30 to 18 due to restriction <18>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    74105    0.112    0.000    0.221    0.000 {built-in method builtins.sum}
+     1390    0.110    0.000    0.505    0.000 runtime_trend.py:65(_fit)
+    13709    0.037    0.000    0.238    0.000 runtime_trend.py:55(_line)
+    30198    0.035    0.000    0.084    0.000 {built-in method builtins.sorted}
+   137090    0.031    0.000    0.031    0.000 runtime_trend.py:59(<genexpr>)
+   146820    0.030    0.000    0.030    0.000 {built-in method builtins.max}
+   260097    0.029    0.000    0.029    0.000 {built-in method builtins.abs}
+   144231    0.028    0.000    0.028    0.000 {built-in method builtins.min}
+   123190    0.028    0.000    0.040    0.000 runtime_trend.py:75(<genexpr>)
+   137090    0.025    0.000    0.025    0.000 runtime_trend.py:60(<genexpr>)
+   137090    0.020    0.000    0.020    0.000 runtime_trend.py:57(<genexpr>)
+   137090    0.020    0.000    0.020    0.000 runtime_trend.py:58(<genexpr>)
+     1390    0.017    0.000    0.060    0.000 runtime_trend.py:94(_step_like)
+    30198    0.017    0.000    0.104    0.000 statistics.py:601(median)
+     1390    0.009    0.000    0.577    0.000 runtime_trend.py:149(evaluate)
+    60779    0.008    0.000    0.008    0.000 {built-in method builtins.len}
+    13900    0.004    0.000    0.007    0.000 runtime_trend.py:88(<genexpr>)
+    13900    0.004    0.000    0.004    0.000 runtime_trend.py:102(<genexpr>)
+
+

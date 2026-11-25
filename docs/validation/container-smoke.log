@@ -1,0 +1,1 @@
+{"ui_to_server_replay": "PASS", "server_to_influx_fixture": "PASS", "postgres_results": "PASS", "live_and_metadata": "PASS", "account_isolation": "PASS", "replay_points": 50}

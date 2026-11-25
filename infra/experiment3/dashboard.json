@@ -1,0 +1,941 @@
+{
+  "uid": "experiment3-retry-oom",
+  "title": "Experiment3 · Callback → Timeout → Retry → Queue → OOM",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "2s",
+  "tags": [
+    "Atropos",
+    "experiment3"
+  ],
+  "timezone": "browser",
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "01 · Постоянная нагрузка: 750 RPS",
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(rate(k6_http_reqs_total{experiment=\"experiment3\",name=\"submit\"}[10s]))",
+          "legendFormat": "k6 sent",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "B",
+          "expr": "rate(exp3_received_total{service=\"service1\"}[10s])",
+          "legendFormat": "service1 accepted",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "C",
+          "expr": "sum(rate(k6_exp3_load_refused_total{experiment=\"experiment3\"}[10s]))",
+          "legendFormat": "k6 refused after OOM",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "D",
+          "expr": "sum(rate(k6_dropped_iterations_total{experiment=\"experiment3\"}[10s]))",
+          "legendFormat": "k6 dropped iterations",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "02 · Деградация сервиса 2: 30–40 → 40–60 ms",
+      "description": "Задержка работы сервиса 2. Deadline сервиса 1 включает HTTP submission и ожидание callback.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rate(exp3_processing_seconds_sum{service=\"service2\"}[10s]) / rate(exp3_processing_seconds_count{service=\"service2\"}[10s])",
+          "legendFormat": "mean",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "B",
+          "expr": "histogram_quantile(0.95, rate(exp3_processing_seconds_bucket{service=\"service2\"}[10s]))",
+          "legendFormat": "p95",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "C",
+          "expr": "0 * exp3_degraded{service=\"service2\"} + 0.05",
+          "legendFormat": "timeout 50 ms",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "03 · Таймауты и ретраи клиента сервиса 1",
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rate(exp3_timeouts_total{service=\"service1\"}[10s])",
+          "legendFormat": "timeouts",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "B",
+          "expr": "rate(exp3_retries_total{service=\"service1\"}[10s])",
+          "legendFormat": "retries",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "C",
+          "expr": "rate(exp3_failed_total{service=\"service1\"}[10s])",
+          "legendFormat": "failed after 3 attempts",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "04 · Усиление нагрузки на сервис 2",
+      "description": "Когда пул насыщен, новые попытки остаются в очереди: фактическое усиление ограничено пропускной способностью пула.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "(rate(exp3_attempts_total{service=\"service1\"}[10s]) / rate(exp3_received_total{service=\"service1\"}[10s])) and (rate(exp3_received_total{service=\"service1\"}[10s]) > 100)",
+          "legendFormat": "attempts / input",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "B",
+          "expr": "rate(exp3_retries_total{service=\"service1\"}[10s]) / clamp_min(rate(exp3_attempts_total{service=\"service1\"}[10s]), 1)",
+          "legendFormat": "retry share",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "05 · Насыщение клиента: занятые слоты",
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "exp3_active{service=\"service1\"}",
+          "legendFormat": "in flight",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "B",
+          "expr": "exp3_capacity{service=\"service1\"}",
+          "legendFormat": "pool limit",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "06 · Неограниченная очередь сервиса 1",
+      "description": "Каждый запрос сохраняет уникальный payload 4096 bytes. Ретрай переиспользует тот же payload. Активная работа имеет отдельный ограниченный пул.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "exp3_queue_depth{service=\"service1\"}",
+          "legendFormat": "queued requests incl delayed retries",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "title": "07 · Очередь удерживает память → OOM JVM",
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "exp3_container_memory_bytes{service=\"service1\"}",
+          "legendFormat": "container memory",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "B",
+          "expr": "exp3_heap_bytes{service=\"service1\"}",
+          "legendFormat": "heap",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "C",
+          "expr": "exp3_heap_max_bytes{service=\"service1\"}",
+          "legendFormat": "JVM heap max (OOM)",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "D",
+          "expr": "exp3_container_memory_limit_bytes{service=\"service1\"}",
+          "legendFormat": "memory limit",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "E",
+          "expr": "exp3_queue_depth{service=\"service1\"} * exp3_payload_bytes{service=\"service1\"}",
+          "legendFormat": "queue payload lower bound",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "08 · Сервис 2: ограничение работы и сброс",
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "exp3_active{service=\"service2\"}",
+          "legendFormat": "in flight",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "B",
+          "expr": "exp3_capacity{service=\"service2\"}",
+          "legendFormat": "limit",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "C",
+          "expr": "rate(exp3_dropped_total{service=\"service2\"}[10s])",
+          "legendFormat": "dropped / second",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "type": "timeseries",
+      "title": "09 · HTTP callbacks: поздние результаты",
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 32,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rate(exp3_callbacks_total{service=\"service1\"}[10s])",
+          "legendFormat": "callbacks",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "B",
+          "expr": "rate(exp3_late_callbacks_total{service=\"service1\"}[10s])",
+          "legendFormat": "late callbacks",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "C",
+          "expr": "rate(exp3_completed_total{service=\"service1\"}[10s])",
+          "legendFormat": "logical completions",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "type": "timeseries",
+      "title": "10 · Сервисы: доступность после OOM",
+      "description": "up=0 фиксирует недоступность. Настоящий OOM подтверждается JVM OutOfMemoryError + ExitCode либо Docker OOMKilled в verification.json.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 32,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "up{job=\"experiment3\"}",
+          "legendFormat": "{{instance}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "B",
+          "expr": "exp3_degraded{service=\"service2\"}",
+          "legendFormat": "degraded phase",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "type": "timeseries",
+      "title": "11 · Память сервиса 2 остаётся ограниченной",
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 40,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "exp3_container_memory_bytes{service=\"service2\"}",
+          "legendFormat": "container memory",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        },
+        {
+          "refId": "B",
+          "expr": "exp3_container_memory_limit_bytes{service=\"service2\"}",
+          "legendFormat": "memory limit",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "type": "timeseries",
+      "title": "12 · Возраст головы очереди",
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 40,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "exp3_queue_head_age_ms{service=\"service1\"} / 1000",
+          "legendFormat": "queue head age",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 13,
+      "type": "timeseries",
+      "title": "13 · GC: частота minor / major",
+      "description": "Java Parallel GC: Pause Young = minor (PS Scavenge), Pause Full = major (PS MarkSweep). Экспорт из GC log через сервис 2 сохраняет последнюю major сборку после OOM JVM.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 48,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rate(exp3_gc_events_total{service=\"service1\"}[10s])",
+          "legendFormat": "{{generation}} GC / sec",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "type": "timeseries",
+      "title": "14 · GC: накопленное число сборок",
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 48,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "exp3_gc_events_total{service=\"service1\"}",
+          "legendFormat": "{{generation}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "type": "timeseries",
+      "title": "15 · GC: время пауз minor / major",
+      "description": "Суммарные stop-the-world pause seconds на секунду, не длительность одной сборки.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 56,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rate(exp3_gc_pause_seconds_total{service=\"service1\"}[10s])",
+          "legendFormat": "{{generation}} seconds / sec",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 16,
+      "type": "timeseries",
+      "title": "16 · Поколения JVM: Eden / Survivor / Old",
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 56,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "exp3_jvm_memory_pool_bytes{service=\"service1\"}",
+          "legendFormat": "{{pool}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    }
+  ]
+}

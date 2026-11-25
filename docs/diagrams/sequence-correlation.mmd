@@ -1,0 +1,31 @@
+sequenceDiagram
+autonumber
+participant R as replay()
+participant C as correlation()
+participant D as CorrelationDetector
+R->>C: target series then selected peer series
+alt fewer than two series
+    C-->>R: status=skipped
+else at least two series
+    loop each target-left unordered pair
+    Note over C: common = sorted exact timestamp intersection, no interpolation
+    C->>D: fresh instance for this pair
+    loop each common timestamp
+        C->>D: update([left_value, right_value])
+        alt adaptive mode (default)
+            Note over D: Buffer alignment_tolerance points
+            opt enough lookahead
+                D->>D: _update_adaptive(target, future)
+                Note over D: Compare prior relation, score before gated learning
+            end
+            D-->>C: CorrelationResult(score_index, observed_index, ready)
+        else fixed reference mode
+            Note over D: Learn reference, then score disjoint local windows
+            D-->>C: CorrelationResult(score, ready)
+        end
+        Note over C: Write ready score at score_index, else current index
+    end
+    Note over C: Unready and trailing pending positions remain None
+    end
+    C-->>R: pair outputs, common times, ready_points, sources
+end

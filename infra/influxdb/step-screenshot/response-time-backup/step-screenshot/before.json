@@ -1,0 +1,266 @@
+{
+  "history": {
+    "[[\"_field\",\"errors_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service1\"]]": {
+      "points": 3781,
+      "sha256": "b399d3da2cc7830924fefb690a53c3a1349f9a15f3f4a2baba2d6ea7c57c2f49"
+    },
+    "[[\"_field\",\"errors_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service2\"]]": {
+      "points": 3781,
+      "sha256": "e3a0378b8094209f9eaba4423df06a3569b0051bad2f93f43c997b4fe5a78e74"
+    },
+    "[[\"_field\",\"errors_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service3\"]]": {
+      "points": 3781,
+      "sha256": "c114abb9a53bd9646736def8dfa94c8ab5be81508d5426ca63dc38d5b6432f8a"
+    },
+    "[[\"_field\",\"errors_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service4\"]]": {
+      "points": 3781,
+      "sha256": "cb00ede9598d16bb08bc0feb306fb936d3e0af109fc6527d036e6e334db7fc5a"
+    },
+    "[[\"_field\",\"errors_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service5\"]]": {
+      "points": 3781,
+      "sha256": "b1118198fcb7ef298c1ebabcb7736190c2d61dc839275d7c13bdf5c8cdc2dde1"
+    },
+    "[[\"_field\",\"global_mad_ms\"],[\"_measurement\",\"kafka_write_mad\"],[\"mode\",\"offline\"],[\"window\",\"10\"]]": {
+      "points": 1521,
+      "sha256": "83c6c8976cccd9c6bb539bdb3dd8b8cafd49904594f8caf3d841f11c65fe0168"
+    },
+    "[[\"_field\",\"local_mad_ms\"],[\"_measurement\",\"kafka_write_mad\"],[\"mode\",\"offline\"],[\"window\",\"10\"]]": {
+      "points": 1521,
+      "sha256": "1f360b402865ed3dd51c34a85a49031b3f9dfb215dd8131154649f444f786194"
+    },
+    "[[\"_field\",\"local_mad_ms\"],[\"_measurement\",\"kafka_write_mad_test\"],[\"mode\",\"test_legacy\"],[\"reference\",\"100\"],[\"window\",\"20\"]]": {
+      "points": 1520,
+      "sha256": "7f62857cf446cd31c70eb87165e12db6bff482162f2a22b174d00c7124ce450e"
+    },
+    "[[\"_field\",\"offered_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service1\"]]": {
+      "points": 3781,
+      "sha256": "1197065018aa7cdeb8001645b162b875fafbef6fb3eb43a5773ec26ff9cfaab0"
+    },
+    "[[\"_field\",\"offered_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service2\"]]": {
+      "points": 3781,
+      "sha256": "b586f0ec9cc0fb1a510334b8b72190e86308e827915cf3da88f2c097bf901d3c"
+    },
+    "[[\"_field\",\"offered_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service3\"]]": {
+      "points": 3781,
+      "sha256": "d0003a0e1ba086b0a4b734d9f68dafc70aff5df740d9073ca468cea0a92845d0"
+    },
+    "[[\"_field\",\"offered_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service4\"]]": {
+      "points": 3781,
+      "sha256": "1dbb85022a939ab0c6aeecc939edb9041a9d10ba699a47b12c5c2ba24968e888"
+    },
+    "[[\"_field\",\"offered_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service5\"]]": {
+      "points": 3781,
+      "sha256": "81a1a959df48b731c73fe602300b7c15c637b3d6fb5249f125e0f0d58035c6bc"
+    },
+    "[[\"_field\",\"reference_mad_ms\"],[\"_measurement\",\"kafka_write_mad_test\"],[\"mode\",\"test_legacy\"],[\"reference\",\"100\"],[\"window\",\"20\"]]": {
+      "points": 1520,
+      "sha256": "abc71fdb9f578904ca18965215435f69ced38992c91cb39532714f513bb857dc"
+    },
+    "[[\"_field\",\"relative_deviation\"],[\"_measurement\",\"kafka_write_mad\"],[\"mode\",\"offline\"],[\"window\",\"10\"]]": {
+      "points": 1521,
+      "sha256": "333ed1ee16fb29971fbfd6f34a9af690cda4fb3f2f55e1fd21482601ce2140b5"
+    },
+    "[[\"_field\",\"response_time_ms\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service1\"]]": {
+      "points": 3781,
+      "sha256": "93748fc0976da5fe59927f59ea3a28c077b1cc3311b0806eac762e9c90ef4199"
+    },
+    "[[\"_field\",\"response_time_ms\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service2\"]]": {
+      "points": 3781,
+      "sha256": "c4989bc07d2b6535acd688e66a69ffc9bf423404661843e3057c05b36cba7727"
+    },
+    "[[\"_field\",\"response_time_ms\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service3\"]]": {
+      "points": 3781,
+      "sha256": "0b20a1b25b57f8b4f6565b2a51884f14d3d8b6d05d35b98acb15c7c44a080a02"
+    },
+    "[[\"_field\",\"response_time_ms\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service4\"]]": {
+      "points": 3781,
+      "sha256": "e930ba64e2fe7eba2ee2e09fce3ea64842ddff18d140ed2960d499f9b4f822b9"
+    },
+    "[[\"_field\",\"response_time_ms\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service5\"]]": {
+      "points": 3781,
+      "sha256": "c9a20e64e42eaaae1a22a5a6a35c44dd17ae1f5d8b6e8d1be1e04dbbeab2686e"
+    },
+    "[[\"_field\",\"score\"],[\"_measurement\",\"kafka_write_mad\"],[\"mode\",\"offline\"],[\"window\",\"10\"]]": {
+      "points": 1521,
+      "sha256": "599d3b96540482e7d7b6e40d3fdb7fc716a2482bf4319c56ccce1e93628cb0f2"
+    },
+    "[[\"_field\",\"score\"],[\"_measurement\",\"kafka_write_mad_test\"],[\"mode\",\"test_legacy\"],[\"reference\",\"100\"],[\"window\",\"20\"]]": {
+      "points": 1520,
+      "sha256": "ff2d312f6f7ccb4fdbc60b540596d77431cf56159e1d666960f173cf102852f2"
+    },
+    "[[\"_field\",\"successful_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service1\"]]": {
+      "points": 3781,
+      "sha256": "0f5607e92b3d54952aca63e4ab7a352381615bb38a60df5e0991afcaef24c98b"
+    },
+    "[[\"_field\",\"successful_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service2\"]]": {
+      "points": 3781,
+      "sha256": "2f3d7c6de6c57131190bf4ee6bacdfcbc4a35f28680fb3ab3a9c3f7f5130cad5"
+    },
+    "[[\"_field\",\"successful_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service3\"]]": {
+      "points": 3781,
+      "sha256": "565b856bc216cd60c30060337de609df41609a81eb0c7ef15bfd0580818c437d"
+    },
+    "[[\"_field\",\"successful_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service4\"]]": {
+      "points": 3781,
+      "sha256": "55bd80896c195793b8764a351e55ea0162f0671f59256f141089e138c583b725"
+    },
+    "[[\"_field\",\"successful_tps\"],[\"_measurement\",\"cassandra_service_impact\"],[\"service\",\"service5\"]]": {
+      "points": 3781,
+      "sha256": "30224ac862f2786069d3c4768b7bf053f2b52ec07a82e371b2da3831db7153d7"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"cassandra_response_time\"],[\"host\",\"cassandra-1\"]]": {
+      "points": 5761,
+      "sha256": "b69d19cb6526a3d941569570aacbe003ab2f592306e475397ee00b6914a78f72"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"cassandra_response_time\"],[\"host\",\"cassandra-2\"]]": {
+      "points": 5761,
+      "sha256": "37f6d76b7132d1b1ead31ea67b5b89b1b1fcec9ace5c2c3c5a4636c9b82b7c3e"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"cassandra_response_time\"],[\"host\",\"cassandra-3\"]]": {
+      "points": 5761,
+      "sha256": "bb93289433118355b89d735c2d7675f66a0f4a312e2db5519dd8704fda15a59b"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"cassandra_response_time\"],[\"host\",\"cassandra-4\"]]": {
+      "points": 5761,
+      "sha256": "6cdb0e3ebd4abc6d5c75ab7b437c39d396bf11e09acbe7b0e02b763aa835a50e"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"cassandra_tps\"],[\"trace\",\"gray\"]]": {
+      "points": 3781,
+      "sha256": "565b856bc216cd60c30060337de609df41609a81eb0c7ef15bfd0580818c437d"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"cassandra_tps\"],[\"trace\",\"green\"]]": {
+      "points": 3781,
+      "sha256": "0f5607e92b3d54952aca63e4ab7a352381615bb38a60df5e0991afcaef24c98b"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"cassandra_tps\"],[\"trace\",\"olive\"]]": {
+      "points": 3781,
+      "sha256": "30224ac862f2786069d3c4768b7bf053f2b52ec07a82e371b2da3831db7153d7"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"cassandra_tps\"],[\"trace\",\"orange\"]]": {
+      "points": 3781,
+      "sha256": "b69cec22857016777633c5f29bf6fc4a95c7be0d95574066749ab45d86700e3f"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"cassandra_tps\"],[\"trace\",\"red\"]]": {
+      "points": 3781,
+      "sha256": "55bd80896c195793b8764a351e55ea0162f0671f59256f141089e138c583b725"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"cassandra_tps\"],[\"trace\",\"teal\"]]": {
+      "points": 3781,
+      "sha256": "9fd78bc43137dca5b6d728354843c27660cea90eb90f3a86c91e433502de8eb0"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"cassandra_tps\"],[\"trace\",\"yellow\"]]": {
+      "points": 3781,
+      "sha256": "2f3d7c6de6c57131190bf4ee6bacdfcbc4a35f28680fb3ab3a9c3f7f5130cad5"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"kafka_write_time\"]]": {
+      "points": 1521,
+      "sha256": "929b81b0b6d7ff58cb38334247a9694a4403cfef229d777a5e8a0d455d1f6f2b"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"request_handle_time\"],[\"status\",\"200\"]]": {
+      "points": 937,
+      "sha256": "6261b014e346ed5c242367db2f206299a6b9b68d8bab9a0e76b129b703094dd1"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"rps\"],[\"replay\",\"cusum-real-system-image\"]]": {
+      "points": 5171,
+      "sha256": "236ed086db620df7c2c8602ce660258935f33d5b0e6dfa0fccf3fa842617da99"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_dispatcher_delay\"],[\"host\",\"host1\"]]": {
+      "points": 421,
+      "sha256": "5e9a50f1388df9c35cfef191d824868dfd1c8edf99af79e733d6a09b11c4e84b"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_dispatcher_delay\"],[\"host\",\"host4\"]]": {
+      "points": 421,
+      "sha256": "a019d42589d01cd31715a4ceef17297c71200ca1fd163edd8a81473bd4b52acd"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_dispatcher_delay\"],[\"host\",\"host6\"]]": {
+      "points": 421,
+      "sha256": "623246cbacae96766814100754401b8cca4ff0021a35348ecdc863492c6d0806"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_dispatcher_delay\"],[\"host\",\"host7\"]]": {
+      "points": 421,
+      "sha256": "6e7ec210cd9bedf7cc790dd44d9c41b898b9597bdc864271e4b7d22e45830132"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_dispatcher_delay\"],[\"host\",\"host8\"]]": {
+      "points": 421,
+      "sha256": "01dae5457d3909a7f06f819eeaee981accb7d24ef6cd70bd4b2a81d7d39af119"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_response_time\"],[\"service\",\"service1\"]]": {
+      "points": 2841,
+      "sha256": "579565ffaa68b45a70c2bc15ce5ef73aad8047ac347ab834c0d74c8d040204e6"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_response_time\"],[\"service\",\"service2\"]]": {
+      "points": 2841,
+      "sha256": "7fca9744a831d7d7aca9fe99da8510b42adeaa8d6c836cef252ce77f22cf97ee"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_response_time\"],[\"service\",\"service3\"]]": {
+      "points": 2841,
+      "sha256": "5e755ce2735dde47e4a73407bdad4c4db28eb070b3995bdf5b43e7a550864876"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_response_time\"],[\"service\",\"service4\"]]": {
+      "points": 2841,
+      "sha256": "c774af15c6a1ad1b4bde53107d82f75ff5d73bfbeb85ac749116180f3b1614b7"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_rps\"],[\"service\",\"service1\"]]": {
+      "points": 147,
+      "sha256": "3c3db29ccc6dfa818600b556902ef27820d7ac7c774a025075b6d4875935d4c1"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_rps\"],[\"service\",\"service2\"]]": {
+      "points": 720,
+      "sha256": "1afc3d5e992995b82255e38d0f7d5ecf0c891d3203d25edeefb24a7fa924155a"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_rps\"],[\"service\",\"service3\"]]": {
+      "points": 719,
+      "sha256": "8cf63f23b075ec8b51875d66a1bdf94df1f76c6e60e71bc52bc27a675e604c4b"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_rps\"],[\"service\",\"service4\"]]": {
+      "points": 718,
+      "sha256": "c737a00c6bbed3a25e1c955f5210c408223528e4d33bdc5f80035d8c757db67f"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"service_rps\"],[\"service\",\"service5\"]]": {
+      "points": 719,
+      "sha256": "9c57a56160214b29956d2e4458474723895356a10e787b50fccd58ccf507a456"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"sync_service_client_response_time\"],[\"host\",\"host1\"]]": {
+      "points": 121,
+      "sha256": "1ec9af21689ee01ea036db4f3584f00f74f24757c1fd18f83755084fa7fb1d30"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"sync_service_client_response_time\"],[\"host\",\"host2\"]]": {
+      "points": 121,
+      "sha256": "88d56fe3bab332f7c9e737e9a3bf0da0b5e70e4b6ad8611415506d27d610707a"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"sync_service_client_response_time\"],[\"host\",\"host3\"]]": {
+      "points": 121,
+      "sha256": "8a83eef0eb0cec28deb7b3127e3e759ca5e69a54050a9f13cf0c39ba700353dc"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"sync_service_client_response_time\"],[\"host\",\"host4\"]]": {
+      "points": 121,
+      "sha256": "657e903a54f48050f3abb0e15cc4899e20e154096f5e92be06701ad415593374"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"sync_service_client_response_time\"],[\"host\",\"host5\"]]": {
+      "points": 121,
+      "sha256": "dfeb6c17d883ad3b3940ef138091d9eb73d9240fb9ff4048a7544f29353125e1"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"sync_service_client_response_time\"],[\"host\",\"host6\"]]": {
+      "points": 121,
+      "sha256": "4400b233c5a8dfb649a61bd63f74e5c9c4c6213fd1894e52c66177e819c8f288"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"sync_service_client_response_time\"],[\"host\",\"host7\"]]": {
+      "points": 121,
+      "sha256": "317554c2de7d16c021c3bc629cb8ea5266f831fb33cfe645c8638496bd79683e"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"sync_service_client_response_time\"],[\"host\",\"host8\"]]": {
+      "points": 121,
+      "sha256": "6f259700f118cc4af535bc6da744b6be2f75ebc0014675e2749992bd26380fd7"
+    },
+    "[[\"_field\",\"value\"],[\"_measurement\",\"total_rps\"]]": {
+      "points": 937,
+      "sha256": "7ae45aa64b06592b64a3ecdeb6565458e57faf10d54f85dc7a0934b8f60418c4"
+    },
+    "[[\"_field\",\"whole_history_window20_score\"],[\"_measurement\",\"kafka_write_mad_test\"],[\"mode\",\"test_legacy\"],[\"reference\",\"100\"],[\"window\",\"20\"]]": {
+      "points": 1520,
+      "sha256": "4f2c43cb16f6a40ffd57f49725545eecd36423687685818cad306758a907404d"
+    }
+  },
+  "target_sha256": "8d59ed0f5fdd0df2735e63137277184d303fb98abf9c396832e71d2151fd874f",
+  "target_points": 15824
+}

@@ -1,0 +1,171 @@
+python infra/service/bootstrap.py
+Runtime secret is ready.
+docker compose  -f infra/docker-compose-service.yml up -d --build --wait server ui
+ Image atropos-ui:local Building 
+ Image atropos-runtime:local Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.07kB 0.0s done
+#1 DONE 0.0s
+
+#2 [server internal] load build definition from Dockerfile
+#2 transferring dockerfile: 796B 0.0s done
+#2 DONE 0.1s
+
+#3 [ui internal] load metadata for docker.io/library/python:3.12-slim
+#3 ...
+
+#4 [auth] library/python:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#3 [ui internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 2.0s
+
+#5 [server internal] load .dockerignore
+#5 transferring context: 235B done
+#5 DONE 0.0s
+
+#6 [server runtime 1/7] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#6 DONE 0.0s
+
+#7 [server internal] load build context
+#7 transferring context: 702.68kB 0.1s done
+#7 DONE 0.1s
+
+#8 [ui runtime 2/7] RUN python -m pip install --no-cache-dir uv==0.12.10     && useradd --uid 10001 --no-create-home atropos
+#8 CACHED
+
+#9 [ui runtime 3/7] WORKDIR /app
+#9 CACHED
+
+#10 [ui runtime 4/7] COPY ui/pyproject.toml ui/uv.lock ui/app.py /app/ui/
+#10 CACHED
+
+#11 [ui runtime 5/7] COPY ui/src /app/ui/src
+#11 DONE 0.0s
+
+#12 [ui runtime 6/7] COPY detectors/apps /app/detectors/apps
+#12 DONE 0.0s
+
+#13 [ui runtime 7/7] RUN --mount=type=cache,target=/root/.cache/uv uv sync --locked --no-dev --project ui
+#13 0.448 Using CPython 3.12.16 interpreter at: /usr/local/bin/python3
+#13 0.448 Creating virtual environment at: ui/.venv
+#13 0.452 Resolved 52 packages in 1ms
+#13 0.546    Building atropos-ui @ file:///app/ui
+#13 4.195 Downloading scipy (33.7MiB)
+#13 4.477 Downloading pydeck (10.9MiB)
+#13 4.627 Downloading pillow (6.6MiB)
+#13 4.627 Downloading pandas (11.8MiB)
+#13 4.682 Downloading streamlit (9.6MiB)
+#13 4.682 Downloading plotly (9.5MiB)
+#13 4.840 Downloading numpy (15.9MiB)
+#13 4.979 Downloading pyarrow (47.8MiB)
+#13 4.979 Downloading psycopg-binary (5.0MiB)
+#13 9.541       Built atropos-ui @ file:///app/ui
+#13 12.46  Downloaded psycopg-binary
+#13 14.25  Downloaded pillow
+#13 17.53  Downloaded plotly
+#13 17.86  Downloaded streamlit
+#13 20.00  Downloaded pydeck
+#13 20.52  Downloaded pandas
+#13 21.92  Downloaded numpy
+#13 26.69  Downloaded scipy
+#13 29.44  Downloaded pyarrow
+#13 29.44 Prepared 46 packages in 29.94s
+#13 29.59 Installed 46 packages in 146ms
+#13 29.59  + altair==6.3.0
+#13 29.59  + anyio==4.15.1
+#13 29.59  + atropos-ui==0.1.0 (from file:///app/ui)
+#13 29.59  + attrs==26.1.0
+#13 29.59  + certifi==2026.7.22
+#13 29.59  + charset-normalizer==3.5.1
+#13 29.59  + click==8.5.0
+#13 29.59  + h11==0.16.0
+#13 29.59  + httpcore==1.0.9
+#13 29.59  + httptools==0.8.0
+#13 29.59  + httpx==0.28.1
+#13 29.59  + idna==3.20
+#13 29.59  + itsdangerous==2.2.0
+#13 29.59  + jinja2==3.1.6
+#13 29.59  + jsonschema==4.26.0
+#13 29.59  + jsonschema-specifications==2025.9.1
+#13 29.59  + markupsafe==3.0.3
+#13 29.59  + narwhals==2.26.0
+#13 29.59  + numpy==2.5.3
+#13 29.59  + packaging==26.3
+#13 29.59  + pandas==2.3.3
+#13 29.59  + pillow==12.3.0
+#13 29.59  + plotly==6.9.0
+#13 29.59  + prometheus-client==0.26.0
+#13 29.59  + protobuf==7.36.2
+#13 29.59  + psycopg==3.3.6
+#13 29.59  + psycopg-binary==3.3.6
+#13 29.59  + pyarrow==25.0.1
+#13 29.59  + pydeck==0.9.3
+#13 29.59  + python-dateutil==2.9.0.post0
+#13 29.59  + python-multipart==0.0.32
+#13 29.59  + pytz==2026.4
+#13 29.59  + referencing==0.37.0
+#13 29.59  + requests==2.34.2
+#13 29.59  + rpds-py==2026.6.3
+#13 29.59  + scipy==1.18.1
+#13 29.59  + six==1.17.0
+#13 29.59  + starlette==1.7.0
+#13 29.59  + streamlit==1.64.0
+#13 29.59  + toml==0.10.2
+#13 29.59  + typing-extensions==4.16.0
+#13 29.59  + tzdata==2026.4
+#13 29.59  + urllib3==2.8.0
+#13 29.59  + uvicorn==0.54.0
+#13 29.59  + watchdog==6.0.0
+#13 29.59  + websockets==16.1.1
+#13 DONE 29.7s
+
+#14 [ui] exporting to image
+#14 exporting layers
+#14 exporting layers 2.4s done
+#14 writing image sha256:3307107ef25f9e4b4c6c926e39d715a7ae77b06dfe95f9a650d64bd1bdca7e78 done
+#14 naming to docker.io/library/atropos-ui:local done
+#14 DONE 2.4s
+
+#15 [server] exporting to image
+#15 exporting layers 2.4s done
+#15 writing image sha256:9d89a0944f1be635e81ecde24dc5063afe1a8ebaf6b7bdbcf16a107171222d53 done
+#15 naming to docker.io/library/atropos-runtime:local done
+#15 DONE 2.4s
+
+#16 [server] resolving provenance for metadata file
+#16 DONE 0.0s
+
+#17 [ui] resolving provenance for metadata file
+#17 DONE 0.0s
+ Image atropos-runtime:local Built 
+ Image atropos-ui:local Built 
+ Container atropos-service-config-postgres-1 Running 
+ Container atropos-service-config-migrate-1 Creating 
+ Container atropos-service-config-migrate-1 Created 
+ Container atropos-service-server-1 Creating 
+ Container atropos-service-server-1 Created 
+ Container atropos-service-ui-1 Creating 
+ Container atropos-service-ui-1 Created 
+ Container atropos-service-config-postgres-1 Waiting 
+ Container atropos-service-config-postgres-1 Healthy 
+ Container atropos-service-config-migrate-1 Starting 
+ Container atropos-service-config-migrate-1 Started 
+ Container atropos-service-config-migrate-1 Waiting 
+ Container atropos-service-config-postgres-1 Waiting 
+ Container atropos-service-config-migrate-1 Exited 
+ Container atropos-service-config-postgres-1 Healthy 
+ Container atropos-service-server-1 Starting 
+ Container atropos-service-server-1 Started 
+ Container atropos-service-server-1 Waiting 
+ Container atropos-service-server-1 Healthy 
+ Container atropos-service-ui-1 Starting 
+ Container atropos-service-ui-1 Started 
+ Container atropos-service-config-migrate-1 Waiting 
+ Container atropos-service-server-1 Waiting 
+ Container atropos-service-ui-1 Waiting 
+ Container atropos-service-config-postgres-1 Waiting 
+ Container atropos-service-config-migrate-1 Exited 
+ Container atropos-service-server-1 Healthy 
+ Container atropos-service-config-postgres-1 Healthy 
+ Container atropos-service-ui-1 Healthy 

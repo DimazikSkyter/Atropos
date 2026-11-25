@@ -1,0 +1,76 @@
+{
+  "points_input": 1521,
+  "points_output": 1520,
+  "window": 20,
+  "window_minutes": 5,
+  "nominal_reference_points": 100,
+  "actual_reference_points": 99,
+  "calls": 1422,
+  "call_sequence": "Exact original test loop: sub_range_metrics(point, point+100), first returned score array, then only the last score from each following call.",
+  "source_test_sha256": "95e7be861ecb1b8a821fcc0ee4791d0abdb03a0e6d26e7549f93510a9947cbd6",
+  "same_input_as_offline": true,
+  "original_classes_unchanged": true,
+  "all_scores_match_independent_formula": true,
+  "boundary_issue": "Metrics._compute_indexes returns the last index below stop, but sub_range_metrics uses it as an exclusive slice endpoint: 100 requested samples become 99. Consequently the loop emits N-1 scores and never processes the final input point.",
+  "source_version_note": "The Metrics module changed since the earlier offline run (Metric constructor was restored); the Metrics class methods and MADDetector formula are unchanged. This run uses current source snapshots and constructs Metric/Metrics exactly as in the test.",
+  "source_sha256": {
+    "WindowedMadDetector.py": "e985ae28e19828714d13f30ba54c8fbfcc97a227641fa3ce59454247af9e79f5",
+    "CompositeStreamDetector.py": "c351516ff0fe8d96068a0321d80f1a58a8b370eca9bafd831fbd2636dd65ede6",
+    "Metrics.py": "3f36fe92d47d3c03fd33d221a50b385fecd8a56ec132e08abca11b33fe43c92e"
+  },
+  "peak_score": 0.5469868153429247,
+  "peak_time_moscow": "2026-09-16T00:54:15+03:00",
+  "last_output_time_moscow": "2026-09-16T02:19:45+03:00",
+  "warmup_first_19": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "sections": [
+    {
+      "section": "middle_2_to_4_hours",
+      "points": 480,
+      "offline10_mean_score": 0.24798442944285692,
+      "offline20_mean_score": 0.21953075832559812,
+      "test20_99_mean_score": 0.12118834143433539,
+      "test_mean_reference_mad_ms": 13.67815583231303,
+      "test_mean_local_mad_ms": 12.916039812500001
+    },
+    {
+      "section": "last_80_minutes",
+      "points": 320,
+      "offline10_mean_score": 0.4196709752332439,
+      "offline20_mean_score": 0.4248474511977311,
+      "test20_99_mean_score": 0.11267035580319348,
+      "test_mean_reference_mad_ms": 39.792707472451795,
+      "test_mean_local_mad_ms": 45.064170921875004
+    },
+    {
+      "section": "last_20_minutes",
+      "points": 80,
+      "offline10_mean_score": 0.7262384215586406,
+      "offline20_mean_score": 0.7660528033474501,
+      "test20_99_mean_score": 0.06827960131426078,
+      "test_mean_reference_mad_ms": 63.16495970819303,
+      "test_mean_local_mad_ms": 70.64593106250001
+    }
+  ],
+  "interpretation": "A reference recomputed on each sliding fragment adapts to sustained dispersion; an offline reference over the entire record does not. Changing only window=10 to window=20 is a separate factor. The input Kafka raster reconstruction differs from the synthetic Gaussian series in the test image.",
+  "threshold": null
+}

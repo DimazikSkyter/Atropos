@@ -1,0 +1,53 @@
+{
+  "snapshot_date": "2026-11-09",
+  "dashboard_uid": "service-response-time-20261005",
+  "dashboard_title": "Время отклика сервисов — 05.10.2026",
+  "panel_id": 1,
+  "measurement": "service_response_time",
+  "field": "value",
+  "units": "ms",
+  "bucket": "metrics-replay",
+  "org": "atropos",
+  "start_utc": "2026-10-04T21:00:00Z",
+  "stop_utc_inclusive": "2026-10-05T08:50:00Z",
+  "interval_seconds": 15,
+  "total_points": 11364,
+  "grafana_frames_equal_influx": true,
+  "read_only": true,
+  "source_kind": "Live InfluxDB snapshot of the previously image-reconstructed service response replay",
+  "csv_sha256": "c7ae6aa8ccadf00ac6a94a1b31065701b5cb53de002c3d8d8b71fe367bea6673",
+  "services": {
+    "service1": {
+      "points": 2841,
+      "actual_start_utc": "2026-10-04T21:00:00+00:00",
+      "actual_end_utc": "2026-10-05T08:50:00+00:00",
+      "min_ms": 15.75268,
+      "max_ms": 52.201971,
+      "values_sha256": "7b5db292f8a1a3b0fa607810f7567f49349b45c0f2b83e86f31f2a1651a857d6"
+    },
+    "service2": {
+      "points": 2841,
+      "actual_start_utc": "2026-10-04T21:00:00+00:00",
+      "actual_end_utc": "2026-10-05T08:50:00+00:00",
+      "min_ms": 33.039718,
+      "max_ms": 89.065208,
+      "values_sha256": "3edc118a4c60d78d341db2fd5d9e9f73e390aec936d40d95093cc70a0bc87a46"
+    },
+    "service3": {
+      "points": 2841,
+      "actual_start_utc": "2026-10-04T21:00:00+00:00",
+      "actual_end_utc": "2026-10-05T08:50:00+00:00",
+      "min_ms": 40.375893,
+      "max_ms": 63.557491,
+      "values_sha256": "cbb0f0e6aa753b3ca406787c6a4f1939a93d907249e63c9037053f8f3bf195b6"
+    },
+    "service4": {
+      "points": 2841,
+      "actual_start_utc": "2026-10-04T21:00:00+00:00",
+      "actual_end_utc": "2026-10-05T08:50:00+00:00",
+      "min_ms": 27.466501,
+      "max_ms": 52.440786,
+      "values_sha256": "82b5659c88bf0e265eac8550da416aa5e1a878f577b73961b76d17df4175558e"
+    }
+  }
+}

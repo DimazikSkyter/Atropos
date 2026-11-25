@@ -1,0 +1,22 @@
+{
+  "cassandra_response_time/value": 23044,
+  "cassandra_service_impact/errors_tps": 18905,
+  "cassandra_service_impact/offered_tps": 18905,
+  "cassandra_service_impact/response_time_ms": 18905,
+  "cassandra_service_impact/successful_tps": 18905,
+  "cassandra_tps/value": 26467,
+  "kafka_write_mad/global_mad_ms": 1521,
+  "kafka_write_mad/local_mad_ms": 1521,
+  "kafka_write_mad/relative_deviation": 1521,
+  "kafka_write_mad/score": 1521,
+  "kafka_write_mad_test/local_mad_ms": 1520,
+  "kafka_write_mad_test/reference_mad_ms": 1520,
+  "kafka_write_mad_test/score": 1520,
+  "kafka_write_mad_test/whole_history_window20_score": 1520,
+  "kafka_write_time/value": 1521,
+  "request_handle_time/value": 937,
+  "rps/value": 5171,
+  "service_dispatcher_delay/value": 2105,
+  "sync_service_client_response_time/value": 968,
+  "total_rps/value": 937
+}

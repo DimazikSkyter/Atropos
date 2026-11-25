@@ -1,0 +1,22 @@
+sequenceDiagram
+autonumber
+participant U as unary()
+participant D as MadDetector
+U->>D: construct fresh instance
+loop each finite scalar
+    U->>D: update(value)
+    Note over D: Validate before appending to bounded reference deque
+    alt fewer than data_max_size points
+        D-->>U: 0.0, ready=false
+    else ready
+        D->>D: _mean_absolute_deviation(last window)
+        D->>D: _mean_absolute_deviation(full reference)
+        alt reference MAD is zero
+            D-->>U: 0.0 if local MAD is zero, else 1.0
+        else reference MAD positive
+            Note over D: relative = abs(local - reference) / reference
+            D-->>U: tanh(relative * 0.5)
+        end
+    end
+    Note over U: Warmup stored as None, this MAD uses MEAN, not median
+end

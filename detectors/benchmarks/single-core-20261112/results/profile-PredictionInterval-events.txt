@@ -1,0 +1,58 @@
+         824186 function calls in 0.453 seconds
+
+   Ordered by: cumulative time
+   List reduced from 56 to 24 due to restriction <24>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001    0.453    0.453 benchmark.py:173(batch)
+      923    0.005    0.000    0.452    0.000 detectors.py:1973(update)
+     1846    0.004    0.000    0.435    0.000 detectors.py:1892(_base_prediction)
+     1846    0.005    0.000    0.272    0.000 statistics.py:959(stdev)
+     1846    0.047    0.000    0.251    0.000 statistics.py:208(_ss)
+      923    0.003    0.000    0.222    0.000 detectors.py:1954(_interval_change)
+     5538    0.018    0.000    0.188    0.000 {built-in method builtins.sum}
+     1846    0.003    0.000    0.158    0.000 statistics.py:468(mean)
+     1846    0.033    0.000    0.139    0.000 statistics.py:154(_sum)
+    33657    0.024    0.000    0.127    0.000 fractions.py:613(forward)
+    28119    0.036    0.000    0.071    0.000 fractions.py:710(_add)
+   110760    0.028    0.000    0.068    0.000 statistics.py:287(_exact_ratio)
+    42887    0.045    0.000    0.063    0.000 fractions.py:186(__new__)
+   110760    0.040    0.000    0.040    0.000 {method 'as_integer_ratio' of 'float' objects}
+     7384    0.008    0.000    0.038    0.000 fractions.py:627(reverse)
+   104663    0.031    0.000    0.031    0.000 {built-in method math.gcd}
+    41041    0.022    0.000    0.029    0.000 fractions.py:317(_from_coprime_ints)
+    11219    0.006    0.000    0.024    0.000 statistics.py:240(<genexpr>)
+    11219    0.006    0.000    0.022    0.000 statistics.py:239(<genexpr>)
+    11219    0.005    0.000    0.022    0.000 statistics.py:203(<genexpr>)
+    50271    0.011    0.000    0.020    0.000 {built-in method builtins.isinstance}
+     7384    0.009    0.000    0.016    0.000 fractions.py:758(_div)
+    83928    0.014    0.000    0.014    0.000 {built-in method __new__ of type object at 0x00007FF98AF113D0}
+    15691    0.005    0.000    0.010    0.000 <frozen abc>:117(__instancecheck__)
+
+
+         824186 function calls in 0.453 seconds
+
+   Ordered by: internal time
+   List reduced from 56 to 18 due to restriction <18>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     1846    0.047    0.000    0.251    0.000 statistics.py:208(_ss)
+    42887    0.045    0.000    0.063    0.000 fractions.py:186(__new__)
+   110760    0.040    0.000    0.040    0.000 {method 'as_integer_ratio' of 'float' objects}
+    28119    0.036    0.000    0.071    0.000 fractions.py:710(_add)
+     1846    0.033    0.000    0.139    0.000 statistics.py:154(_sum)
+   104663    0.031    0.000    0.031    0.000 {built-in method math.gcd}
+   110760    0.028    0.000    0.068    0.000 statistics.py:287(_exact_ratio)
+    33657    0.024    0.000    0.127    0.000 fractions.py:613(forward)
+    41041    0.022    0.000    0.029    0.000 fractions.py:317(_from_coprime_ints)
+     5538    0.018    0.000    0.188    0.000 {built-in method builtins.sum}
+    83928    0.014    0.000    0.014    0.000 {built-in method __new__ of type object at 0x00007FF98AF113D0}
+    50271    0.011    0.000    0.020    0.000 {built-in method builtins.isinstance}
+     7384    0.009    0.000    0.016    0.000 fractions.py:758(_div)
+     7384    0.008    0.000    0.038    0.000 fractions.py:627(reverse)
+    55380    0.008    0.000    0.008    0.000 {method 'get' of 'dict' objects}
+    11219    0.006    0.000    0.024    0.000 statistics.py:240(<genexpr>)
+    11219    0.006    0.000    0.022    0.000 statistics.py:239(<genexpr>)
+      923    0.005    0.000    0.452    0.000 detectors.py:1973(update)
+
+

@@ -1,0 +1,1 @@
+{"id": "Trend-fleet10000", "detector": "Trend", "scenario": "events", "fleet": 10000, "width": 1, "cpu": 29, "category": "large_validation"}

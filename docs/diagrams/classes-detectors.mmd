@@ -1,0 +1,88 @@
+classDiagram
+direction LR
+class Detector {
+    +logger
+}
+class TrendDetector {
+    +update(value) TrendResult
+}
+class CusumDetector {
+    +update(value) float
+    +fit(reference)
+}
+class MadDetector {
+    +update(value) float
+}
+class SSADetector {
+    +update(value) float
+    +result : SSAResult
+}
+class ACFDetector {
+    +update(value) float
+    +fit(reference)
+    +result : ACFResult
+}
+class CorrelationDetector {
+    +update(observation) CorrelationResult
+    +fit(reference)
+}
+class PredictionIntervalDetector {
+    +update(value) PredictionIntervalResult
+    +predict() tuple
+    +fit(reference, calibrate)
+}
+class RuntimeTrendDetector {
+    +update_ns(timestamp_ns, value) None
+    +evaluate() runtime_trend_TrendResult
+}
+class TrendConfig {
+    <<frozen dataclass>>
+    +window_seconds : float
+    +variance_threshold : float
+    +min_tangent : float
+    +confirmation : int
+}
+class ReplayRuntime {
+    +pool : ThreadPoolExecutor
+    +start(store)
+    +state(store)
+    +result(store)
+}
+class LiveRuntime {
+    +start(store, set_id)
+    +tick()
+    +_execute(session, bounds)
+    +stop(store, session_id)
+    +shutdown()
+}
+class LiveHistory {
+    +append(result, bounds)
+    +snapshot(selected, run)
+}
+class WindowStore {
+    +snapshot() workspace_and_zero
+    +save_results(result, revision) bool
+}
+Detector <|-- TrendDetector
+Detector <|-- CusumDetector
+Detector <|-- MadDetector
+Detector <|-- SSADetector
+Detector <|-- ACFDetector
+Detector <|-- CorrelationDetector
+Detector <|-- PredictionIntervalDetector
+RuntimeTrendDetector --> TrendConfig : config
+LiveRuntime *-- LiveHistory : bounded per session
+LiveRuntime *-- DetectorStreams : state per session
+class DetectorStreams {
+    +calculate(name, parameters, identities, times, values)
+    +max_points : int
+    +max_streams : int
+}
+LiveRuntime ..> WindowStore : same replay with persistent streams
+ReplayRuntime ..> Detector : via replay and unary/correlation
+ReplayRuntime ..> RuntimeTrendDetector : timestamp adapter
+LiveRuntime ..> Detector : via replay and unary/correlation
+LiveRuntime ..> RuntimeTrendDetector : via replay
+note for Detector "Logger base only."
+note for RuntimeTrendDetector "Separate TrendResult type."
+note for WindowStore "No result persistence."

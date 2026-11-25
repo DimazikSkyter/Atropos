@@ -1,0 +1,26 @@
+sequenceDiagram
+autonumber
+participant U as unary()
+participant D as SSADetector
+participant E as scipy.linalg.eigh
+U->>D: construct fresh instance
+loop each finite value
+    U->>D: update(value)
+    alt fewer than data_max_size points
+        D-->>U: 0.0, ready=false
+    else complete disjoint reference/current windows
+        opt model absent or refit_interval elapsed
+            D->>D: _fit_reference(values before current window)
+            D->>D: _choose_lag(centered)
+            opt nonzero reference variance
+                D->>E: eigh(covariance)
+                E-->>D: eigenvalues, eigenvectors
+            end
+            Note over D: Choose rank and retain reference basis
+        end
+        D->>D: _evaluate(current window)
+        Note over D: Project Hankel rows, RMS residual / reference sigma
+        D-->>U: bounded score, result property holds SSAResult
+    end
+    Note over U: Read instance.ready, store None during warmup
+end

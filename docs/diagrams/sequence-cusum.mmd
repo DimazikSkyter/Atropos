@@ -1,0 +1,25 @@
+sequenceDiagram
+autonumber
+participant U as unary()
+participant D as CusumDetector
+U->>D: construct fresh instance
+loop each finite value
+    U->>D: update(value)
+    D->>D: validate value and finite first difference
+    alt first point or reference warmup
+        Note over D: Retain previous level / reference delta
+        D-->>U: 0.0, ready=false
+    else reference ready
+        Note over D: Expired non-suspect delta can enter reference
+        Note over D: Append pending delta, compute noise_std and background_level
+        alt pending window incomplete
+            D-->>U: 0.0, ready=false
+        else window ready
+            Note over D: Positive and negative CUSUM peaks produce noise_score
+            Note over D: Relative up/down mass produces inertia_score
+            Note over D: Quarantine suspect pending deltas from reference
+            D-->>U: noise_score * inertia_score
+        end
+    end
+    Note over U: Read instance.ready, warmup becomes None
+end

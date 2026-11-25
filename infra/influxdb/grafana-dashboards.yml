@@ -1,0 +1,13 @@
+apiVersion: 1
+
+providers:
+  - name: InfluxDB Replay
+    orgId: 1
+    folder: Atropos
+    type: file
+    disableDeletion: true
+    editable: true
+    # >10s uses polling: Docker Desktop bind mounts may omit filesystem events.
+    updateIntervalSeconds: 30
+    options:
+      path: /var/lib/grafana/replay-dashboards

@@ -1,0 +1,31 @@
+sequenceDiagram
+autonumber
+actor UI
+participant L as LiveRuntime
+participant S as AccountStore
+participant P as prepare_set() / window_bounds()
+participant R as replay(WindowStore, streams)
+participant I as read_window() / InfluxDB
+participant H as LiveHistory
+UI->>L: start(store, set_id)
+L->>S: snapshot()
+L->>P: validate set, bindings, fingerprint, bounds
+P-->>L: plan and account-owned session
+loop scheduler every second
+    L->>S: snapshot() for running accounts
+    L->>P: compare fingerprint on revision change
+    alt set configuration changed
+        L->>L: running = false, require new session
+    else due and free worker, no overlap for same set
+        L->>P: window_bounds(item, now)
+        L->>R: submit _execute(session, bounds)
+        R->>I: read_window(source, start_ns, end_ns, metrics)
+        I-->>R: numeric original samples
+        Note over R,I: Enforce half-open bounds [start, end)
+        Note over R: Reuse session state, feed each timestamp once, preserve delayed pair scores
+        R-->>L: result, WindowStore.save_results() returns false
+        L->>H: append(result, bounds), enforce retention
+    end
+end
+UI->>L: stop(store, session_id)
+Note over L,H: Stop pauses scheduling, retained history stays within configured budgets

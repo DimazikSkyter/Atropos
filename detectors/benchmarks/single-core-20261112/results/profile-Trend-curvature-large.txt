@@ -1,0 +1,58 @@
+         796908 function calls in 0.443 seconds
+
+   Ordered by: cumulative time
+   List reduced from 33 to 24 due to restriction <24>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.008    0.008    0.453    0.453 benchmark.py:177(batch)
+     8664    0.074    0.000    0.445    0.000 detectors.py:264(update)
+       43    0.083    0.002    0.197    0.005 detectors.py:180(_breakpoint)
+      493    0.034    0.000    0.066    0.000 {built-in method math.fsum}
+    17328    0.036    0.000    0.055    0.000 detectors.py:58(append)
+    62049    0.033    0.000    0.044    0.000 detectors.py:197(fit)
+    17328    0.028    0.000    0.041    0.000 detectors.py:81(fit)
+   152394    0.031    0.000    0.031    0.000 {built-in method builtins.max}
+     8664    0.006    0.000    0.025    0.000 detectors.py:154(_number)
+     8664    0.023    0.000    0.023    0.000 <string>:2(__init__)
+    17328    0.005    0.000    0.017    0.000 {built-in method builtins.isinstance}
+    62516    0.013    0.000    0.013    0.000 {built-in method builtins.min}
+     8664    0.002    0.000    0.012    0.000 <frozen abc>:117(__instancecheck__)
+     8664    0.004    0.000    0.009    0.000 {built-in method _abc._abc_instancecheck}
+    60692    0.008    0.000    0.008    0.000 {built-in method builtins.len}
+     8664    0.003    0.000    0.005    0.000 <frozen abc>:121(__subclasscheck__)
+    41323    0.005    0.000    0.005    0.000 detectors.py:195(<genexpr>)
+    34699    0.005    0.000    0.005    0.000 {built-in method builtins.abs}
+    41323    0.005    0.000    0.005    0.000 detectors.py:212(<genexpr>)
+    25992    0.005    0.000    0.005    0.000 {method 'append' of 'collections.deque' objects}
+     8664    0.003    0.000    0.004    0.000 detectors.py:159(ready)
+    41323    0.004    0.000    0.004    0.000 detectors.py:194(<genexpr>)
+    41323    0.004    0.000    0.004    0.000 detectors.py:213(<genexpr>)
+    25992    0.004    0.000    0.004    0.000 {built-in method math.isfinite}
+
+
+         796908 function calls in 0.443 seconds
+
+   Ordered by: internal time
+   List reduced from 33 to 18 due to restriction <18>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       43    0.083    0.002    0.197    0.005 detectors.py:180(_breakpoint)
+     8664    0.074    0.000    0.445    0.000 detectors.py:264(update)
+    17328    0.036    0.000    0.055    0.000 detectors.py:58(append)
+      493    0.034    0.000    0.066    0.000 {built-in method math.fsum}
+    62049    0.033    0.000    0.044    0.000 detectors.py:197(fit)
+   152394    0.031    0.000    0.031    0.000 {built-in method builtins.max}
+    17328    0.028    0.000    0.041    0.000 detectors.py:81(fit)
+     8664    0.023    0.000    0.023    0.000 <string>:2(__init__)
+    62516    0.013    0.000    0.013    0.000 {built-in method builtins.min}
+    60692    0.008    0.000    0.008    0.000 {built-in method builtins.len}
+        1    0.008    0.008    0.453    0.453 benchmark.py:177(batch)
+     8664    0.006    0.000    0.025    0.000 detectors.py:154(_number)
+    17328    0.005    0.000    0.017    0.000 {built-in method builtins.isinstance}
+    41323    0.005    0.000    0.005    0.000 detectors.py:195(<genexpr>)
+    34699    0.005    0.000    0.005    0.000 {built-in method builtins.abs}
+    41323    0.005    0.000    0.005    0.000 detectors.py:212(<genexpr>)
+    25992    0.005    0.000    0.005    0.000 {method 'append' of 'collections.deque' objects}
+    41323    0.004    0.000    0.004    0.000 detectors.py:194(<genexpr>)
+
+

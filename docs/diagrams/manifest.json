@@ -1,0 +1,58 @@
+{
+  "classes-service": {
+    "title": "Классы сервиса и хранения",
+    "source": "detectors/apps/services/{datasources,configuration,postgres,accounts}.py; ui/src/atropos_ui/context.py"
+  },
+  "classes-metadata": {
+    "title": "Классы каталога метаданных",
+    "source": "detectors/apps/services/{metrics,metadata,collection,composition}.py"
+  },
+  "classes-detectors": {
+    "title": "Классы детекторов и рантаймов",
+    "source": "detectors/apps/{detectors,runtime_trend}.py; ui/src/atropos_ui/{detector_runtime,live_runtime}.py"
+  },
+  "sequence-replay": {
+    "title": "Replay: чтение, расчёт и публикация",
+    "source": "ui/src/atropos_ui/detector_runtime.py; detectors/apps/services/accounts.py"
+  },
+  "sequence-live": {
+    "title": "Live: планировщик текущих окон",
+    "source": "ui/src/atropos_ui/live_runtime.py; ui/src/atropos_ui/influx.py"
+  },
+  "sequence-trend": {
+    "title": "Trend: изменение наклона",
+    "source": "ui/src/atropos_ui/detector_runtime.py; detectors/apps/detectors.py"
+  },
+  "sequence-cusum": {
+    "title": "CUSUM: двунаправленное отклонение",
+    "source": "ui/src/atropos_ui/detector_runtime.py; detectors/apps/detectors.py"
+  },
+  "sequence-mad": {
+    "title": "MAD: изменение среднего абсолютного отклонения",
+    "source": "ui/src/atropos_ui/detector_runtime.py; detectors/apps/detectors.py"
+  },
+  "sequence-ssa": {
+    "title": "SSA: изменение структуры ряда",
+    "source": "ui/src/atropos_ui/detector_runtime.py; detectors/apps/detectors.py"
+  },
+  "sequence-acf": {
+    "title": "ACF: изменение профиля автокорреляции",
+    "source": "ui/src/atropos_ui/detector_runtime.py; detectors/apps/detectors.py"
+  },
+  "sequence-correlation": {
+    "title": "Correlation: согласование пары и задержанный score",
+    "source": "ui/src/atropos_ui/detector_runtime.py; detectors/apps/detectors.py"
+  },
+  "sequence-prediction-interval": {
+    "title": "PredictionInterval: оценка до обучения",
+    "source": "ui/src/atropos_ui/detector_runtime.py; detectors/apps/detectors.py"
+  },
+  "sequence-runtime-trend": {
+    "title": "RuntimeTrend: тренд по реальному времени",
+    "source": "ui/src/atropos_ui/detector_runtime.py; detectors/apps/runtime_trend.py"
+  },
+  "container-runtime": {
+    "title": "Контейнеры UI и вычислительного сервера",
+    "source": "infra/docker-compose-service.yml; ui/src/atropos_ui/runtime_server.py; ui/src/atropos_ui/runtime_client.py"
+  }
+}

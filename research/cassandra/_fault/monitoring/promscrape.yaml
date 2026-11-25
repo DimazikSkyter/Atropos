@@ -1,0 +1,53 @@
+global:
+  scrape_interval: 5s
+  scrape_timeout: 4s
+
+scrape_configs:
+  - job_name: cassandra
+    static_configs:
+      - targets: ['cassandra1:7070']
+        labels: {node: cassandra1}
+      - targets: ['cassandra2:7070']
+        labels: {node: cassandra2}
+      - targets: ['cassandra3:7070']
+        labels: {node: cassandra3}
+      - targets: ['cassandra4:7070']
+        labels: {node: cassandra4}
+      - targets: ['cassandra5:7070']
+        labels: {node: cassandra5}
+
+  - job_name: windows
+    static_configs:
+      - targets: ['host.docker.internal:9182']
+        labels: {node: windows-host}
+
+  - job_name: cadvisor
+    static_configs:
+      - targets: ['cadvisor:8080']
+        labels: {node: docker-linux-vm}
+
+  # cAdvisor on Docker Desktop does not account for tmpfs/volume usage as a
+  # container filesystem. These endpoints measure /var/lib/cassandra from
+  # inside each Cassandra mount namespace.
+  - job_name: cassandra-filesystem
+    static_configs:
+      - targets: ['cassandra1:9101']
+        labels: {node: cassandra1}
+      - targets: ['cassandra2:9101']
+        labels: {node: cassandra2}
+      - targets: ['cassandra3:9101']
+        labels: {node: cassandra3}
+      - targets: ['cassandra4:9101']
+        labels: {node: cassandra4}
+      - targets: ['cassandra5:9101']
+        labels: {node: cassandra5}
+
+  # This target becomes healthy only when Compose profile linux-host is enabled.
+  - job_name: node-exporter
+    static_configs:
+      - targets: ['node-exporter:9100']
+        labels: {node: docker-linux-vm}
+
+  - job_name: victoriametrics
+    static_configs:
+      - targets: ['localhost:8428']

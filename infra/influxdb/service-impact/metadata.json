@@ -1,0 +1,46 @@
+{
+  "measurement": "cassandra_service_impact",
+  "fields": [
+    "response_time_ms",
+    "errors_tps",
+    "successful_tps",
+    "offered_tps"
+  ],
+  "service_to_tps_trace": {
+    "service1": "green",
+    "service2": "yellow",
+    "service3": "gray",
+    "service4": "red",
+    "service5": "olive"
+  },
+  "provenance": "Synthetic illustrative service metrics; existing Cassandra and TPS histories are unchanged.",
+  "start": "2026-10-01T21:00:00+03:00",
+  "end": "2026-10-02T12:45:00+03:00",
+  "timezone": "Europe/Moscow",
+  "interval_seconds": 15,
+  "series_points": 18905,
+  "field_values": 75620,
+  "points_per_service": 3781,
+  "events": {
+    "first_node_failure_no_service_effect": "2026-10-02T04:53:30+03:00",
+    "response_jump": "2026-10-02T07:00:00+03:00",
+    "errors_start_and_tps_drop": "2026-10-02T08:41:15+03:00",
+    "successful_tps_zero": "2026-10-02T12:30:00+03:00"
+  },
+  "baseline_response_ms": {
+    "service1": 250,
+    "service2": 275,
+    "service3": 300,
+    "service4": 325,
+    "service5": 350
+  },
+  "offered_tps_reference": {
+    "service1": 692.37770625,
+    "service2": 487.66001875,
+    "service3": 133.75057708333333,
+    "service4": 84.47305416666667,
+    "service5": 62.107233333333326
+  },
+  "error_model": "Before the TPS drop: zero errors. Afterwards: errors = offered TPS - successful TPS; offered TPS stays near the initial two-hour level. After 12:30 all offered requests fail.",
+  "assumptions": "07:00 is the requested scenario marker near the second node's degradation, not a measured outage timestamp. Service identities and their mapping to the screenshot's colored TPS traces are illustrative. Response times include failed requests."
+}

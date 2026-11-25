@@ -1,0 +1,18 @@
+{
+  "measurement": "kafka_write_time",
+  "field": "value",
+  "unit": "ms",
+  "unit_confirmed_by_user": true,
+  "start": "2026-09-15T20:00:00+03:00",
+  "end": "2026-09-16T02:20:00+03:00",
+  "timezone": "Europe/Moscow",
+  "interval_seconds": 15,
+  "points": 1521,
+  "min_ms": 266.378,
+  "max_ms": 694.559,
+  "source": "reference.png",
+  "calibration": "calibration.json",
+  "reconstruction": "Approximate raster digitization, preserving visible excursions and increasing late variance. No added random noise.",
+  "dashboard_uid": "kafka-write-time-replay",
+  "dashboard_title": "Время записи в кафку"
+}

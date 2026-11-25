@@ -1,0 +1,10 @@
+flowchart LR
+    B["Browser"] -->|"8501"| UI["UI container<br/>Streamlit, login, configuration"]
+    UI -->|"Private runtime API<br/>service token + account"| S["Server container<br/>ReplayRuntime + LiveRuntime"]
+    UI -->|"account configuration"| DB[("PostgreSQL<br/>persistent volume")]
+    S -->|"configuration + optional results"| DB
+    S -->|"numeric series"| SRC["InfluxDB / sources"]
+    UI -->|"catalog and query previews"| SRC
+    M["One-shot migrations"] --> DB
+    T["Compose secret"] -.-> UI
+    T -.-> S

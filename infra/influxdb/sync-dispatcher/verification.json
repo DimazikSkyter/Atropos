@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "checks": {
+    "new_measurements_present": true,
+    "point_count_matches": true,
+    "all_points_on_requested_date": true,
+    "all_values_finite_nonnegative": true,
+    "uniform_five_second_step": true,
+    "eight_client_hosts": true,
+    "five_visible_dispatcher_hosts": true,
+    "only_main_client_band": true,
+    "client_baseline_about_6ms": true,
+    "client_plateau_about_24ms": true,
+    "dispatcher_growth_aligned_to_level_jump": true,
+    "dispatcher_baseline_10_to_20ms": true,
+    "no_dispatcher_growth_before_jump": true,
+    "dispatcher_main_peak_about_8s": true,
+    "later_dispatcher_peaks_preserved": true,
+    "client_source_range_only": true,
+    "correct_units": true,
+    "all_previous_measurements_unchanged": true,
+    "database_points_exact_match": true,
+    "dashboard_links_have_correct_epoch_windows": true,
+    "grafana_unit_sync_service_client_response_time": true,
+    "grafana_legend_sync_service_client_response_time": true,
+    "grafana_no_aggregation_sync_service_client_response_time": true,
+    "focus_link_returns_data_sync_service_client_response_time": true,
+    "grafana_unit_service_dispatcher_delay": true,
+    "grafana_legend_service_dispatcher_delay": true,
+    "grafana_no_aggregation_service_dispatcher_delay": true,
+    "focus_link_returns_data_service_dispatcher_delay": true,
+    "grafana_raw_points_exact_match": true,
+    "grafana_correct_host_frames": true,
+    "grafana_datasource_healthy": true,
+    "overview_contains_new_replay": true,
+    "overview_links_use_epoch_windows": true
+  },
+  "statistics": {
+    "first_level_jump": "2026-10-05T18:19:15+03:00",
+    "first_dispatcher_growth": "2026-10-05T18:19:20+03:00",
+    "dispatcher_baseline_min_ms": 10.042,
+    "dispatcher_baseline_max_ms": 19.941,
+    "onset_difference_seconds": 5.0,
+    "client_baseline_median_ms": 6.0,
+    "client_plateau_median_ms": 23.6,
+    "dispatcher_peaks_seconds": {
+      "host1": 7.75,
+      "host4": 5.5,
+      "host6": 1.0,
+      "host7": 4.8,
+      "host8": 4.6
+    },
+    "points_per_series": {
+      "service_dispatcher_delay": {
+        "host1": 421,
+        "host4": 421,
+        "host6": 421,
+        "host7": 421,
+        "host8": 421
+      },
+      "sync_service_client_response_time": {
+        "host1": 121,
+        "host2": 121,
+        "host3": 121,
+        "host4": 121,
+        "host5": 121,
+        "host6": 121,
+        "host7": 121,
+        "host8": 121
+      }
+    }
+  },
+  "points_added": 3073,
+  "before": {
+    "cassandra_response_time": {
+      "points": 23044,
+      "sha256": "f50d70500d3ce96dc8897268940479d7174f192d7faed4ae4aa7974838c4a3cc"
+    },
+    "cassandra_tps": {
+      "points": 26467,
+      "sha256": "3d7aecdfa395a68a6a029c826fe4151f1dd9fd0067f894574e7686f835a60664"
+    },
+    "request_handle_time": {
+      "points": 937,
+      "sha256": "21930ce366f2a08a31a51a90daea1db97d31f0178207e11739fe7917427a9a90"
+    },
+    "total_rps": {
+      "points": 937,
+      "sha256": "4d3fa074990f7494775dea7e18703f8d87f00b32fa28d763425527f5f3baaaca"
+    }
+  },
+  "after": {
+    "cassandra_response_time": {
+      "points": 23044,
+      "sha256": "f50d70500d3ce96dc8897268940479d7174f192d7faed4ae4aa7974838c4a3cc"
+    },
+    "cassandra_tps": {
+      "points": 26467,
+      "sha256": "3d7aecdfa395a68a6a029c826fe4151f1dd9fd0067f894574e7686f835a60664"
+    },
+    "request_handle_time": {
+      "points": 937,
+      "sha256": "21930ce366f2a08a31a51a90daea1db97d31f0178207e11739fe7917427a9a90"
+    },
+    "service_dispatcher_delay": {
+      "points": 2105,
+      "sha256": "64363ae84811a86eb9c6255c38961d995f9a8f61c17a030680f4bca5781165a0"
+    },
+    "sync_service_client_response_time": {
+      "points": 968,
+      "sha256": "a08dade32d1d43af97698dcc7840df6d23e7264b28014bdf3b1361d18431c287"
+    },
+    "total_rps": {
+      "points": 937,
+      "sha256": "4d3fa074990f7494775dea7e18703f8d87f00b32fa28d763425527f5f3baaaca"
+    }
+  },
+  "grafana_frames": {
+    "sync_service_client_response_time": 8,
+    "service_dispatcher_delay": 5
+  },
+  "grafana_url": "http://localhost:3001/d/sync-client-dispatcher-replay"
+}

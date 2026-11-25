@@ -1,0 +1,1 @@
+{"id": "Trend-quiet", "detector": "Trend", "scenario": "quiet", "width": 1, "cpu": 29, "fleet": 64, "profile": false, "category": "baseline"}

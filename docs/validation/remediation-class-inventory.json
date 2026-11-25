@@ -1,0 +1,878 @@
+[
+  {
+    "path": "ui/src/atropos_ui/clients.py",
+    "name": "ApiError",
+    "line": 16,
+    "bases": [
+      "RuntimeError"
+    ]
+  },
+  {
+    "path": "ui/src/atropos_ui/clients.py",
+    "name": "HttpApi",
+    "line": 20,
+    "bases": []
+  },
+  {
+    "path": "ui/src/atropos_ui/clients.py",
+    "name": "PrometheusClient",
+    "line": 77,
+    "bases": [
+      "HttpApi"
+    ]
+  },
+  {
+    "path": "ui/src/atropos_ui/clients.py",
+    "name": "ServerClient",
+    "line": 160,
+    "bases": [
+      "PrometheusClient"
+    ]
+  },
+  {
+    "path": "ui/src/atropos_ui/context.py",
+    "name": "Context",
+    "line": 23,
+    "bases": []
+  },
+  {
+    "path": "ui/src/atropos_ui/demo.py",
+    "name": "DemoClient",
+    "line": 9,
+    "bases": []
+  },
+  {
+    "path": "ui/src/atropos_ui/detector_runtime.py",
+    "name": "ReplayRuntime",
+    "line": 164,
+    "bases": []
+  },
+  {
+    "path": "ui/src/atropos_ui/live_runtime.py",
+    "name": "WindowStore",
+    "line": 57,
+    "bases": []
+  },
+  {
+    "path": "ui/src/atropos_ui/live_runtime.py",
+    "name": "LiveHistory",
+    "line": 69,
+    "bases": []
+  },
+  {
+    "path": "ui/src/atropos_ui/live_runtime.py",
+    "name": "LiveRuntime",
+    "line": 164,
+    "bases": []
+  },
+  {
+    "path": "ui/src/atropos_ui/streaming.py",
+    "name": "DetectorStreams",
+    "line": 8,
+    "bases": []
+  },
+  {
+    "path": "ui/src/atropos_ui/time_ranges.py",
+    "name": "TimeRange",
+    "line": 83,
+    "bases": []
+  },
+  {
+    "path": "ui/tests/test_integrity_fixes.py",
+    "name": "MemoryAccount",
+    "line": 28,
+    "bases": [
+      "AccountStore"
+    ]
+  },
+  {
+    "path": "ui/tests/test_live_runtime.py",
+    "name": "MemoryAccount",
+    "line": 25,
+    "bases": [
+      "AccountStore"
+    ]
+  },
+  {
+    "path": "ui/tests/test_reaction_monitoring.py",
+    "name": "MemoryAccount",
+    "line": 145,
+    "bases": [
+      "AccountStore"
+    ]
+  },
+  {
+    "path": "detectors/apps/correlation.py",
+    "name": "WindowPlan",
+    "line": 86,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/correlation.py",
+    "name": "RollingCorrelationAnalyzer",
+    "line": 93,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "Detector",
+    "line": 17,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "TrendResult",
+    "line": 27,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "_TrendWindow",
+    "line": 48,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "TrendDetector",
+    "line": 91,
+    "bases": [
+      "Detector"
+    ]
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "_CusumDelta",
+    "line": 353,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "CusumDetector",
+    "line": 359,
+    "bases": [
+      "Detector"
+    ]
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "MadDetector",
+    "line": 584,
+    "bases": [
+      "Detector"
+    ]
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "SSAResult",
+    "line": 690,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "SSADetector",
+    "line": 714,
+    "bases": [
+      "Detector"
+    ]
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "ACFResult",
+    "line": 943,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "ACFDetector",
+    "line": 967,
+    "bases": [
+      "Detector"
+    ]
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "CorrelationPairResult",
+    "line": 1163,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "CorrelationResult",
+    "line": 1186,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "CorrelationDetector",
+    "line": 1207,
+    "bases": [
+      "Detector"
+    ]
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "PredictionIntervalResult",
+    "line": 1767,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/detectors.py",
+    "name": "PredictionIntervalDetector",
+    "line": 1788,
+    "bases": [
+      "Detector"
+    ]
+  },
+  {
+    "path": "detectors/apps/generator/anomalies.py",
+    "name": "AnomalyGenerator",
+    "line": 12,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/generator/config.py",
+    "name": "NoiseConfig",
+    "line": 19,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/generator/config.py",
+    "name": "CycleConfig",
+    "line": 50,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/generator/config.py",
+    "name": "SpikeConfig",
+    "line": 69,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/generator/logging.py",
+    "name": "JsonFormatter",
+    "line": 14,
+    "bases": [
+      "logging.Formatter"
+    ]
+  },
+  {
+    "path": "detectors/apps/generator/series.py",
+    "name": "TimeSeriesGenerator",
+    "line": 15,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/metrics.py",
+    "name": "Metric",
+    "line": 28,
+    "bases": [
+      "ABC"
+    ]
+  },
+  {
+    "path": "detectors/apps/metrics.py",
+    "name": "MetricResult",
+    "line": 32,
+    "bases": [
+      "Metric"
+    ]
+  },
+  {
+    "path": "detectors/apps/metrics.py",
+    "name": "DataframeResult",
+    "line": 88,
+    "bases": [
+      "Metric"
+    ]
+  },
+  {
+    "path": "detectors/apps/metrics.py",
+    "name": "VictoriaMetricsError",
+    "line": 127,
+    "bases": [
+      "RuntimeError"
+    ]
+  },
+  {
+    "path": "detectors/apps/metrics.py",
+    "name": "MetricSeries",
+    "line": 132,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/metrics.py",
+    "name": "MetricCatalog",
+    "line": 157,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/metrics.py",
+    "name": "SeriesActivity",
+    "line": 204,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/metrics.py",
+    "name": "VictoriaMetricsClient",
+    "line": 230,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/runtime_trend.py",
+    "name": "TrendConfig",
+    "line": 10,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/runtime_trend.py",
+    "name": "TrendResult",
+    "line": 44,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/runtime_trend.py",
+    "name": "RuntimeTrendDetector",
+    "line": 122,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/services/accounts.py",
+    "name": "AccountStore",
+    "line": 55,
+    "bases": [
+      "PostgresConfigRepository"
+    ]
+  },
+  {
+    "path": "detectors/apps/services/collection.py",
+    "name": "AmbiguousMetricError",
+    "line": 11,
+    "bases": [
+      "ValueError"
+    ]
+  },
+  {
+    "path": "detectors/apps/services/collection.py",
+    "name": "MetricCollection",
+    "line": 15,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/services/composition.py",
+    "name": "MetricComposition",
+    "line": 30,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/services/configuration.py",
+    "name": "MetricDefinition",
+    "line": 17,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/services/configuration.py",
+    "name": "ServiceSettings",
+    "line": 50,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/services/configuration.py",
+    "name": "MemoryConfigRepository",
+    "line": 70,
+    "bases": [
+      "MemoryDatasourceRepository"
+    ]
+  },
+  {
+    "path": "detectors/apps/services/datasources.py",
+    "name": "Datasource",
+    "line": 40,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/services/datasources.py",
+    "name": "DatasourceHealth",
+    "line": 134,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/services/datasources.py",
+    "name": "DatasourceRepository",
+    "line": 148,
+    "bases": [
+      "Protocol"
+    ]
+  },
+  {
+    "path": "detectors/apps/services/datasources.py",
+    "name": "MemoryDatasourceRepository",
+    "line": 171,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/services/datasources.py",
+    "name": "DatasourceService",
+    "line": 187,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/services/metadata.py",
+    "name": "MetricPointer",
+    "line": 54,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/services/metadata.py",
+    "name": "MetricMetadata",
+    "line": 69,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/services/metrics.py",
+    "name": "MetricService",
+    "line": 18,
+    "bases": []
+  },
+  {
+    "path": "detectors/apps/services/postgres.py",
+    "name": "ConfigurationError",
+    "line": 21,
+    "bases": [
+      "RuntimeError"
+    ]
+  },
+  {
+    "path": "detectors/apps/services/postgres.py",
+    "name": "PostgresConfigRepository",
+    "line": 29,
+    "bases": []
+  },
+  {
+    "path": "detectors/tests/acf_detector_scores_report.py",
+    "name": "ScoreTrace",
+    "line": 66,
+    "bases": []
+  },
+  {
+    "path": "detectors/tests/acf_dispatcher_report.py",
+    "name": "HostCase",
+    "line": 42,
+    "bases": []
+  },
+  {
+    "path": "detectors/tests/acf_replay_scenarios.py",
+    "name": "ReplayCase",
+    "line": 22,
+    "bases": []
+  },
+  {
+    "path": "detectors/tests/correlation_fragment_replay.py",
+    "name": "FragmentReplay",
+    "line": 20,
+    "bases": []
+  },
+  {
+    "path": "detectors/tests/mad_cycle_scenarios.py",
+    "name": "HealthyCycle",
+    "line": 29,
+    "bases": []
+  },
+  {
+    "path": "detectors/tests/prediction_interval_scenarios.py",
+    "name": "IntervalScenario",
+    "line": 23,
+    "bases": []
+  },
+  {
+    "path": "detectors/tests/runtime_trend_scenarios.py",
+    "name": "Span",
+    "line": 10,
+    "bases": []
+  },
+  {
+    "path": "detectors/tests/runtime_trend_scenarios.py",
+    "name": "TrendScenario",
+    "line": 18,
+    "bases": []
+  },
+  {
+    "path": "detectors/tests/test_acf.py",
+    "name": "ACFTests",
+    "line": 12,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_acf_cycles.py",
+    "name": "ACFCycleTests",
+    "line": 11,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_acf_detector_scores.py",
+    "name": "ACFDetectorScoreTests",
+    "line": 17,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_acf_dispatcher.py",
+    "name": "DispatcherACFTests",
+    "line": 11,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_acf_replays.py",
+    "name": "ACFReplayTests",
+    "line": 36,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_acf_rps.py",
+    "name": "ACFRpsTests",
+    "line": 22,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_acf_services.py",
+    "name": "ACFServiceTests",
+    "line": 22,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_correlation.py",
+    "name": "PeriodTests",
+    "line": 25,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_correlation.py",
+    "name": "RollingTests",
+    "line": 85,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_correlation.py",
+    "name": "ResultTests",
+    "line": 187,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_correlation.py",
+    "name": "ScenarioTests",
+    "line": 257,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_correlation_alignment.py",
+    "name": "CorrelationAlignmentTests",
+    "line": 28,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_correlation_change.py",
+    "name": "CorrelationChangeTests",
+    "line": 21,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_correlation_change_influx.py",
+    "name": "CorrelationInfluxTests",
+    "line": 19,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_correlation_fragment_influx.py",
+    "name": "CorrelationFragmentTests",
+    "line": 14,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_correlation_online.py",
+    "name": "CorrelationOnlineTests",
+    "line": 19,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_correlation_relative.py",
+    "name": "CorrelationRelativeTests",
+    "line": 16,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_cusum.py",
+    "name": "CusumTests",
+    "line": 10,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_cusum_replays.py",
+    "name": "CusumReplayTests",
+    "line": 22,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_datasources.py",
+    "name": "DatasourceTests",
+    "line": 7,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_datasources.py",
+    "name": "ServiceTests",
+    "line": 48,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_generator.py",
+    "name": "MetricResultTests",
+    "line": 31,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_generator.py",
+    "name": "TimeSeriesTests",
+    "line": 70,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_generator.py",
+    "name": "AnomalyTests",
+    "line": 222,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_generator.py",
+    "name": "LoggingTests",
+    "line": 297,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_generator.py",
+    "name": "VisualizationTests",
+    "line": 352,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_mad.py",
+    "name": "MadTests",
+    "line": 14,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_mad_deseasonalized.py",
+    "name": "DeseasonalizedMadTests",
+    "line": 14,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_mad_services.py",
+    "name": "MadServiceTests",
+    "line": 15,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_metric_service.py",
+    "name": "MetadataTests",
+    "line": 18,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_metric_service.py",
+    "name": "CollectionTests",
+    "line": 66,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_metric_service.py",
+    "name": "ServiceTests",
+    "line": 128,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_metric_service.py",
+    "name": "CompositionTests",
+    "line": 231,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_prediction_interval.py",
+    "name": "PredictionIntervalTests",
+    "line": 17,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_prediction_interval_scenarios.py",
+    "name": "PredictionIntervalScenarioTests",
+    "line": 15,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_prediction_interval_stability.py",
+    "name": "PredictionIntervalStabilityTests",
+    "line": 11,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_runtime_trend.py",
+    "name": "RuntimeTrendTests",
+    "line": 18,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_runtime_trend_report.py",
+    "name": "RuntimeTrendReportTests",
+    "line": 26,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_scenario_influx.py",
+    "name": "ScenarioSnapshotTests",
+    "line": 17,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_ssa.py",
+    "name": "SSATests",
+    "line": 23,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_trend_change.py",
+    "name": "TrendChangeTests",
+    "line": 10,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_trend_change_report.py",
+    "name": "TrendChangeReportTests",
+    "line": 22,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_trend_replay_appendices.py",
+    "name": "TrendReplayAppendixTests",
+    "line": 19,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_victoria_metrics.py",
+    "name": "CatalogTests",
+    "line": 17,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_victoria_metrics.py",
+    "name": "ClientTests",
+    "line": 42,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/test_victoria_metrics_live.py",
+    "name": "VictoriaMetricsLiveTests",
+    "line": 17,
+    "bases": [
+      "unittest.TestCase"
+    ]
+  },
+  {
+    "path": "detectors/tests/trend_change_scenarios.py",
+    "name": "Change",
+    "line": 9,
+    "bases": []
+  },
+  {
+    "path": "detectors/tests/trend_change_scenarios.py",
+    "name": "Scenario",
+    "line": 16,
+    "bases": []
+  }
+]

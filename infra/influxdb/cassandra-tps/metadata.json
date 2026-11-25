@@ -1,0 +1,63 @@
+{
+  "measurement": "cassandra_tps",
+  "field": "value",
+  "tag": "trace",
+  "unit": "TPS",
+  "traces": [
+    "green",
+    "yellow",
+    "gray",
+    "red",
+    "olive",
+    "teal",
+    "orange"
+  ],
+  "source_measurement": "cassandra_response_time",
+  "user_reference_name": "cassandra_compaction_response_time",
+  "source_measurement_confirmed_by_user": true,
+  "start": "2026-10-01T21:00:00+03:00",
+  "end": "2026-10-02T12:45:00+03:00",
+  "interval_seconds": 15,
+  "total_points": 26467,
+  "points_per_trace": 3781,
+  "partial_drop_time": "2026-10-02T08:41:15+03:00",
+  "zero_time": "2026-10-02T12:30:00+03:00",
+  "events": [
+    {
+      "name": "first_node_failure",
+      "host": "cassandra-1",
+      "time": "2026-10-02T04:53:30+03:00",
+      "tps_effect": "none"
+    },
+    {
+      "name": "node2_plateau",
+      "host": "cassandra-2",
+      "time": "2026-10-02T07:51:30+03:00",
+      "tps_effect": "none_until_both_plateaus"
+    },
+    {
+      "name": "node3_plateau",
+      "host": "cassandra-3",
+      "time": "2026-10-02T08:41:15+03:00",
+      "tps_effect": "partial_drop"
+    },
+    {
+      "name": "node3_terminal_drop",
+      "host": "cassandra-3",
+      "time": "2026-10-02T12:16:15+03:00",
+      "tps_effect": "load_remains_positive"
+    },
+    {
+      "name": "node2_terminal_drop",
+      "host": "cassandra-2",
+      "time": "2026-10-02T12:30:00+03:00",
+      "tps_effect": "all_tps_zero"
+    }
+  ],
+  "source": "reference.png",
+  "source_drop_x": 1516,
+  "alignment": "Piecewise affine screenshot-time mapping: original pre-drop stroke to start..both-node plateau; post-drop noisy positive stroke to plateau..last terminal Cassandra drop. Explicit zeros thereafter.",
+  "noise": "Raster fluctuations preserved. No invented noise-change event during response-time growth.",
+  "event_detection": "First failure: final run of node1 values<0.1ms. Plateau: first >=25ms sample with next20min median>=25 and >=80% samples>=21ms. Terminal edge: first sample after last>=20ms of each node. These are graph markers, not outage logs.",
+  "limitations": "Approximate raster reconstruction. Legend is absent; identifiers are colors. Faint/overlapping gray, olive, teal and orange lines are less precise than the dominant green/yellow traces. Unresolvable teal columns use visually estimated 30 TPS before and 10 TPS after the partial drop."
+}

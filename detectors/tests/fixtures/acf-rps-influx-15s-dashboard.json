@@ -1,0 +1,103 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "description": "Приближённая реконструкция зелёной линии из изображения. Основной уровень 1000 RPS; условная вертикальная шкала 1 RPS/пиксель. Сетка 15 с, линейная интерполяция по пикселям. Это не исходная телеметрия.",
+  "editable": true,
+  "graphTooltip": 1,
+  "id": 3059721887838208,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "description": "Зелёная линия с исходного изображения: уровень 1000, условный масштаб 1 RPS/пиксель. Без агрегации; точки интерполированы с шагом 15 секунд.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#73BF69",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisLabel": "RPS",
+            "axisPlacement": "left",
+            "drawStyle": "line",
+            "fillOpacity": 3,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "decimals": 1,
+          "displayName": "rps",
+          "max": 1100,
+          "min": 0,
+          "unit": "reqps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 19,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "interval": "15s",
+      "maxDataPoints": 10000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"rps\" and r._field == \"value\")\n  |> filter(fn: (r) => r.replay == \"cusum-real-system-image\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])",
+          "refId": "A"
+        }
+      ],
+      "title": "RPS · шаг 15 секунд · МСК",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": [
+    "atropos",
+    "replay",
+    "cusum",
+    "rps"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2026-09-22T10:00:00Z",
+    "to": "2026-09-23T07:32:30Z"
+  },
+  "timezone": "Europe/Moscow",
+  "title": "CUSUM — RPS, 22–23 сентября 2026",
+  "uid": "cusum-rps-20260922",
+  "version": 1
+}

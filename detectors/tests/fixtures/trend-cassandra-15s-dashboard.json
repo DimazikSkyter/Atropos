@@ -1,0 +1,225 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "description": "Approximate reconstruction of the supplied screenshot: four Cassandra hosts, 15-second samples, milliseconds. 01 Oct 2026 12:30 to 02 Oct 2026 12:30 MSK. Raw data preserves every sample.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": 1023420206256128,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "description": "Four reconstructed hosts; value is milliseconds, host is an InfluxDB tag. 5,761 samples per host at 15 s. Occluded portions are approximate. No query aggregation.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "decimals": 2,
+          "displayName": "${__field.labels.host}",
+          "max": 40,
+          "min": 0,
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cassandra-1"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#1f78c1",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cassandra-2"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ef843c",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cassandra-3"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#e24d42",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cassandra-4"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ba43a9",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 19,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "interval": "15s",
+      "maxDataPoints": 10000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"cassandra_response_time\" and r._field == \"value\")\n  |> filter(fn: (r) => r.host =~ /^${host:regex}$/)\n  |> keep(columns: [\"_time\", \"_value\", \"host\"])\n  |> group(columns: [\"host\"])\n  |> sort(columns: [\"_time\"])",
+          "refId": "A"
+        }
+      ],
+      "title": "cassandra_response_time",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": [
+    "atropos",
+    "cassandra",
+    "influxdb",
+    "replay"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "hide": 0,
+        "includeAll": true,
+        "label": "Host",
+        "multi": true,
+        "name": "host",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "cassandra-1",
+            "value": "cassandra-1"
+          },
+          {
+            "selected": false,
+            "text": "cassandra-2",
+            "value": "cassandra-2"
+          },
+          {
+            "selected": false,
+            "text": "cassandra-3",
+            "value": "cassandra-3"
+          },
+          {
+            "selected": false,
+            "text": "cassandra-4",
+            "value": "cassandra-4"
+          }
+        ],
+        "query": "cassandra-1,cassandra-2,cassandra-3,cassandra-4",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "2026-10-01T09:30:00Z",
+    "to": "2026-10-02T09:30:00Z"
+  },
+  "timepicker": {
+    "hidden": false
+  },
+  "timezone": "Europe/Moscow",
+  "title": "Cassandra response time — replay",
+  "uid": "cassandra-response-time-replay",
+  "version": 1
+}

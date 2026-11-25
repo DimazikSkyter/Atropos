@@ -1,0 +1,14 @@
+{
+  "processor": {
+    "Name": "AMD Ryzen 9 5950X 16-Core Processor            ",
+    "NumberOfCores": 16,
+    "NumberOfLogicalProcessors": 32,
+    "MaxClockSpeed": 3401
+  },
+  "os": {
+    "Caption": "Майкрософт Windows 11 Pro",
+    "Version": "10.0.26200",
+    "TotalVisibleMemorySize": 67032164,
+    "FreePhysicalMemory": 33922300
+  }
+}

@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 2s
+scrape_configs:
+  - job_name: experiment-app
+    static_configs:
+      - targets: ['api1:8000', 'api2:8000', 'consumer1:8000', 'consumer2:8000']
+  - job_name: experiment-observer
+    static_configs:
+      - targets: ['observer:8099']
+  - job_name: experiment-cadvisor
+    static_configs:
+      - targets: ['cadvisor:8080']

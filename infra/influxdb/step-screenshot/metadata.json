@@ -1,0 +1,564 @@
+{
+  "revision": 2,
+  "measurement": "screenshot_step_replay",
+  "field": "value",
+  "tag": "trace",
+  "traces": [
+    "orange",
+    "green",
+    "yellow",
+    "blue"
+  ],
+  "colors": {
+    "orange": "#FF9830",
+    "green": "#73BF69",
+    "yellow": "#F2CC0C",
+    "blue": "#8AB8FF"
+  },
+  "bucket": "metrics-replay",
+  "organization": "atropos",
+  "timezone": "Europe/Moscow",
+  "start_msk": "2026-10-17T14:23:30+03:00",
+  "end_msk": "2026-10-18T06:52:15+03:00",
+  "interval_seconds": 15,
+  "points_per_trace": 3956,
+  "points": 15824,
+  "units": "TPS",
+  "lower_orange_plateau": 100,
+  "is_raw_telemetry": false,
+  "dashboard_uid": "screenshot-steps-20261017",
+  "dashboard_url": "http://localhost:3001/d/screenshot-steps-20261017",
+  "zoom_url": "http://localhost:3001/d/screenshot-steps-20261017?from=1792257600000&to=1792265700000&timezone=Europe%2FMoscow&viewPanel=panel-2",
+  "description": "Реконструкция по изображениям, 17.10.2026 14:23:30 — 18.10.2026 06:52:15, Москва, шаг 15 секунд. Первая верхняя оранжевая ступень восстановлена по подробной картинке пользователя: сохранены видимая ширина, наклонные фронты и откаты ниже плато. Остальные участки и цвета прочитаны с полного скриншота. Единица TPS задана пользователем; масштаб восстановлен по картинке: нижнее оранжевое плато = 100 TPS. Скрытые нижние перекрытия приближённые. Красная горизонталь и синяя рамка — оформление. В Grafana используется линейное соединение всех точек без усреднения.",
+  "sources": {
+    "screenshot-step-replay-reference.png": "2903bc9dc0865db01b29eac9353503dea3c8972c62c5dfe2d5260df98b69b182",
+    "orange-high-plateau-reference.png": "ba89a873dfec252b3b5f72066e912d29488d180df33e5ba42a5d40c053c84c87"
+  },
+  "csv_sha256": "abd0ae86aac1b2fd0b4808588a740c8ed04cafae271d289286b45f00bcd01ee0",
+  "full_image_turns": {
+    "orange": [
+      {
+        "source_x": 839,
+        "source_y": 559.0,
+        "sign": 1
+      },
+      {
+        "source_x": 590,
+        "source_y": 864.0,
+        "sign": -1
+      },
+      {
+        "source_x": 689,
+        "source_y": 618.0,
+        "sign": -1
+      },
+      {
+        "source_x": 740,
+        "source_y": 583.0,
+        "sign": -1
+      },
+      {
+        "source_x": 791,
+        "source_y": 618.0,
+        "sign": -1
+      },
+      {
+        "source_x": 928,
+        "source_y": 176.0,
+        "sign": 1
+      },
+      {
+        "source_x": 959,
+        "source_y": 195.0,
+        "sign": 1
+      },
+      {
+        "source_x": 985,
+        "source_y": 207.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1015,
+        "source_y": 175.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1045,
+        "source_y": 196.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1075,
+        "source_y": 214.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1104,
+        "source_y": 175.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1135,
+        "source_y": 187.0,
+        "sign": 1
+      },
+      {
+        "source_x": 920,
+        "source_y": 247.0,
+        "sign": -1
+      },
+      {
+        "source_x": 947,
+        "source_y": 296.0,
+        "sign": -1
+      },
+      {
+        "source_x": 978,
+        "source_y": 276.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1006,
+        "source_y": 267.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1036,
+        "source_y": 300.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1067,
+        "source_y": 279.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1097,
+        "source_y": 258.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1123,
+        "source_y": 310.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1540,
+        "source_y": 615.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1644,
+        "source_y": 611.0,
+        "sign": -1
+      }
+    ],
+    "green": [
+      {
+        "source_x": 928,
+        "source_y": 442.0,
+        "sign": 1
+      },
+      {
+        "source_x": 959,
+        "source_y": 456.0,
+        "sign": 1
+      },
+      {
+        "source_x": 984,
+        "source_y": 463.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1015,
+        "source_y": 448.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1045,
+        "source_y": 457.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1073,
+        "source_y": 475.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1104,
+        "source_y": 448.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1134,
+        "source_y": 450.0,
+        "sign": 1
+      },
+      {
+        "source_x": 921,
+        "source_y": 493.0,
+        "sign": -1
+      },
+      {
+        "source_x": 948,
+        "source_y": 526.0,
+        "sign": -1
+      },
+      {
+        "source_x": 978,
+        "source_y": 514.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1006,
+        "source_y": 509.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1036,
+        "source_y": 533.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1067,
+        "source_y": 516.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1097,
+        "source_y": 503.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1123,
+        "source_y": 540.0,
+        "sign": -1
+      }
+    ],
+    "yellow": [
+      {
+        "source_x": 928,
+        "source_y": 890.0,
+        "sign": 1
+      },
+      {
+        "source_x": 958,
+        "source_y": 895.0,
+        "sign": 1
+      },
+      {
+        "source_x": 985,
+        "source_y": 897.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1015,
+        "source_y": 890.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1045,
+        "source_y": 895.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1075,
+        "source_y": 896.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1104,
+        "source_y": 890.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1134,
+        "source_y": 893.0,
+        "sign": 1
+      },
+      {
+        "source_x": 948,
+        "source_y": 912.0,
+        "sign": -1
+      },
+      {
+        "source_x": 978,
+        "source_y": 910.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1008,
+        "source_y": 908.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1036,
+        "source_y": 915.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1068,
+        "source_y": 910.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1097,
+        "source_y": 906.0,
+        "sign": -1
+      },
+      {
+        "source_x": 1124,
+        "source_y": 917.0,
+        "sign": -1
+      }
+    ],
+    "blue": [
+      {
+        "source_x": 958,
+        "source_y": 980.0,
+        "sign": 1
+      },
+      {
+        "source_x": 1126,
+        "source_y": 989.0,
+        "sign": -1
+      }
+    ]
+  },
+  "detail_calibration": {
+    "pixels_per_second": 0.10638888888888887,
+    "pixel_at_20_30": 176.2000000000002,
+    "plateau_y": 500,
+    "plateau_value": 166.8,
+    "units_per_pixel": 0.055944055944055944,
+    "stroke_half_width_pixels": 2,
+    "narrow_excursions_collapsed": false
+  },
+  "turns": [
+    {
+      "source_x": 187,
+      "source_y": 286.0,
+      "sign": 1,
+      "index": 1474,
+      "timestamp_msk": "2026-10-17T20:32:00+03:00",
+      "value": 178.8
+    },
+    {
+      "source_x": 234,
+      "source_y": 703.0,
+      "sign": -1,
+      "index": 1502,
+      "timestamp_msk": "2026-10-17T20:39:00+03:00",
+      "value": 155.44335664335665
+    },
+    {
+      "source_x": 262,
+      "source_y": 351.0,
+      "sign": 1,
+      "index": 1520,
+      "timestamp_msk": "2026-10-17T20:43:30+03:00",
+      "value": 175.13566433566436
+    },
+    {
+      "source_x": 312,
+      "source_y": 638.0,
+      "sign": -1,
+      "index": 1551,
+      "timestamp_msk": "2026-10-17T20:51:15+03:00",
+      "value": 159.07972027972028
+    },
+    {
+      "source_x": 329,
+      "source_y": 391.0,
+      "sign": 1,
+      "index": 1563,
+      "timestamp_msk": "2026-10-17T20:54:15+03:00",
+      "value": 172.9537296037296
+    },
+    {
+      "source_x": 388,
+      "source_y": 606.0,
+      "sign": -1,
+      "index": 1597,
+      "timestamp_msk": "2026-10-17T21:02:45+03:00",
+      "value": 160.8699300699301
+    },
+    {
+      "source_x": 406,
+      "source_y": 286.0,
+      "sign": 1,
+      "index": 1611,
+      "timestamp_msk": "2026-10-17T21:06:15+03:00",
+      "value": 178.8
+    },
+    {
+      "source_x": 465,
+      "source_y": 711.0,
+      "sign": -1,
+      "index": 1645,
+      "timestamp_msk": "2026-10-17T21:14:45+03:00",
+      "value": 154.94393939393942
+    },
+    {
+      "source_x": 483,
+      "source_y": 351.0,
+      "sign": 1,
+      "index": 1660,
+      "timestamp_msk": "2026-10-17T21:18:30+03:00",
+      "value": 175.16363636363639
+    },
+    {
+      "source_x": 537,
+      "source_y": 646.0,
+      "sign": -1,
+      "index": 1692,
+      "timestamp_msk": "2026-10-17T21:26:30+03:00",
+      "value": 158.63216783216785
+    },
+    {
+      "source_x": 557,
+      "source_y": 423.0,
+      "sign": 1,
+      "index": 1706,
+      "timestamp_msk": "2026-10-17T21:30:00+03:00",
+      "value": 171.16363636363639
+    },
+    {
+      "source_x": 614,
+      "source_y": 573.0,
+      "sign": -1,
+      "index": 1740,
+      "timestamp_msk": "2026-10-17T21:38:30+03:00",
+      "value": 162.71608391608393
+    },
+    {
+      "source_x": 632,
+      "source_y": 286.0,
+      "sign": 1,
+      "index": 1753,
+      "timestamp_msk": "2026-10-17T21:41:45+03:00",
+      "value": 178.8
+    },
+    {
+      "source_x": 679,
+      "source_y": 759.0,
+      "sign": -1,
+      "index": 1781,
+      "timestamp_msk": "2026-10-17T21:48:45+03:00",
+      "value": 152.31048951048953
+    },
+    {
+      "source_x": 709,
+      "source_y": 327.0,
+      "sign": 1,
+      "index": 1801,
+      "timestamp_msk": "2026-10-17T21:53:45+03:00",
+      "value": 176.52878787878788
+    }
+  ],
+  "response_time": {
+    "revision": 3,
+    "measurement": "screenshot_response_time_replay",
+    "field": "value",
+    "tag": "trace",
+    "traces": [
+      "bp1",
+      "bp2",
+      "bp3",
+      "bp4"
+    ],
+    "units": "ms",
+    "base_ms": {
+      "bp1": 440,
+      "bp2": 410,
+      "bp3": 380,
+      "bp4": 360
+    },
+    "colors": {
+      "bp1": "#9A7600",
+      "bp2": "#C15C17",
+      "bp3": "#0A8057",
+      "bp4": "#B4326C"
+    },
+    "interval_seconds": 5,
+    "points_per_trace": 11866,
+    "points": 47464,
+    "is_raw_telemetry": false,
+    "description": "ВО БП 1–4: 440/410/380/360 мс. Модель по эскизу пользователя, не исходная телеметрия. Оба теста: сначала БП 1, 2, 3 по отдельности, затем все четыре. Всплески ВО следуют провалам TPS; внутри — случайные колебания MA(3), σ до 100 мс, с плавным спадом после восстановления. Учтены также затупы малых шагов обоих тестов. На фоне — цикл около 6 минут с амплитудой около 8 мс и шум с σ = 7,5 мс. Редкие отклонения периода до ±6% и амплитуды до ±12%. Участки без зарегистрированных затупов TPS сохраняют спокойный ВО. Шаг 5 с, без усреднения.",
+    "runs": [
+      {
+        "name": "Основной тест",
+        "indices": [
+          912,
+          1093,
+          1254,
+          1416,
+          1974
+        ],
+        "boundaries": [
+          1792249890,
+          1792252605,
+          1792255020,
+          1792257450,
+          1792265820
+        ]
+      },
+      {
+        "name": "Повторный тест",
+        "indices": [
+          2284,
+          2442,
+          2604,
+          2766,
+          3322
+        ],
+        "boundaries": [
+          1792270470,
+          1792272840,
+          1792275270,
+          1792277700,
+          1792286040
+        ]
+      }
+    ],
+    "shape_model": "TPS-deficit mean envelope plus independent MA(3) bursts; Gaussian background and slow quiet cycles",
+    "peak_excess_scale_ms": {
+      "bp1": 450,
+      "bp2": 330,
+      "bp3": 250,
+      "bp4": 210
+    },
+    "background_sigma_ms": 7.5,
+    "ma3_sigma_ms": {
+      "bp1": 100.0,
+      "bp2": 90.0,
+      "bp3": 80.0,
+      "bp4": 70.0
+    },
+    "ma3_coefficients": [
+      1.0,
+      0.65,
+      0.35,
+      0.15
+    ],
+    "ma3_order": 3,
+    "wave_amplitude_ms": 8.0,
+    "dispersion_interpretation": "standard deviation in milliseconds, confirmed by user",
+    "period_change_probability": 0.12,
+    "period_max_relative_change": 0.06,
+    "amplitude_change_probability": 0.18,
+    "amplitude_max_relative_change": 0.12,
+    "tps_csv_sha256": "abd0ae86aac1b2fd0b4808588a740c8ed04cafae271d289286b45f00bcd01ee0",
+    "csv_sha256": "e630258ab0722a967d8e4319596d671292ab9531e03a138f43382abf132f604c",
+    "reference_sha256": "dd50efd5bb39fe8d69bd5330cd1bef506c57bbd334212ca3bb72b3615b331800",
+    "feedback_sources": {
+      "response-thin-peaks-feedback.png": "75724c1a54e051c58a1c1439422bfa26e0307721043787b45c9ffdaffa01fc76",
+      "tps-dips-feedback.png": "4427f3c9a367d020b544a4e6f6752931a0ae3a62a6c01a306d5e743c8adc2de0",
+      "real-response-overview.png": "4ba7f8b74c3474fed647d48ac9cbe958ed57c6dbca90b887e88d051b7faa4bb7",
+      "real-response-peaks.png": "e36015e696fe0b7a4e36fd4ec93277c5fc348c2116c60606094b54ab4a89e2a8",
+      "real-response-noise.png": "0e93c748740a77259899ce1d49d04aa18f1a14a1aac7bf4c4198e22bb807ec9b"
+    },
+    "components_sha256": "6999fe05c132f020167aacb39ed287b08292e72862b93cc18d49fdd895f8d638",
+    "seed": 20261017
+  }
+}

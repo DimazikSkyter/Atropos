@@ -1,0 +1,39 @@
+{
+  "source": "real-system-source.png",
+  "source_sha256": "9168d49375710a2e3ff3104e7c329851300471b747b92360f3b8d08ea74c0e3c",
+  "method": "green-channel dominant center and 98th-percentile lower envelope; one-minute sampling",
+  "is_raw_telemetry": false,
+  "confirmed_parameters": {
+    "baseline_value": 1000.0,
+    "sample_step_seconds": 60
+  },
+  "assumptions": {
+    "units_per_vertical_pixel": 1.0,
+    "baseline_pixel_y": 124.01199900156897,
+    "envelope_baseline_pixel_y": 127.88,
+    "time_tick_13_00_x": 64,
+    "time_tick_next_day_10_00_x": 1493
+  },
+  "points": 1293,
+  "interpolated_columns": 48,
+  "columns_with_green_span_over_30px": 134,
+  "first_dip_minutes": [
+    105,
+    155
+  ],
+  "long_plateau_minutes": [
+    665,
+    795
+  ],
+  "long_plateau_core_minutes": [
+    680,
+    780
+  ],
+  "limitations": [
+    "Y scale is unknown; depth is conditional on units_per_vertical_pixel",
+    "Dominant line may not preserve narrow spikes or vertical connectors",
+    "Lower envelope may interpret connecting strokes as narrow spikes",
+    "Pixel noise and original sample noise cannot be separated",
+    "Original timestamps and values are unavailable"
+  ]
+}

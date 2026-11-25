@@ -1,0 +1,114 @@
+{
+  "measurement": "correlation_screenshot_replay",
+  "bucket": "metrics-replay",
+  "organization": "atropos",
+  "timezone": "Europe/Moscow",
+  "is_raw_telemetry": false,
+  "points": 4284,
+  "scenarios": {
+    "latency": {
+      "step_seconds": 15,
+      "unit": "ms",
+      "points_per_trace": 112,
+      "start": "2026-10-18T16:52:45+03:00",
+      "end": "2026-10-18T17:20:30+03:00",
+      "traces": [
+        "blue",
+        "green",
+        "yellow"
+      ],
+      "quality": {
+        "blue": {
+          "observed_columns": 2319,
+          "missing_columns": 29,
+          "largest_interpolated_gap_pixels": 5,
+          "min": 3.819018,
+          "max": 15.0
+        },
+        "green": {
+          "observed_columns": 2114,
+          "missing_columns": 234,
+          "largest_interpolated_gap_pixels": 52,
+          "min": 3.496933,
+          "max": 14.58589
+        },
+        "yellow": {
+          "observed_columns": 2136,
+          "missing_columns": 212,
+          "largest_interpolated_gap_pixels": 9,
+          "min": 2.300613,
+          "max": 11.180982
+        }
+      },
+      "calibration": {
+        "origin_x": 310,
+        "origin_time": "2026-10-18T16:55:00+03:00",
+        "seconds_per_pixel": 0.7142857142857143,
+        "zero_y": 370,
+        "value_per_pixel": 0.046012269938650305
+      },
+      "source_sha256": "603f0ac4fa8b7e5cd0a4807bcab097cc76a15786d630a8fbe681a0d421e9432d"
+    },
+    "read_operations": {
+      "step_seconds": 60,
+      "unit": "ops/s",
+      "points_per_trace": 987,
+      "start": "2026-10-18T18:45:00+03:00",
+      "end": "2026-10-19T11:11:00+03:00",
+      "traces": [
+        "blue",
+        "orange",
+        "red",
+        "purple"
+      ],
+      "quality": {
+        "blue": {
+          "observed_columns": 1094,
+          "missing_columns": 90,
+          "largest_interpolated_gap_pixels": 10,
+          "min": 177.602493,
+          "max": 863.177285
+        },
+        "orange": {
+          "observed_columns": 971,
+          "missing_columns": 213,
+          "largest_interpolated_gap_pixels": 18,
+          "min": 476.454294,
+          "max": 880.080332
+        },
+        "red": {
+          "observed_columns": 1152,
+          "missing_columns": 32,
+          "largest_interpolated_gap_pixels": 4,
+          "min": 300.710065,
+          "max": 844.578947
+        },
+        "purple": {
+          "observed_columns": 1139,
+          "missing_columns": 45,
+          "largest_interpolated_gap_pixels": 5,
+          "min": 307.98892,
+          "max": 872.576177
+        }
+      },
+      "calibration": {
+        "origin_x": 82,
+        "origin_time": "2026-10-18T19:00:00+03:00",
+        "seconds_per_pixel": 50.04170141784821,
+        "zero_y": 684,
+        "value_per_pixel": 1.3850415512465373
+      },
+      "source_sha256": "7a92ffc940932b50ca77f45951d7899c0d143b15c469c3c4242f3a80e2786020"
+    }
+  },
+  "csv_sha256": "b2bed9f0104032a09ab96d35a7069ad6ae0fd2de3c24104e8f56d766a9974117",
+  "limitations": [
+    "Approximate raster reconstruction, not original telemetry.",
+    "Only three visible latency curves and four separately visible read-operation curves are recoverable.",
+    "Fully hidden legend traces cannot be recovered and are not fabricated.",
+    "Occluded columns are linearly interpolated; edge gaps use nearest visible value.",
+    "Raster noise, overlap and narrow peaks limit correlation accuracy; no synthetic noise added.",
+    "Read graph starts 18 October and crosses midnight into 19 October 2026.",
+    "Latency y axis in ms; read-operation axis tick labels are 100..900 ops/s."
+  ]
+}

@@ -1,0 +1,1 @@
+{"id": "Correlation-influx", "detector": "Correlation", "scenario": "influx", "width": 2, "cpu": 29, "fleet": 64, "profile": false, "category": "baseline"}

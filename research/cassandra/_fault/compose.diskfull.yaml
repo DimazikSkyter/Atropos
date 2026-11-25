@@ -1,0 +1,30 @@
+# Combine with compose.yaml. The named volumes are replaced by bounded tmpfs
+# mounts, so the scenario cannot fill the host filesystem.
+services:
+  cassandra1:
+    mem_limit: 2g
+    cpus: 0.55
+    volumes:
+      - type: tmpfs
+        target: /var/lib/cassandra
+        tmpfs:
+          size: 576716800
+      - ./scripts/node-entrypoint.sh:/lab/node-entrypoint.sh:ro
+
+  cassandra2:
+    mem_limit: 2g
+    volumes:
+      - type: tmpfs
+        target: /var/lib/cassandra
+        tmpfs:
+          size: 838860800
+      - ./scripts/node-entrypoint.sh:/lab/node-entrypoint.sh:ro
+
+  cassandra3:
+    mem_limit: 2g
+    volumes:
+      - type: tmpfs
+        target: /var/lib/cassandra
+        tmpfs:
+          size: 1101004800
+      - ./scripts/node-entrypoint.sh:/lab/node-entrypoint.sh:ro

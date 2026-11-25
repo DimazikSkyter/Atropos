@@ -1,0 +1,1 @@
+{"id": "Correlation-quiet", "detector": "Correlation", "scenario": "quiet", "width": 2, "cpu": 29, "fleet": 64, "profile": false, "category": "baseline"}

@@ -1,0 +1,28 @@
+sequenceDiagram
+autonumber
+participant U as unary()
+participant D as TrendDetector
+participant T as _tail: _TrendWindow
+participant B as _reference: _TrendWindow
+U->>D: construct fresh instance
+loop each finite value in input order
+    U->>D: update(value)
+    D->>D: validate and normalize value
+    D->>T: append(centered)
+    opt sample leaves tail
+        T-->>D: expired value
+        D->>B: append(expired)
+    end
+    alt windows not ready
+        D-->>U: TrendResult(ready=false)
+    else windows ready
+        D->>B: fit()
+        D->>T: fit()
+        Note over D: Slope delta, displacement, noise and inertia give evidence
+        opt score reaches qualification threshold
+            D->>D: _breakpoint()
+        end
+        D-->>U: TrendResult(score, ready, horizontal, event)
+    end
+    Note over U: Store score if ready, otherwise None
+end

@@ -1,0 +1,49 @@
+{
+  "source_width": 1691,
+  "source_height": 694,
+  "x_start": 112,
+  "x_end": 1642,
+  "source_drop_x": 1516,
+  "y_zero": 625.0,
+  "y_700": 62.0,
+  "tps_per_pixel": 1.2433392539964476,
+  "traces": {
+    "green": {
+      "columns": 1531,
+      "median_color_score": 61.9,
+      "baseline_mean_tps": 685.992
+    },
+    "yellow": {
+      "columns": 1531,
+      "median_color_score": 149.9,
+      "baseline_mean_tps": 483.461
+    },
+    "gray": {
+      "columns": 1531,
+      "median_color_score": 78.525,
+      "baseline_mean_tps": 131.458
+    },
+    "red": {
+      "columns": 1531,
+      "median_color_score": 89.425,
+      "baseline_mean_tps": 84.816
+    },
+    "olive": {
+      "columns": 1531,
+      "median_color_score": 68.0,
+      "baseline_mean_tps": 61.463
+    },
+    "teal": {
+      "columns": 1531,
+      "median_color_score": -18.331,
+      "baseline_mean_tps": 30.0
+    },
+    "orange": {
+      "columns": 1531,
+      "median_color_score": 109.4,
+      "baseline_mean_tps": 22.574
+    }
+  },
+  "source_drop_uncertainty_pixels": 5,
+  "limitations": "Approximate raster reconstruction. Legend is absent; identifiers are colors. Faint/overlapping gray, olive, teal and orange lines are less precise than the dominant green/yellow traces. Unresolvable teal columns use visually estimated 30 TPS before and 10 TPS after the partial drop."
+}

@@ -1,0 +1,4149 @@
+[
+  {
+    "file": "ui/src/atropos_ui/clients.py",
+    "name": "ApiError",
+    "line": 15,
+    "bases": [
+      "RuntimeError"
+    ],
+    "methods": []
+  },
+  {
+    "file": "ui/src/atropos_ui/clients.py",
+    "name": "HttpApi",
+    "line": 19,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 20
+      },
+      {
+        "name": "request",
+        "line": 26
+      },
+      {
+        "name": "prometheus",
+        "line": 55
+      }
+    ]
+  },
+  {
+    "file": "ui/src/atropos_ui/clients.py",
+    "name": "PrometheusClient",
+    "line": 69,
+    "bases": [
+      "HttpApi"
+    ],
+    "methods": [
+      {
+        "name": "names",
+        "line": 70
+      },
+      {
+        "name": "series",
+        "line": 76
+      },
+      {
+        "name": "instant",
+        "line": 83
+      },
+      {
+        "name": "range",
+        "line": 88
+      }
+    ]
+  },
+  {
+    "file": "ui/src/atropos_ui/clients.py",
+    "name": "ServerClient",
+    "line": 152,
+    "bases": [
+      "PrometheusClient"
+    ],
+    "methods": [
+      {
+        "name": "publish",
+        "line": 154
+      },
+      {
+        "name": "definitions",
+        "line": 158
+      },
+      {
+        "name": "exposition",
+        "line": 164
+      }
+    ]
+  },
+  {
+    "file": "ui/src/atropos_ui/context.py",
+    "name": "Context",
+    "line": 23,
+    "bases": [],
+    "methods": [
+      {
+        "name": "datasources",
+        "line": 28
+      },
+      {
+        "name": "source_client",
+        "line": 31
+      },
+      {
+        "name": "server_client",
+        "line": 36
+      },
+      {
+        "name": "demo_client",
+        "line": 43
+      }
+    ]
+  },
+  {
+    "file": "ui/src/atropos_ui/demo.py",
+    "name": "DemoClient",
+    "line": 9,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 10
+      },
+      {
+        "name": "names",
+        "line": 13
+      },
+      {
+        "name": "series",
+        "line": 16
+      },
+      {
+        "name": "instant",
+        "line": 20
+      },
+      {
+        "name": "range",
+        "line": 24
+      },
+      {
+        "name": "publish",
+        "line": 32
+      },
+      {
+        "name": "definitions",
+        "line": 36
+      },
+      {
+        "name": "exposition",
+        "line": 39
+      }
+    ]
+  },
+  {
+    "file": "ui/src/atropos_ui/detector_runtime.py",
+    "name": "ReplayRuntime",
+    "line": 173,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 175
+      },
+      {
+        "name": "start",
+        "line": 181
+      },
+      {
+        "name": "state",
+        "line": 206
+      },
+      {
+        "name": "result",
+        "line": 211
+      }
+    ]
+  },
+  {
+    "file": "ui/src/atropos_ui/live_runtime.py",
+    "name": "WindowStore",
+    "line": 54,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 56
+      },
+      {
+        "name": "snapshot",
+        "line": 59
+      },
+      {
+        "name": "save_results",
+        "line": 62
+      }
+    ]
+  },
+  {
+    "file": "ui/src/atropos_ui/live_runtime.py",
+    "name": "LiveHistory",
+    "line": 66,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 68
+      },
+      {
+        "name": "append",
+        "line": 74
+      },
+      {
+        "name": "snapshot",
+        "line": 89
+      }
+    ]
+  },
+  {
+    "file": "ui/src/atropos_ui/live_runtime.py",
+    "name": "LiveRuntime",
+    "line": 119,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 121
+      },
+      {
+        "name": "account_key",
+        "line": 134
+      },
+      {
+        "name": "start",
+        "line": 137
+      },
+      {
+        "name": "stop",
+        "line": 164
+      },
+      {
+        "name": "stop_set",
+        "line": 169
+      },
+      {
+        "name": "_owned",
+        "line": 175
+      },
+      {
+        "name": "summaries",
+        "line": 181
+      },
+      {
+        "name": "component_options",
+        "line": 195
+      },
+      {
+        "name": "snapshot",
+        "line": 199
+      },
+      {
+        "name": "tick",
+        "line": 203
+      },
+      {
+        "name": "_execute",
+        "line": 252
+      },
+      {
+        "name": "_loop",
+        "line": 285
+      },
+      {
+        "name": "shutdown",
+        "line": 297
+      }
+    ]
+  },
+  {
+    "file": "ui/src/atropos_ui/time_ranges.py",
+    "name": "TimeRange",
+    "line": 83,
+    "bases": [],
+    "methods": [
+      {
+        "name": "resolve",
+        "line": 89
+      },
+      {
+        "name": "label",
+        "line": 112
+      },
+      {
+        "name": "from_legacy",
+        "line": 118
+      }
+    ]
+  },
+  {
+    "file": "ui/tests/test_live_runtime.py",
+    "name": "MemoryAccount",
+    "line": 25,
+    "bases": [
+      "AccountStore"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 26
+      },
+      {
+        "name": "snapshot",
+        "line": 30
+      },
+      {
+        "name": "_edit",
+        "line": 33
+      }
+    ]
+  },
+  {
+    "file": "ui/tests/test_reaction_monitoring.py",
+    "name": "MemoryAccount",
+    "line": 145,
+    "bases": [
+      "AccountStore"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 146
+      },
+      {
+        "name": "snapshot",
+        "line": 150
+      },
+      {
+        "name": "sources",
+        "line": 153
+      },
+      {
+        "name": "save_results",
+        "line": 156
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/correlation.py",
+    "name": "WindowPlan",
+    "line": 86,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/correlation.py",
+    "name": "RollingCorrelationAnalyzer",
+    "line": 93,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 103
+      },
+      {
+        "name": "_plan",
+        "line": 114
+      },
+      {
+        "name": "analyze",
+        "line": 126
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "Detector",
+    "line": 17,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 18
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "TrendResult",
+    "line": 27,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "_TrendWindow",
+    "line": 48,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 51
+      },
+      {
+        "name": "append",
+        "line": 58
+      },
+      {
+        "name": "fit",
+        "line": 81
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "TrendDetector",
+    "line": 91,
+    "bases": [
+      "Detector"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 116
+      },
+      {
+        "name": "_number",
+        "line": 155
+      },
+      {
+        "name": "ready",
+        "line": 160
+      },
+      {
+        "name": "result",
+        "line": 164
+      },
+      {
+        "name": "reset",
+        "line": 167
+      },
+      {
+        "name": "_breakpoint",
+        "line": 180
+      },
+      {
+        "name": "update",
+        "line": 264
+      },
+      {
+        "name": "_fresh",
+        "line": 328
+      },
+      {
+        "name": "detect_single_seria",
+        "line": 336
+      },
+      {
+        "name": "detect",
+        "line": 341
+      },
+      {
+        "name": "score",
+        "line": 348
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "_CusumDelta",
+    "line": 353,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "CusumDetector",
+    "line": 359,
+    "bases": [
+      "Detector"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 380
+      },
+      {
+        "name": "_number",
+        "line": 425
+      },
+      {
+        "name": "ready",
+        "line": 430
+      },
+      {
+        "name": "noise_std",
+        "line": 435
+      },
+      {
+        "name": "background_level",
+        "line": 442
+      },
+      {
+        "name": "reset",
+        "line": 453
+      },
+      {
+        "name": "fit",
+        "line": 462
+      },
+      {
+        "name": "update",
+        "line": 482
+      },
+      {
+        "name": "_fresh",
+        "line": 550
+      },
+      {
+        "name": "detect_single_seria",
+        "line": 565
+      },
+      {
+        "name": "detect",
+        "line": 574
+      },
+      {
+        "name": "score",
+        "line": 579
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "MadDetector",
+    "line": 584,
+    "bases": [
+      "Detector"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 599
+      },
+      {
+        "name": "ready",
+        "line": 613
+      },
+      {
+        "name": "local_mad",
+        "line": 617
+      },
+      {
+        "name": "reference_mad",
+        "line": 622
+      },
+      {
+        "name": "reset",
+        "line": 626
+      },
+      {
+        "name": "_mean_absolute_deviation",
+        "line": 634
+      },
+      {
+        "name": "update",
+        "line": 647
+      },
+      {
+        "name": "detect_single_seria",
+        "line": 668
+      },
+      {
+        "name": "detect",
+        "line": 679
+      },
+      {
+        "name": "score",
+        "line": 684
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "SSAResult",
+    "line": 690,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "SSADetector",
+    "line": 714,
+    "bases": [
+      "Detector"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 745
+      },
+      {
+        "name": "_number",
+        "line": 780
+      },
+      {
+        "name": "ready",
+        "line": 785
+      },
+      {
+        "name": "result",
+        "line": 789
+      },
+      {
+        "name": "reset",
+        "line": 792
+      },
+      {
+        "name": "_rms",
+        "line": 800
+      },
+      {
+        "name": "_choose_lag",
+        "line": 807
+      },
+      {
+        "name": "_fit_reference",
+        "line": 824
+      },
+      {
+        "name": "_ratio",
+        "line": 856
+      },
+      {
+        "name": "_magnitude",
+        "line": 865
+      },
+      {
+        "name": "_evaluate",
+        "line": 870
+      },
+      {
+        "name": "update",
+        "line": 901
+      },
+      {
+        "name": "_fresh",
+        "line": 916
+      },
+      {
+        "name": "detect_single_seria",
+        "line": 923
+      },
+      {
+        "name": "analyze",
+        "line": 928
+      },
+      {
+        "name": "detect",
+        "line": 935
+      },
+      {
+        "name": "score",
+        "line": 938
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "ACFResult",
+    "line": 943,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "ACFDetector",
+    "line": 967,
+    "bases": [
+      "Detector"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 986
+      },
+      {
+        "name": "_number",
+        "line": 1014
+      },
+      {
+        "name": "_location",
+        "line": 1019
+      },
+      {
+        "name": "_profile",
+        "line": 1031
+      },
+      {
+        "name": "_set_reference",
+        "line": 1049
+      },
+      {
+        "name": "reference_ready",
+        "line": 1064
+      },
+      {
+        "name": "ready",
+        "line": 1068
+      },
+      {
+        "name": "result",
+        "line": 1072
+      },
+      {
+        "name": "reset",
+        "line": 1076
+      },
+      {
+        "name": "fit",
+        "line": 1087
+      },
+      {
+        "name": "update",
+        "line": 1104
+      },
+      {
+        "name": "_fresh",
+        "line": 1131
+      },
+      {
+        "name": "detect_single_seria",
+        "line": 1141
+      },
+      {
+        "name": "analyze",
+        "line": 1146
+      },
+      {
+        "name": "detect",
+        "line": 1153
+      },
+      {
+        "name": "score",
+        "line": 1157
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "CorrelationPairResult",
+    "line": 1163,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "CorrelationResult",
+    "line": 1186,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "CorrelationDetector",
+    "line": 1207,
+    "bases": [
+      "Detector"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 1257
+      },
+      {
+        "name": "_row",
+        "line": 1314
+      },
+      {
+        "name": "_center",
+        "line": 1325
+      },
+      {
+        "name": "_profile",
+        "line": 1345
+      },
+      {
+        "name": "_learn",
+        "line": 1365
+      },
+      {
+        "name": "reference_ready",
+        "line": 1387
+      },
+      {
+        "name": "ready",
+        "line": 1393
+      },
+      {
+        "name": "result",
+        "line": 1397
+      },
+      {
+        "name": "reset",
+        "line": 1400
+      },
+      {
+        "name": "fit",
+        "line": 1420
+      },
+      {
+        "name": "update",
+        "line": 1436
+      },
+      {
+        "name": "_anchor",
+        "line": 1485
+      },
+      {
+        "name": "_deviation",
+        "line": 1496
+      },
+      {
+        "name": "_pair_severity",
+        "line": 1511
+      },
+      {
+        "name": "_aligned_pair",
+        "line": 1524
+      },
+      {
+        "name": "_lagged",
+        "line": 1548
+      },
+      {
+        "name": "_relation",
+        "line": 1555
+      },
+      {
+        "name": "_relative_error",
+        "line": 1568
+      },
+      {
+        "name": "_relative_weight",
+        "line": 1586
+      },
+      {
+        "name": "_update_adaptive",
+        "line": 1592
+      },
+      {
+        "name": "_interaction_support",
+        "line": 1689
+      },
+      {
+        "name": "_fresh",
+        "line": 1729
+      },
+      {
+        "name": "replay",
+        "line": 1744
+      },
+      {
+        "name": "detect_series",
+        "line": 1749
+      },
+      {
+        "name": "analyze",
+        "line": 1752
+      },
+      {
+        "name": "detect",
+        "line": 1758
+      },
+      {
+        "name": "score",
+        "line": 1761
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "PredictionIntervalResult",
+    "line": 1767,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/detectors.py",
+    "name": "PredictionIntervalDetector",
+    "line": 1788,
+    "bases": [
+      "Detector"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 1816
+      },
+      {
+        "name": "_number",
+        "line": 1862
+      },
+      {
+        "name": "ready",
+        "line": 1867
+      },
+      {
+        "name": "result",
+        "line": 1872
+      },
+      {
+        "name": "scale",
+        "line": 1877
+      },
+      {
+        "name": "fitted_scale",
+        "line": 1882
+      },
+      {
+        "name": "reset",
+        "line": 1886
+      },
+      {
+        "name": "_base_prediction",
+        "line": 1892
+      },
+      {
+        "name": "_bounds",
+        "line": 1905
+      },
+      {
+        "name": "predict",
+        "line": 1913
+      },
+      {
+        "name": "fit",
+        "line": 1920
+      },
+      {
+        "name": "_interval_change",
+        "line": 1954
+      },
+      {
+        "name": "update",
+        "line": 1973
+      },
+      {
+        "name": "_fresh",
+        "line": 2015
+      },
+      {
+        "name": "predict_intervals",
+        "line": 2027
+      },
+      {
+        "name": "detect_single_seria",
+        "line": 2032
+      },
+      {
+        "name": "analyze",
+        "line": 2036
+      },
+      {
+        "name": "detect",
+        "line": 2043
+      },
+      {
+        "name": "score",
+        "line": 2047
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/generator/anomalies.py",
+    "name": "AnomalyGenerator",
+    "line": 12,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 19
+      },
+      {
+        "name": "generate",
+        "line": 34
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/generator/config.py",
+    "name": "NoiseConfig",
+    "line": 19,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__post_init__",
+        "line": 32
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/generator/config.py",
+    "name": "CycleConfig",
+    "line": 50,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__post_init__",
+        "line": 57
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/generator/config.py",
+    "name": "SpikeConfig",
+    "line": 69,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__post_init__",
+        "line": 81
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/generator/logging.py",
+    "name": "JsonFormatter",
+    "line": 14,
+    "bases": [
+      "logging.Formatter"
+    ],
+    "methods": [
+      {
+        "name": "format",
+        "line": 15
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/generator/series.py",
+    "name": "TimeSeriesGenerator",
+    "line": 15,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 24
+      },
+      {
+        "name": "_noise",
+        "line": 62
+      },
+      {
+        "name": "_spikes",
+        "line": 81
+      },
+      {
+        "name": "generate",
+        "line": 99
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/metrics.py",
+    "name": "Metric",
+    "line": 28,
+    "bases": [
+      "ABC"
+    ],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/metrics.py",
+    "name": "MetricResult",
+    "line": 32,
+    "bases": [
+      "Metric"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 45
+      },
+      {
+        "name": "__str__",
+        "line": 78
+      },
+      {
+        "name": "__repr__",
+        "line": 83
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/metrics.py",
+    "name": "DataframeResult",
+    "line": 88,
+    "bases": [
+      "Metric"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 102
+      },
+      {
+        "name": "__repr__",
+        "line": 122
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/metrics.py",
+    "name": "VictoriaMetricsError",
+    "line": 127,
+    "bases": [
+      "RuntimeError"
+    ],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/metrics.py",
+    "name": "MetricSeries",
+    "line": 132,
+    "bases": [],
+    "methods": [
+      {
+        "name": "from_labels",
+        "line": 138
+      },
+      {
+        "name": "labels",
+        "line": 147
+      },
+      {
+        "name": "selector",
+        "line": 150
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/metrics.py",
+    "name": "MetricCatalog",
+    "line": 157,
+    "bases": [],
+    "methods": [
+      {
+        "name": "names",
+        "line": 163
+      },
+      {
+        "name": "label_names",
+        "line": 167
+      },
+      {
+        "name": "label_values",
+        "line": 170
+      },
+      {
+        "name": "filter",
+        "line": 173
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/metrics.py",
+    "name": "SeriesActivity",
+    "line": 204,
+    "bases": [],
+    "methods": [
+      {
+        "name": "has_data",
+        "line": 212
+      },
+      {
+        "name": "has_nonzero",
+        "line": 216
+      },
+      {
+        "name": "status",
+        "line": 220
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/metrics.py",
+    "name": "VictoriaMetricsClient",
+    "line": 230,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 231
+      },
+      {
+        "name": "_window",
+        "line": 243
+      },
+      {
+        "name": "_selectors",
+        "line": 250
+      },
+      {
+        "name": "_open",
+        "line": 259
+      },
+      {
+        "name": "_json",
+        "line": 271
+      },
+      {
+        "name": "_metadata",
+        "line": 283
+      },
+      {
+        "name": "list_metric_names",
+        "line": 288
+      },
+      {
+        "name": "list_label_names",
+        "line": 291
+      },
+      {
+        "name": "list_label_values",
+        "line": 295
+      },
+      {
+        "name": "_strings",
+        "line": 304
+      },
+      {
+        "name": "catalog",
+        "line": 309
+      },
+      {
+        "name": "list_series",
+        "line": 316
+      },
+      {
+        "name": "_export",
+        "line": 319
+      },
+      {
+        "name": "recent_activity",
+        "line": 331
+      },
+      {
+        "name": "has_recent_nonzero",
+        "line": 379
+      },
+      {
+        "name": "active_catalog",
+        "line": 382
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/runtime_trend.py",
+    "name": "TrendConfig",
+    "line": 9,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__post_init__",
+        "line": 23
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/runtime_trend.py",
+    "name": "TrendResult",
+    "line": 43,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/runtime_trend.py",
+    "name": "RuntimeTrendDetector",
+    "line": 120,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 129
+      },
+      {
+        "name": "update",
+        "line": 137
+      },
+      {
+        "name": "evaluate",
+        "line": 149
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/accounts.py",
+    "name": "AccountStore",
+    "line": 54,
+    "bases": [
+      "PostgresConfigRepository"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 55
+      },
+      {
+        "name": "snapshot",
+        "line": 61
+      },
+      {
+        "name": "_edit",
+        "line": 69
+      },
+      {
+        "name": "_config",
+        "line": 85
+      },
+      {
+        "name": "_config_edit",
+        "line": 93
+      },
+      {
+        "name": "sources",
+        "line": 109
+      },
+      {
+        "name": "definitions",
+        "line": 112
+      },
+      {
+        "name": "settings",
+        "line": 115
+      },
+      {
+        "name": "edit_sources",
+        "line": 118
+      },
+      {
+        "name": "save",
+        "line": 121
+      },
+      {
+        "name": "save_definition",
+        "line": 124
+      },
+      {
+        "name": "delete",
+        "line": 127
+      },
+      {
+        "name": "save_settings",
+        "line": 130
+      },
+      {
+        "name": "preferences",
+        "line": 133
+      },
+      {
+        "name": "save_preferences",
+        "line": 136
+      },
+      {
+        "name": "metrics",
+        "line": 141
+      },
+      {
+        "name": "metric_sets",
+        "line": 144
+      },
+      {
+        "name": "save_metric_set",
+        "line": 147
+      },
+      {
+        "name": "remove_metric_set",
+        "line": 155
+      },
+      {
+        "name": "import_metrics",
+        "line": 160
+      },
+      {
+        "name": "update_metric",
+        "line": 174
+      },
+      {
+        "name": "remove_metric",
+        "line": 188
+      },
+      {
+        "name": "save_results",
+        "line": 198
+      },
+      {
+        "name": "load_results",
+        "line": 212
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/collection.py",
+    "name": "AmbiguousMetricError",
+    "line": 11,
+    "bases": [
+      "ValueError"
+    ],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/services/collection.py",
+    "name": "MetricCollection",
+    "line": 15,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 18
+      },
+      {
+        "name": "__len__",
+        "line": 27
+      },
+      {
+        "name": "__iter__",
+        "line": 30
+      },
+      {
+        "name": "metrics",
+        "line": 34
+      },
+      {
+        "name": "keys",
+        "line": 38
+      },
+      {
+        "name": "names",
+        "line": 42
+      },
+      {
+        "name": "label_names",
+        "line": 46
+      },
+      {
+        "name": "label_values",
+        "line": 49
+      },
+      {
+        "name": "common_labels",
+        "line": 53
+      },
+      {
+        "name": "get",
+        "line": 62
+      },
+      {
+        "name": "one",
+        "line": 72
+      },
+      {
+        "name": "filter",
+        "line": 77
+      },
+      {
+        "name": "group_by",
+        "line": 94
+      },
+      {
+        "name": "union",
+        "line": 110
+      },
+      {
+        "name": "intersection",
+        "line": 124
+      },
+      {
+        "name": "difference",
+        "line": 127
+      },
+      {
+        "name": "compose",
+        "line": 130
+      },
+      {
+        "name": "resolve",
+        "line": 145
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/composition.py",
+    "name": "MetricComposition",
+    "line": 30,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__post_init__",
+        "line": 41
+      },
+      {
+        "name": "parameters",
+        "line": 51
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/configuration.py",
+    "name": "MetricDefinition",
+    "line": 17,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__post_init__",
+        "line": 26
+      },
+      {
+        "name": "transform_result",
+        "line": 40
+      },
+      {
+        "name": "payload",
+        "line": 43
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/configuration.py",
+    "name": "ServiceSettings",
+    "line": 50,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__post_init__",
+        "line": 54
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/configuration.py",
+    "name": "MemoryConfigRepository",
+    "line": 70,
+    "bases": [
+      "MemoryDatasourceRepository"
+    ],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 73
+      },
+      {
+        "name": "edit_sources",
+        "line": 78
+      },
+      {
+        "name": "definitions",
+        "line": 85
+      },
+      {
+        "name": "save",
+        "line": 89
+      },
+      {
+        "name": "save_definition",
+        "line": 98
+      },
+      {
+        "name": "delete",
+        "line": 112
+      },
+      {
+        "name": "settings",
+        "line": 120
+      },
+      {
+        "name": "save_settings",
+        "line": 124
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/datasources.py",
+    "name": "Datasource",
+    "line": 40,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__post_init__",
+        "line": 65
+      },
+      {
+        "name": "uid",
+        "line": 119
+      },
+      {
+        "name": "prometheus_compatible",
+        "line": 123
+      },
+      {
+        "name": "query_language",
+        "line": 127
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/datasources.py",
+    "name": "DatasourceHealth",
+    "line": 134,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__post_init__",
+        "line": 140
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/datasources.py",
+    "name": "DatasourceRepository",
+    "line": 148,
+    "bases": [
+      "Protocol"
+    ],
+    "methods": [
+      {
+        "name": "sources",
+        "line": 149
+      },
+      {
+        "name": "edit_sources",
+        "line": 151
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/datasources.py",
+    "name": "MemoryDatasourceRepository",
+    "line": 171,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 172
+      },
+      {
+        "name": "sources",
+        "line": 176
+      },
+      {
+        "name": "edit_sources",
+        "line": 180
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/datasources.py",
+    "name": "DatasourceService",
+    "line": 187,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 194
+      },
+      {
+        "name": "list",
+        "line": 199
+      },
+      {
+        "name": "get",
+        "line": 205
+      },
+      {
+        "name": "default",
+        "line": 211
+      },
+      {
+        "name": "_save",
+        "line": 215
+      },
+      {
+        "name": "_revise",
+        "line": 235
+      },
+      {
+        "name": "from_postgres",
+        "line": 244
+      },
+      {
+        "name": "save",
+        "line": 249
+      },
+      {
+        "name": "create",
+        "line": 253
+      },
+      {
+        "name": "update",
+        "line": 256
+      },
+      {
+        "name": "set_default",
+        "line": 267
+      },
+      {
+        "name": "delete",
+        "line": 270
+      },
+      {
+        "name": "test_connection",
+        "line": 281
+      },
+      {
+        "name": "demo_check",
+        "line": 291
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/metadata.py",
+    "name": "MetricPointer",
+    "line": 54,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__post_init__",
+        "line": 60
+      },
+      {
+        "name": "__hash__",
+        "line": 64
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/metadata.py",
+    "name": "MetricMetadata",
+    "line": 69,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__post_init__",
+        "line": 84
+      },
+      {
+        "name": "key",
+        "line": 96
+      },
+      {
+        "name": "effective_labels",
+        "line": 100
+      },
+      {
+        "name": "timestamp_range",
+        "line": 104
+      },
+      {
+        "name": "to_dict",
+        "line": 107
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/metrics.py",
+    "name": "MetricService",
+    "line": 18,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 28
+      },
+      {
+        "name": "__len__",
+        "line": 34
+      },
+      {
+        "name": "snapshot",
+        "line": 37
+      },
+      {
+        "name": "metrics",
+        "line": 41
+      },
+      {
+        "name": "names",
+        "line": 45
+      },
+      {
+        "name": "get",
+        "line": 48
+      },
+      {
+        "name": "load_names",
+        "line": 51
+      },
+      {
+        "name": "load",
+        "line": 76
+      },
+      {
+        "name": "replace",
+        "line": 85
+      },
+      {
+        "name": "add",
+        "line": 96
+      },
+      {
+        "name": "update",
+        "line": 107
+      },
+      {
+        "name": "remove",
+        "line": 134
+      },
+      {
+        "name": "clear",
+        "line": 140
+      },
+      {
+        "name": "filter",
+        "line": 145
+      },
+      {
+        "name": "group_by",
+        "line": 148
+      },
+      {
+        "name": "_targets",
+        "line": 151
+      },
+      {
+        "name": "set_window",
+        "line": 172
+      },
+      {
+        "name": "_edit_labels",
+        "line": 179
+      },
+      {
+        "name": "add_additional_labels",
+        "line": 203
+      },
+      {
+        "name": "update_additional_labels",
+        "line": 206
+      },
+      {
+        "name": "set_additional_labels",
+        "line": 209
+      },
+      {
+        "name": "remove_additional_labels",
+        "line": 212
+      },
+      {
+        "name": "compositions",
+        "line": 216
+      },
+      {
+        "name": "compose",
+        "line": 219
+      },
+      {
+        "name": "get_composition",
+        "line": 228
+      },
+      {
+        "name": "remove_composition",
+        "line": 231
+      },
+      {
+        "name": "resolve",
+        "line": 234
+      }
+    ]
+  },
+  {
+    "file": "detectors/apps/services/postgres.py",
+    "name": "ConfigurationError",
+    "line": 21,
+    "bases": [
+      "RuntimeError"
+    ],
+    "methods": []
+  },
+  {
+    "file": "detectors/apps/services/postgres.py",
+    "name": "PostgresConfigRepository",
+    "line": 29,
+    "bases": [],
+    "methods": [
+      {
+        "name": "__init__",
+        "line": 30
+      },
+      {
+        "name": "_connection",
+        "line": 36
+      },
+      {
+        "name": "_lock",
+        "line": 53
+      },
+      {
+        "name": "migrate",
+        "line": 56
+      },
+      {
+        "name": "_sources",
+        "line": 63
+      },
+      {
+        "name": "sources",
+        "line": 68
+      },
+      {
+        "name": "_definitions",
+        "line": 73
+      },
+      {
+        "name": "definitions",
+        "line": 77
+      },
+      {
+        "name": "_upsert",
+        "line": 82
+      },
+      {
+        "name": "_write_sources",
+        "line": 93
+      },
+      {
+        "name": "edit_sources",
+        "line": 102
+      },
+      {
+        "name": "save",
+        "line": 111
+      },
+      {
+        "name": "_definition_values",
+        "line": 122
+      },
+      {
+        "name": "save_definition",
+        "line": 128
+      },
+      {
+        "name": "delete",
+        "line": 143
+      },
+      {
+        "name": "settings",
+        "line": 152
+      },
+      {
+        "name": "save_settings",
+        "line": 159
+      },
+      {
+        "name": "import_configuration",
+        "line": 166
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/acf_detector_scores_report.py",
+    "name": "ScoreTrace",
+    "line": 66,
+    "bases": [],
+    "methods": [
+      {
+        "name": "values",
+        "line": 78
+      },
+      {
+        "name": "times",
+        "line": 81
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/acf_dispatcher_report.py",
+    "name": "HostCase",
+    "line": 42,
+    "bases": [],
+    "methods": [
+      {
+        "name": "focus",
+        "line": 52
+      },
+      {
+        "name": "reference",
+        "line": 55
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/acf_replay_scenarios.py",
+    "name": "ReplayCase",
+    "line": 22,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/tests/correlation_fragment_replay.py",
+    "name": "FragmentReplay",
+    "line": 20,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/tests/mad_cycle_scenarios.py",
+    "name": "HealthyCycle",
+    "line": 29,
+    "bases": [],
+    "methods": [
+      {
+        "name": "cycle_at",
+        "line": 38
+      },
+      {
+        "name": "predict",
+        "line": 43
+      },
+      {
+        "name": "residual",
+        "line": 46
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/prediction_interval_scenarios.py",
+    "name": "IntervalScenario",
+    "line": 23,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/tests/runtime_trend_scenarios.py",
+    "name": "Span",
+    "line": 10,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/tests/runtime_trend_scenarios.py",
+    "name": "TrendScenario",
+    "line": 18,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/tests/test_acf.py",
+    "name": "ACFTests",
+    "line": 12,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_window_centered_profile_matches_statsmodels",
+        "line": 13
+      },
+      {
+        "name": "test_window_centered_profile_matches_direct_products_on_level_change",
+        "line": 25
+      },
+      {
+        "name": "test_impulse_plateau_depth_and_mass_have_analytic_oracle",
+        "line": 35
+      },
+      {
+        "name": "test_longer_effect_has_greater_depth_and_score",
+        "line": 60
+      },
+      {
+        "name": "test_recovery_time_orders_persistence",
+        "line": 68
+      },
+      {
+        "name": "test_constant_changed_level_becomes_new_norm_after_one_window",
+        "line": 76
+      },
+      {
+        "name": "test_40_samples_at_15_seconds_forget_a_step_in_10_minutes",
+        "line": 89
+      },
+      {
+        "name": "test_amplitude_and_sign_of_isolated_event_do_not_set_its_depth",
+        "line": 99
+      },
+      {
+        "name": "test_white_noise_has_low_empirical_alarm_rate",
+        "line": 108
+      },
+      {
+        "name": "test_unchanged_autocorrelation_and_cycles_are_baseline",
+        "line": 118
+      },
+      {
+        "name": "test_new_and_disappearing_serial_dependence_are_detected",
+        "line": 127
+      },
+      {
+        "name": "test_alternating_dependence_and_nonadjacent_lag_are_visible",
+        "line": 136
+      },
+      {
+        "name": "test_variance_rescaling_alone_does_not_create_memory",
+        "line": 148
+      },
+      {
+        "name": "test_affine_invariance_for_reference_and_stream",
+        "line": 155
+      },
+      {
+        "name": "test_exact_automatic_and_fitted_warmup",
+        "line": 165
+      },
+      {
+        "name": "test_batch_stream_final_diagnostics_and_empty_input_agree",
+        "line": 185
+      },
+      {
+        "name": "test_replays_are_causal_and_do_not_mutate_active_stream",
+        "line": 198
+      },
+      {
+        "name": "test_reference_is_fixed_and_reset_retains_only_explicit_fit",
+        "line": 213
+      },
+      {
+        "name": "test_fit_replaces_reference_uses_tail_and_resets_stream",
+        "line": 231
+      },
+      {
+        "name": "test_invalid_configurations",
+        "line": 240
+      },
+      {
+        "name": "test_invalid_observations_and_fit_are_transactional",
+        "line": 252
+      },
+      {
+        "name": "test_extreme_finite_values_and_large_dc_remain_finite",
+        "line": 269
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_acf_cycles.py",
+    "name": "ACFCycleTests",
+    "line": 11,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "replay",
+        "line": 13
+      },
+      {
+        "name": "assert_healthy_before_and_after",
+        "line": 19
+      },
+      {
+        "name": "test_shorter_and_longer_periods_are_detected_until_recovery",
+        "line": 23
+      },
+      {
+        "name": "test_irregular_cycle_lengths_are_detected",
+        "line": 33
+      },
+      {
+        "name": "test_gradual_period_change_with_growing_amplitude",
+        "line": 42
+      },
+      {
+        "name": "test_amplitude_growth_without_cycle_change_is_a_negative_control",
+        "line": 51
+      },
+      {
+        "name": "test_period_doubling_reverses_the_known_lag_16_correlation",
+        "line": 58
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_acf_detector_scores.py",
+    "name": "ACFDetectorScoreTests",
+    "line": 17,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUpClass",
+        "line": 19
+      },
+      {
+        "name": "test_exact_saved_inputs_and_uniform_available_grid",
+        "line": 24
+      },
+      {
+        "name": "test_cusum_scores_match_current_detectors_point_for_point",
+        "line": 35
+      },
+      {
+        "name": "test_trend_scores_match_current_detector_and_not_point_evidence",
+        "line": 43
+      },
+      {
+        "name": "test_both_correlation_configs_replay_saved_scores_without_network",
+        "line": 51
+      },
+      {
+        "name": "test_latency_uses_issue_time_and_keeps_pending_out_of_acf",
+        "line": 64
+      },
+      {
+        "name": "test_lower_warmup_zeros_do_not_train_upper_reference",
+        "line": 74
+      },
+      {
+        "name": "test_latency_does_not_fabricate_ready_results_for_long_profiles",
+        "line": 88
+      },
+      {
+        "name": "test_numpy_oracle_for_profiles_bands_scores_and_depth_at_peaks",
+        "line": 99
+      },
+      {
+        "name": "test_upper_stream_is_causal_and_preserves_final_available_score",
+        "line": 128
+      },
+      {
+        "name": "test_correlation_pending_cannot_leak_future_into_upper_outputs",
+        "line": 137
+      },
+      {
+        "name": "test_flat_saturated_score_is_forgotten_after_current_window",
+        "line": 147
+      },
+      {
+        "name": "test_all_ready_outputs_are_finite_and_depth_uses_15_second_grid",
+        "line": 156
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_acf_dispatcher.py",
+    "name": "DispatcherACFTests",
+    "line": 11,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUpClass",
+        "line": 13
+      },
+      {
+        "name": "test_five_native_series_and_exact_selected_grid",
+        "line": 17
+      },
+      {
+        "name": "test_grafana_frames_equal_selected_influx_values",
+        "line": 28
+      },
+      {
+        "name": "test_reference_is_each_hosts_own_52_pre_growth_values",
+        "line": 42
+      },
+      {
+        "name": "test_no_current_window_is_scored_using_future_baseline",
+        "line": 55
+      },
+      {
+        "name": "test_numpy_oracle_uses_actual_reference_count_and_matches_peak",
+        "line": 67
+      },
+      {
+        "name": "test_stream_prefix_including_training_does_not_depend_on_future",
+        "line": 89
+      },
+      {
+        "name": "test_seconds_and_milliseconds_give_identical_acf_scores",
+        "line": 97
+      },
+      {
+        "name": "test_metrics_are_only_for_requested_interval_and_depth_is_times_five",
+        "line": 105
+      },
+      {
+        "name": "test_default_cannot_be_fitted_to_52_reference_values",
+        "line": 119
+      },
+      {
+        "name": "test_appendix_preserves_original_bytes_and_is_idempotent",
+        "line": 122
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_acf_replays.py",
+    "name": "ACFReplayTests",
+    "line": 36,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUpClass",
+        "line": 38
+      },
+      {
+        "name": "test_four_new_scenario_and_four_unchanged_cassandra_series",
+        "line": 42
+      },
+      {
+        "name": "test_prefix_training_warmup_last_point_and_bounded_outputs",
+        "line": 51
+      },
+      {
+        "name": "test_acf_thresholds_score_and_depth_match_independent_numpy_at_peak",
+        "line": 65
+      },
+      {
+        "name": "test_later_values_do_not_change_previous_replay_results",
+        "line": 85
+      },
+      {
+        "name": "test_step_episode_is_visible_and_idle_after_second_episode_recovers",
+        "line": 91
+      },
+      {
+        "name": "test_high_plateau_profile_agrees_with_stream_without_invented_period",
+        "line": 101
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_acf_rps.py",
+    "name": "ACFRpsTests",
+    "line": 22,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUpClass",
+        "line": 24
+      },
+      {
+        "name": "test_snapshot_is_the_selected_db_series_and_original_15_second_grid",
+        "line": 28
+      },
+      {
+        "name": "test_replay_preserves_every_input_value_and_both_time_boundaries",
+        "line": 41
+      },
+      {
+        "name": "test_prefix_training_and_warmup_are_separate_and_results_bounded",
+        "line": 50
+      },
+      {
+        "name": "test_acf_bands_score_and_depth_match_independent_numpy_at_peak",
+        "line": 61
+      },
+      {
+        "name": "test_deep_rps_dip_does_not_become_a_large_persistence_score",
+        "line": 80
+      },
+      {
+        "name": "test_future_values_do_not_change_scores_before_the_dip",
+        "line": 90
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_acf_services.py",
+    "name": "ACFServiceTests",
+    "line": 22,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUpClass",
+        "line": 24
+      },
+      {
+        "name": "test_all_four_services_match_panel_range_units_and_15_second_grid",
+        "line": 29
+      },
+      {
+        "name": "test_replay_preserves_every_value_and_the_final_observation",
+        "line": 45
+      },
+      {
+        "name": "test_warmup_is_causal_and_all_outputs_are_finite_and_bounded",
+        "line": 56
+      },
+      {
+        "name": "test_acf_thresholds_and_scores_match_independent_numpy_at_peak",
+        "line": 68
+      },
+      {
+        "name": "test_appending_later_service_data_does_not_change_previous_decisions",
+        "line": 88
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_correlation.py",
+    "name": "PeriodTests",
+    "line": 25,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_six_base_scenarios_detect_cycles_and_resolve_windows",
+        "line": 26
+      },
+      {
+        "name": "test_refines_non_fft_bin_period_365",
+        "line": 37
+      },
+      {
+        "name": "test_short_period_10_keeps_requested_window_50",
+        "line": 45
+      },
+      {
+        "name": "test_cycle_function_is_selected_and_called_once_on_copy",
+        "line": 51
+      },
+      {
+        "name": "test_no_false_periods_on_white_noise_seeds_and_constant",
+        "line": 66
+      },
+      {
+        "name": "test_cycle_function_and_fft_parameter_validation",
+        "line": 73
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_correlation.py",
+    "name": "RollingTests",
+    "line": 85,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_1000_points_window_50_matches_requested_intervals_and_lag_13",
+        "line": 86
+      },
+      {
+        "name": "test_200_points_window_20_has_19_windows_lag_5",
+        "line": 99
+      },
+      {
+        "name": "test_acf_matches_direct_definition_every_window",
+        "line": 107
+      },
+      {
+        "name": "test_pacf_matches_known_lag_one_and_statsmodels_on_every_window",
+        "line": 118
+      },
+      {
+        "name": "test_explicit_lag_expands_window_and_has_precedence",
+        "line": 130
+      },
+      {
+        "name": "test_odd_window_and_incomplete_tail",
+        "line": 143
+      },
+      {
+        "name": "test_exactly_one_window_short_or_empty_input",
+        "line": 149
+      },
+      {
+        "name": "test_constant_windows_are_undefined_not_spurious_zero_correlations",
+        "line": 157
+      },
+      {
+        "name": "test_result_preserves_metadata_input_and_independence",
+        "line": 163
+      },
+      {
+        "name": "test_uniform_timestamps_required_and_validation",
+        "line": 175
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_correlation.py",
+    "name": "ResultTests",
+    "line": 187,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_dataframe_result_copies_frame_and_stores_window_start_timestamps",
+        "line": 188
+      },
+      {
+        "name": "test_dataframe_result_validation",
+        "line": 199
+      },
+      {
+        "name": "test_json_logging_includes_effective_window_and_periods",
+        "line": 207
+      },
+      {
+        "name": "test_visualization_and_csv_exports_for_all_eight_series",
+        "line": 226
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_correlation.py",
+    "name": "ScenarioTests",
+    "line": 257,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_high_noise_variants_have_large_noise_and_keep_configured_cycles",
+        "line": 258
+      },
+      {
+        "name": "test_trend_starts_at_midpoint_with_exact_ten_degree_ramp",
+        "line": 273
+      },
+      {
+        "name": "test_burst_adds_twenty_percent_to_exactly_fifteen_points_and_recovers_original",
+        "line": 286
+      },
+      {
+        "name": "test_trend_noise_variance_doubles_after_removing_unchanged_ramp",
+        "line": 299
+      },
+      {
+        "name": "test_anomaly_fixtures_repeat_and_rolling_features_are_finite",
+        "line": 312
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_correlation_alignment.py",
+    "name": "CorrelationAlignmentTests",
+    "line": 28,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_one_point_scrape_skew_suppresses_common_edge_alarm",
+        "line": 29
+      },
+      {
+        "name": "test_negative_reference_is_matched_by_signed_coherence",
+        "line": 39
+      },
+      {
+        "name": "test_delay_outside_tolerance_is_not_optimized_away",
+        "line": 49
+      },
+      {
+        "name": "test_persistent_independent_series_still_break_the_relation",
+        "line": 58
+      },
+      {
+        "name": "test_output_names_target_and_issue_indices_and_leaves_tail_pending",
+        "line": 66
+      },
+      {
+        "name": "test_stream_and_prefix_replay_match_at_issue_time",
+        "line": 80
+      },
+      {
+        "name": "test_right_halo_cannot_train_its_own_reference_or_change_earlier_outputs",
+        "line": 88
+      },
+      {
+        "name": "test_constructor_validation_and_zero_tolerance_has_no_extra_delay",
+        "line": 106
+      },
+      {
+        "name": "test_fit_reset_preserves_alignment_configuration_and_clears_pending_rows",
+        "line": 118
+      },
+      {
+        "name": "test_tiny_accidental_prefix_cannot_establish_a_reference",
+        "line": 129
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_correlation_change.py",
+    "name": "CorrelationChangeTests",
+    "line": 21,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_full_signed_ccf_matches_pearson_for_every_lag",
+        "line": 22
+      },
+      {
+        "name": "test_common_steps_trends_bursts_and_cycle_changes_preserve_relationship",
+        "line": 38
+      },
+      {
+        "name": "test_decorrelation_and_sign_reversal_are_detected",
+        "line": 49
+      },
+      {
+        "name": "test_reference_delay_is_fixed_and_changed_delay_is_detected",
+        "line": 60
+      },
+      {
+        "name": "test_loss_of_one_variable_and_common_flat_have_distinct_semantics",
+        "line": 73
+      },
+      {
+        "name": "test_independent_affine_coordinate_changes_leave_scores_unchanged",
+        "line": 85
+      },
+      {
+        "name": "test_recovery_and_frozen_background",
+        "line": 93
+      },
+      {
+        "name": "test_unfitted_warmup_uses_disjoint_reference_and_current_window",
+        "line": 107
+      },
+      {
+        "name": "test_fitted_reset_and_batch_do_not_reuse_or_change_active_stream",
+        "line": 116
+      },
+      {
+        "name": "test_failed_fit_or_update_is_atomic",
+        "line": 132
+      },
+      {
+        "name": "test_unrelated_pairs_are_excluded_and_empty_reference_is_rejected",
+        "line": 148
+      },
+      {
+        "name": "test_persistence_has_exact_moving_mean_semantics",
+        "line": 156
+      },
+      {
+        "name": "test_noise_floor_suppresses_near_flat_windows_but_keeps_divergence",
+        "line": 161
+      },
+      {
+        "name": "test_reference_is_bounded_and_retains_only_healthy_tail",
+        "line": 170
+      },
+      {
+        "name": "test_extreme_values_and_small_variation_at_large_level",
+        "line": 176
+      },
+      {
+        "name": "test_validation",
+        "line": 183
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_correlation_change_influx.py",
+    "name": "CorrelationInfluxTests",
+    "line": 19,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUpClass",
+        "line": 21
+      },
+      {
+        "name": "test_live_series_counts_dates_and_uniform_grid",
+        "line": 24
+      },
+      {
+        "name": "test_full_latency_score_starts_after_one_minute_and_includes_startup",
+        "line": 34
+      },
+      {
+        "name": "test_latency_detects_yellow_divergence_and_clears_on_quiet_tail",
+        "line": 53
+      },
+      {
+        "name": "test_read_operations_quiet_baseline_then_individual_spike_and_divergence",
+        "line": 66
+      },
+      {
+        "name": "test_common_changes_from_database_do_not_trigger_when_relationship_is_preserved",
+        "line": 79
+      },
+      {
+        "name": "test_read_operations_small_early_difference_and_common_drop_do_not_alarm",
+        "line": 89
+      },
+      {
+        "name": "test_live_stream_batch_and_prefix_causality_match",
+        "line": 101
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_correlation_fragment_influx.py",
+    "name": "CorrelationFragmentTests",
+    "line": 14,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUpClass",
+        "line": 16
+      },
+      {
+        "name": "test_requested_fragment_contains_all_four_live_series_on_the_original_grid",
+        "line": 19
+      },
+      {
+        "name": "test_fresh_start_exposes_warmup_issue_time_and_pending_tail",
+        "line": 27
+      },
+      {
+        "name": "test_continuation_preserves_prior_state_and_the_same_observation_horizon",
+        "line": 42
+      },
+      {
+        "name": "test_fragment_prefix_scores_do_not_depend_on_unseen_later_points",
+        "line": 54
+      },
+      {
+        "name": "test_continuation_has_no_alarm_on_the_visible_quiet_interval",
+        "line": 62
+      },
+      {
+        "name": "test_continuation_responds_to_both_visible_disagreements",
+        "line": 67
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_correlation_online.py",
+    "name": "CorrelationOnlineTests",
+    "line": 19,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_first_score_on_fifth_point_and_provisional_scores_are_not_hidden",
+        "line": 20
+      },
+      {
+        "name": "test_common_level_steps_trends_and_cycles_have_zero_score_without_fit",
+        "line": 30
+      },
+      {
+        "name": "test_unrelated_start_does_not_fail_and_later_relationship_is_acquired",
+        "line": 41
+      },
+      {
+        "name": "test_sign_reversal_and_decorrelation_detected_from_unlabelled_stream",
+        "line": 52
+      },
+      {
+        "name": "test_reference_adapts_to_small_coherent_changes",
+        "line": 67
+      },
+      {
+        "name": "test_stream_batch_prefix_and_future_mutation_are_identical",
+        "line": 83
+      },
+      {
+        "name": "test_affine_units_leave_automatic_relative_floors_and_scores_invariant",
+        "line": 97
+      },
+      {
+        "name": "test_prior_scale_does_not_include_current_spike",
+        "line": 107
+      },
+      {
+        "name": "test_online_fit_is_optional_history_and_reset_replays_it",
+        "line": 116
+      },
+      {
+        "name": "test_invalid_input_is_atomic_and_memory_stays_bounded",
+        "line": 127
+      },
+      {
+        "name": "test_online_validation_and_no_pair_is_not_an_error",
+        "line": 143
+      },
+      {
+        "name": "test_nonzero_delay_is_acquired_from_the_stream",
+        "line": 154
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_correlation_relative.py",
+    "name": "CorrelationRelativeTests",
+    "line": 16,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_smaller_absolute_difference_at_lower_level_has_larger_score",
+        "line": 17
+      },
+      {
+        "name": "test_known_example_orders_relative_weights",
+        "line": 28
+      },
+      {
+        "name": "test_ordinary_affine_offset_and_gain_are_not_counted_as_new_disagreement",
+        "line": 38
+      },
+      {
+        "name": "test_multiplicative_unit_changes_preserve_relative_score",
+        "line": 47
+      },
+      {
+        "name": "test_large_divergence_still_crosses_the_alarm_threshold",
+        "line": 54
+      },
+      {
+        "name": "test_zero_scale_disables_relative_weight_and_positive_scale_suppresses_small_gaps",
+        "line": 63
+      },
+      {
+        "name": "test_near_zero_and_extreme_levels_remain_finite",
+        "line": 70
+      },
+      {
+        "name": "test_relative_parameter_validation",
+        "line": 76
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_cusum.py",
+    "name": "CusumTests",
+    "line": 10,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_original_bursts_and_shallow_dip_have_distinct_severity",
+        "line": 11
+      },
+      {
+        "name": "test_saw_on_quiet_background_stays_detected",
+        "line": 28
+      },
+      {
+        "name": "test_same_saw_on_noisy_background_has_lower_score",
+        "line": 37
+      },
+      {
+        "name": "test_white_noise_does_not_become_a_burst",
+        "line": 46
+      },
+      {
+        "name": "test_constant_series_is_exactly_zero",
+        "line": 54
+      },
+      {
+        "name": "test_ramp_and_permanent_level_steps_are_not_bursts",
+        "line": 62
+      },
+      {
+        "name": "test_score_expires_when_excursion_leaves_current_window",
+        "line": 67
+      },
+      {
+        "name": "test_window_controls_which_reversals_are_retained",
+        "line": 75
+      },
+      {
+        "name": "test_explicit_background_controls_sensitivity",
+        "line": 82
+      },
+      {
+        "name": "test_background_is_not_contaminated_by_repeating_saw",
+        "line": 91
+      },
+      {
+        "name": "test_batch_and_stream_replay_match",
+        "line": 98
+      },
+      {
+        "name": "test_future_values_do_not_change_past_scores",
+        "line": 107
+      },
+      {
+        "name": "test_scale_and_sign_invariance",
+        "line": 114
+      },
+      {
+        "name": "test_same_absolute_excursions_at_higher_level_are_less_severe",
+        "line": 122
+      },
+      {
+        "name": "test_similar_brief_shallow_dips_stay_below_point_two",
+        "line": 129
+      },
+      {
+        "name": "test_small_repeated_dips_accumulate_but_isolated_dip_does_not",
+        "line": 139
+      },
+      {
+        "name": "test_quiet_window_clears_inertia_before_another_small_dip",
+        "line": 148
+      },
+      {
+        "name": "test_inertia_history_is_bounded_and_controls_repetition_gain",
+        "line": 159
+      },
+      {
+        "name": "test_background_level_follows_quiet_plateau_before_saw",
+        "line": 169
+      },
+      {
+        "name": "test_warmup_reset_and_independent_batch_calls",
+        "line": 175
+      },
+      {
+        "name": "test_invalid_parameters_and_values_are_rejected",
+        "line": 196
+      },
+      {
+        "name": "test_extreme_finite_values_keep_score_bounded",
+        "line": 218
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_cusum_replays.py",
+    "name": "CusumReplayTests",
+    "line": 22,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUpClass",
+        "line": 24
+      },
+      {
+        "name": "tearDownClass",
+        "line": 39
+      },
+      {
+        "name": "test_input_values_hashes_fifteen_second_grid_and_last_samples",
+        "line": 42
+      },
+      {
+        "name": "test_exact_automatic_warmup_and_bounded_memory",
+        "line": 53
+      },
+      {
+        "name": "test_exported_scores_match_independent_window_cusums_and_finite_memory",
+        "line": 63
+      },
+      {
+        "name": "test_results_are_causal_on_prefixes",
+        "line": 89
+      },
+      {
+        "name": "test_idle_before_and_after_screenshot_episodes_is_quiet",
+        "line": 97
+      },
+      {
+        "name": "test_report_preserves_base_and_repeated_append_does_not_duplicate",
+        "line": 106
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_datasources.py",
+    "name": "DatasourceTests",
+    "line": 7,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_four_types_and_influx_versions",
+        "line": 8
+      },
+      {
+        "name": "test_legacy_token_inference_and_secret_references",
+        "line": 25
+      },
+      {
+        "name": "test_invalid_settings",
+        "line": 33
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_datasources.py",
+    "name": "ServiceTests",
+    "line": 48,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUp",
+        "line": 49
+      },
+      {
+        "name": "test_crud_stable_uid_and_default_switching",
+        "line": 52
+      },
+      {
+        "name": "test_duplicate_names_and_invalid_update_leave_catalog_intact",
+        "line": 67
+      },
+      {
+        "name": "test_explicit_save_default_and_fallback_are_unique",
+        "line": 81
+      },
+      {
+        "name": "test_list_filter_and_checker_injection",
+        "line": 89
+      },
+      {
+        "name": "test_demo_health_does_not_claim_a_real_connection",
+        "line": 105
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_generator.py",
+    "name": "MetricResultTests",
+    "line": 31,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_attached_constructor_and_independent_containers",
+        "line": 32
+      },
+      {
+        "name": "test_prometheus_matrix_json",
+        "line": 42
+      },
+      {
+        "name": "test_invalid_metric_data",
+        "line": 52
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_generator.py",
+    "name": "TimeSeriesTests",
+    "line": 70,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_disabled_noise_spikes_and_cycles_produce_constant",
+        "line": 71
+      },
+      {
+        "name": "test_current_day_midnight_and_default_step",
+        "line": 77
+      },
+      {
+        "name": "test_custom_time_timezone_and_interval_cross_midnight",
+        "line": 91
+      },
+      {
+        "name": "test_seed_reproducibility_and_instance_rng",
+        "line": 99
+      },
+      {
+        "name": "test_default_noise_stationary_near_configured_mean_across_seeds",
+        "line": 113
+      },
+      {
+        "name": "test_noise_components_have_configured_scale_and_shape",
+        "line": 126
+      },
+      {
+        "name": "test_three_cycles_use_points_and_percent_peak_amplitude",
+        "line": 145
+      },
+      {
+        "name": "test_negative_and_zero_baselines",
+        "line": 154
+      },
+      {
+        "name": "test_rare_default_background_spikes",
+        "line": 160
+      },
+      {
+        "name": "test_spikes_have_maximum_three_points_fifty_percent_and_gaps",
+        "line": 175
+      },
+      {
+        "name": "test_constructor_and_count_validation",
+        "line": 186
+      },
+      {
+        "name": "test_config_validation",
+        "line": 201
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_generator.py",
+    "name": "AnomalyTests",
+    "line": 222,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_exact_index_range_uses_original_values_and_preserves_metadata",
+        "line": 223
+      },
+      {
+        "name": "test_snapshot_and_repeated_generation",
+        "line": 240
+      },
+      {
+        "name": "test_last_point_whole_series_and_multiple_ranges",
+        "line": 254
+      },
+      {
+        "name": "test_invalid_ranges_and_callback",
+        "line": 263
+      },
+      {
+        "name": "test_invalid_results_or_late_callback_error_never_modify_original",
+        "line": 270
+      },
+      {
+        "name": "test_original_and_anomalous_series_replay_in_existing_detector",
+        "line": 286
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_generator.py",
+    "name": "LoggingTests",
+    "line": 297,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUp",
+        "line": 298
+      },
+      {
+        "name": "tearDown",
+        "line": 301
+      },
+      {
+        "name": "test_json_events_metadata_and_configuration_idempotence",
+        "line": 309
+      },
+      {
+        "name": "test_callback_failure_is_json_with_traceback",
+        "line": 325
+      },
+      {
+        "name": "test_numpy_numeric_parameters_remain_json_serializable",
+        "line": 336
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_generator.py",
+    "name": "VisualizationTests",
+    "line": 352,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_headless_report_exports_original_and_anomalous_metrics",
+        "line": 353
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_mad.py",
+    "name": "MadTests",
+    "line": 14,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_matches_original_formula_on_rolling_fragments",
+        "line": 15
+      },
+      {
+        "name": "test_dispersion_jump_reacts_then_adapts",
+        "line": 31
+      },
+      {
+        "name": "test_original_increasing_dispersion_scenario",
+        "line": 40
+      },
+      {
+        "name": "test_reacts_to_a_decrease_in_dispersion_as_well",
+        "line": 48
+      },
+      {
+        "name": "test_batch_stream_and_final_score_agree",
+        "line": 55
+      },
+      {
+        "name": "test_past_scores_do_not_use_future_samples",
+        "line": 64
+      },
+      {
+        "name": "test_exact_reference_size_and_final_sample_are_not_lost",
+        "line": 71
+      },
+      {
+        "name": "test_constant_reference_and_equal_window_sizes_are_zero",
+        "line": 82
+      },
+      {
+        "name": "test_warmup_reset_and_batch_calls_do_not_mutate_stream",
+        "line": 90
+      },
+      {
+        "name": "test_invalid_parameters_and_values_are_rejected_without_mutation",
+        "line": 110
+      },
+      {
+        "name": "test_translation_scale_and_sign_invariance",
+        "line": 125
+      },
+      {
+        "name": "test_extreme_finite_inputs_keep_deviations_and_scores_finite",
+        "line": 133
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_mad_deseasonalized.py",
+    "name": "DeseasonalizedMadTests",
+    "line": 14,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUpClass",
+        "line": 16
+      },
+      {
+        "name": "test_fractional_period_is_recovered_and_heldout_cycle_removed",
+        "line": 20
+      },
+      {
+        "name": "test_fixed_cycle_preserves_later_level_and_amplitude_changes",
+        "line": 31
+      },
+      {
+        "name": "test_real_inputs_are_preserved_and_heldout_cycle_energy_is_reduced",
+        "line": 42
+      },
+      {
+        "name": "test_both_mad_streams_match_independent_numpy_after_training",
+        "line": 57
+      },
+      {
+        "name": "test_later_data_do_not_change_template_or_past_scores",
+        "line": 72
+      },
+      {
+        "name": "test_invalid_training_and_absent_cycle_are_rejected",
+        "line": 80
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_mad_services.py",
+    "name": "MadServiceTests",
+    "line": 15,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUpClass",
+        "line": 17
+      },
+      {
+        "name": "test_same_four_service_inputs_boundaries_warmup_and_final_point_as_acf",
+        "line": 21
+      },
+      {
+        "name": "test_every_ready_local_reference_and_score_match_independent_numpy",
+        "line": 37
+      },
+      {
+        "name": "test_service_replay_matches_batch_and_does_not_use_future_observations",
+        "line": 50
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_metric_service.py",
+    "name": "MetadataTests",
+    "line": 18,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_labels_are_separate_immutable_and_copied",
+        "line": 19
+      },
+      {
+        "name": "test_pointer_identity_excludes_local_labels_and_window",
+        "line": 36
+      },
+      {
+        "name": "test_sampling_config_and_json_export_have_no_sample_data",
+        "line": 46
+      },
+      {
+        "name": "test_invalid_metadata_is_rejected",
+        "line": 55
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_metric_service.py",
+    "name": "CollectionTests",
+    "line": 66,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUp",
+        "line": 67
+      },
+      {
+        "name": "test_filters_inventory_and_common_labels_include_local_labels",
+        "line": 73
+      },
+      {
+        "name": "test_grouping_by_mixed_labels_and_missing_values",
+        "line": 86
+      },
+      {
+        "name": "test_exact_lookup_and_ambiguous_names",
+        "line": 99
+      },
+      {
+        "name": "test_set_operations_compare_metadata_and_source_identity",
+        "line": 115
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_metric_service.py",
+    "name": "ServiceTests",
+    "line": 128,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUp",
+        "line": 129
+      },
+      {
+        "name": "test_load_api_names_retains_labels_and_replaces_sampling_config",
+        "line": 133
+      },
+      {
+        "name": "test_api_names_restore_known_label_sets_after_temporary_absence",
+        "line": 145
+      },
+      {
+        "name": "test_failed_api_load_or_replacement_preserves_state",
+        "line": 157
+      },
+      {
+        "name": "test_crud_updates_metadata_and_preserves_old_snapshots",
+        "line": 173
+      },
+      {
+        "name": "test_window_changes_apply_atomically_to_selections",
+        "line": 189
+      },
+      {
+        "name": "test_local_label_lifecycle_is_visible_in_filters_and_groups",
+        "line": 199
+      },
+      {
+        "name": "test_bulk_label_failures_do_not_partially_change_metadata",
+        "line": 212
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_metric_service.py",
+    "name": "CompositionTests",
+    "line": 231,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "setUp",
+        "line": 232
+      },
+      {
+        "name": "test_compose_and_resolve_never_invoke_the_lambda",
+        "line": 235
+      },
+      {
+        "name": "test_automatic_bindings_use_parameter_names_not_catalog_order",
+        "line": 253
+      },
+      {
+        "name": "test_local_label_selection_identifies_the_correct_metric",
+        "line": 259
+      },
+      {
+        "name": "test_missing_extra_or_unknown_bindings_rejected_without_registration",
+        "line": 271
+      },
+      {
+        "name": "test_unsupported_signatures_and_noncallables_are_rejected",
+        "line": 279
+      },
+      {
+        "name": "test_default_and_keyword_only_parameters_can_be_bound_explicitly",
+        "line": 288
+      },
+      {
+        "name": "test_references_resolve_current_labels_and_sampling_config",
+        "line": 293
+      },
+      {
+        "name": "test_removed_binding_fails_and_reappearing_metric_resolves_again",
+        "line": 303
+      },
+      {
+        "name": "test_source_metadata_rekey_migrates_stored_composition_pointers_atomically",
+        "line": 311
+      },
+      {
+        "name": "test_composition_crud_and_binding_immutability",
+        "line": 324
+      },
+      {
+        "name": "test_collection_can_build_and_resolve_a_plan_without_registry",
+        "line": 338
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_prediction_interval.py",
+    "name": "PredictionIntervalTests",
+    "line": 17,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_renamed_detector_inherits_detector_and_keeps_import_alias",
+        "line": 18
+      },
+      {
+        "name": "test_two_point_cauchy_prediction_has_closed_form_bounds",
+        "line": 26
+      },
+      {
+        "name": "test_small_sample_prediction_uses_sample_variance_and_not_mean_ci",
+        "line": 34
+      },
+      {
+        "name": "test_every_scored_window_uses_exactly_the_preceding_window",
+        "line": 46
+      },
+      {
+        "name": "test_current_outlier_cannot_expand_its_own_interval",
+        "line": 56
+      },
+      {
+        "name": "test_warmup_and_one_result_for_each_input_including_last",
+        "line": 64
+      },
+      {
+        "name": "test_raw_score_zero_inside_inclusive_boundaries_and_monotone_symmetric_outside",
+        "line": 83
+      },
+      {
+        "name": "test_score_never_reaches_one_even_at_extreme_distances",
+        "line": 96
+      },
+      {
+        "name": "test_score_handles_overflow_in_distance_to_boundary",
+        "line": 103
+      },
+      {
+        "name": "test_score_is_positive_for_an_outside_point_even_if_normalization_underflows",
+        "line": 108
+      },
+      {
+        "name": "test_manual_scale_and_variance_change_interval_width",
+        "line": 115
+      },
+      {
+        "name": "test_higher_confidence_widens_bounds",
+        "line": 126
+      },
+      {
+        "name": "test_constant_history_stays_finite_and_uses_floor",
+        "line": 133
+      },
+      {
+        "name": "test_auto_scale_reacts_only_after_scoring_and_can_relax",
+        "line": 143
+      },
+      {
+        "name": "test_auto_scale_enforces_minimum_and_maximum",
+        "line": 157
+      },
+      {
+        "name": "test_disabled_auto_scale_is_constant_despite_repeated_misses",
+        "line": 168
+      },
+      {
+        "name": "test_auto_scale_improves_held_out_coverage_of_underwide_intervals",
+        "line": 174
+      },
+      {
+        "name": "test_fit_calibration_widens_and_generalizes_to_following_trend_points",
+        "line": 183
+      },
+      {
+        "name": "test_fit_calibration_uses_walk_forward_errors_and_quantile",
+        "line": 192
+      },
+      {
+        "name": "test_calibration_respects_cap_and_never_narrows_manual_scale",
+        "line": 204
+      },
+      {
+        "name": "test_iid_normal_coverage_matches_nominal_on_independent_trials",
+        "line": 213
+      },
+      {
+        "name": "test_batch_stream_scores_and_final_diagnostics_agree",
+        "line": 226
+      },
+      {
+        "name": "test_future_samples_do_not_change_past_bounds_or_scores_with_auto_scale",
+        "line": 241
+      },
+      {
+        "name": "test_replays_and_predict_do_not_mutate_stream_and_results_are_immutable",
+        "line": 247
+      },
+      {
+        "name": "test_reset_restores_fit_seed_and_scale_and_refit_replaces_them",
+        "line": 259
+      },
+      {
+        "name": "test_history_memory_is_bounded",
+        "line": 274
+      },
+      {
+        "name": "test_translation_scale_and_sign_transform_bounds_and_preserve_scores",
+        "line": 280
+      },
+      {
+        "name": "test_invalid_constructor_arguments",
+        "line": 293
+      },
+      {
+        "name": "test_invalid_update_and_fit_do_not_mutate_active_state",
+        "line": 308
+      },
+      {
+        "name": "test_unrepresentable_bounds_fail_clearly_and_atomically",
+        "line": 327
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_prediction_interval_scenarios.py",
+    "name": "PredictionIntervalScenarioTests",
+    "line": 15,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_all_previous_report_series_against_independent_numpy_bounds",
+        "line": 16
+      },
+      {
+        "name": "test_15_second_screenshot_reconstruction_matches_previous_export_landmarks",
+        "line": 46
+      },
+      {
+        "name": "test_runtime_response_spike_uses_two_minute_history_before_first_event",
+        "line": 54
+      },
+      {
+        "name": "test_legacy_dips_are_flagged_at_their_first_deviation",
+        "line": 60
+      },
+      {
+        "name": "test_same_saw_excursion_is_less_surprising_on_noisy_background",
+        "line": 69
+      },
+      {
+        "name": "test_long_plateau_is_eventually_the_new_predicted_window",
+        "line": 76
+      },
+      {
+        "name": "test_previous_acf_plateaus_and_recoveries_return_to_baseline",
+        "line": 88
+      },
+      {
+        "name": "test_period_changes_preserve_causal_outputs_across_noise_seeds",
+        "line": 97
+      },
+      {
+        "name": "test_generator_injections_do_not_affect_bounds_until_after_first_changed_point",
+        "line": 107
+      },
+      {
+        "name": "test_correlation_report_twenty_percent_burst_is_seen_and_recovers",
+        "line": 121
+      },
+      {
+        "name": "test_variance_step_expands_forecasts_then_recovers_coverage",
+        "line": 130
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_prediction_interval_stability.py",
+    "name": "PredictionIntervalStabilityTests",
+    "line": 11,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_identical_window_bounds_reduce_score_exactly_tenfold",
+        "line": 12
+      },
+      {
+        "name": "test_small_bound_movement_is_also_attenuated",
+        "line": 24
+      },
+      {
+        "name": "test_large_bound_change_preserves_first_spike_without_future_data",
+        "line": 32
+      },
+      {
+        "name": "test_scale_adaptation_does_not_itself_count_as_window_movement",
+        "line": 42
+      },
+      {
+        "name": "test_attenuation_does_not_change_forecasts_fit_or_miss_based_adaptation",
+        "line": 52
+      },
+      {
+        "name": "test_threshold_and_factor_are_configurable",
+        "line": 65
+      },
+      {
+        "name": "test_both_location_and_width_changes_can_preserve_severity",
+        "line": 75
+      },
+      {
+        "name": "test_diagnostics_are_bounded_and_weighted_scores_stay_positive_outside",
+        "line": 81
+      },
+      {
+        "name": "test_snapshot_noise_before_and_after_new_cycle_is_tenfold_weaker",
+        "line": 91
+      },
+      {
+        "name": "test_high_mean_and_ma8_weak_cycles_reduce_background_across_seeds",
+        "line": 106
+      },
+      {
+        "name": "test_stability_is_invariant_to_level_units_and_sign",
+        "line": 117
+      },
+      {
+        "name": "test_unrepresentable_next_window_preserves_valid_current_extreme_score",
+        "line": 127
+      },
+      {
+        "name": "test_batch_and_reset_retain_custom_stability_settings",
+        "line": 133
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_runtime_trend.py",
+    "name": "RuntimeTrendTests",
+    "line": 18,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_gc_multiple_saws_without_drift",
+        "line": 19
+      },
+      {
+        "name": "test_gc_multiple_saws_with_drift",
+        "line": 24
+      },
+      {
+        "name": "test_volatile_cpu_sixty_percentage_points_over_ten_minutes",
+        "line": 30
+      },
+      {
+        "name": "test_quiet_response_detected_within_two_minutes_of_growth",
+        "line": 39
+      },
+      {
+        "name": "test_spikes_and_level_steps_are_not_trends",
+        "line": 45
+      },
+      {
+        "name": "test_backpressure_detects_growth_and_recovery",
+        "line": 53
+      },
+      {
+        "name": "test_dirty_stationary_latency_parameter_tradeoffs",
+        "line": 61
+      },
+      {
+        "name": "test_dirty_latency_multiple_seeds_conservative_config",
+        "line": 73
+      },
+      {
+        "name": "test_units_and_irregular_timestamps",
+        "line": 79
+      },
+      {
+        "name": "test_confirmation_and_repeated_evaluation",
+        "line": 88
+      },
+      {
+        "name": "test_invalid_inputs",
+        "line": 100
+      },
+      {
+        "name": "test_bounded_memory_and_warmup",
+        "line": 112
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_runtime_trend_report.py",
+    "name": "RuntimeTrendReportTests",
+    "line": 26,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_legacy_twelve_cases_keep_original_alarm_counts_and_public_results",
+        "line": 27
+      },
+      {
+        "name": "test_sixteen_imported_bond_signals_are_reused_without_changing_values",
+        "line": 42
+      },
+      {
+        "name": "test_replay_keeps_unscheduled_points_blank_and_labels_final_evaluation",
+        "line": 52
+      },
+      {
+        "name": "test_past_evaluations_do_not_depend_on_future_samples",
+        "line": 66
+      },
+      {
+        "name": "test_window_context_keeps_trend_memory_and_preserves_unknown_labels",
+        "line": 72
+      },
+      {
+        "name": "test_selected_fit_uses_actual_causal_window_and_correct_residual_units",
+        "line": 79
+      },
+      {
+        "name": "test_complete_report_exports_valid_links_last_point_and_roundtrip_decisions",
+        "line": 93
+      },
+      {
+        "name": "test_unready_window_is_explicit_and_does_not_invent_a_fit",
+        "line": 121
+      },
+      {
+        "name": "test_test_log_validation_rejects_failed_and_accepts_complete_run",
+        "line": 129
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_scenario_influx.py",
+    "name": "ScenarioSnapshotTests",
+    "line": 17,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_snapshot_matches_the_four_live_influx_fingerprints",
+        "line": 18
+      },
+      {
+        "name": "test_seven_rollbacks_keep_their_width_and_sloped_shoulders",
+        "line": 39
+      },
+      {
+        "name": "test_readers_and_replay_scenarios_do_not_access_the_network",
+        "line": 59
+      },
+      {
+        "name": "test_corrupted_csv_is_rejected_before_replaying",
+        "line": 64
+      },
+      {
+        "name": "test_duplicate_or_missing_timestamps_are_rejected",
+        "line": 74
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_ssa.py",
+    "name": "SSATests",
+    "line": 23,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_projection_and_score_match_independent_numpy_svd",
+        "line": 24
+      },
+      {
+        "name": "test_reference_never_contains_current_window_even_between_refits",
+        "line": 48
+      },
+      {
+        "name": "test_current_change_does_not_inflate_its_own_reference_sigma",
+        "line": 59
+      },
+      {
+        "name": "test_exact_warmup_and_last_observation_are_preserved",
+        "line": 70
+      },
+      {
+        "name": "test_causal_scores_do_not_depend_on_future",
+        "line": 81
+      },
+      {
+        "name": "test_batch_stream_final_diagnostics_and_alias_agree",
+        "line": 89
+      },
+      {
+        "name": "test_batch_does_not_mutate_active_stream_and_reset_rewarms",
+        "line": 99
+      },
+      {
+        "name": "test_scale_parameter_changes_only_bounded_mapping",
+        "line": 113
+      },
+      {
+        "name": "test_new_constant_level_eventually_becomes_new_norm",
+        "line": 124
+      },
+      {
+        "name": "test_frozen_reference_retains_departure_and_batch_preserves_mode",
+        "line": 131
+      },
+      {
+        "name": "test_frozen_model_still_scores_causally_with_bounded_memory",
+        "line": 140
+      },
+      {
+        "name": "test_shape_change_reacts_then_adapts_to_stable_new_shape",
+        "line": 148
+      },
+      {
+        "name": "test_dispersion_jump_retains_initial_response_and_later_adapts",
+        "line": 156
+      },
+      {
+        "name": "test_autolag_uses_reference_period_and_constant_fallback",
+        "line": 163
+      },
+      {
+        "name": "test_scale_translation_sign_invariance",
+        "line": 172
+      },
+      {
+        "name": "test_constant_and_extreme_finite_inputs_keep_diagnostics_finite",
+        "line": 179
+      },
+      {
+        "name": "test_invalid_settings_are_rejected",
+        "line": 193
+      },
+      {
+        "name": "test_invalid_samples_do_not_advance_state",
+        "line": 201
+      },
+      {
+        "name": "test_state_is_bounded_and_results_are_immutable",
+        "line": 209
+      },
+      {
+        "name": "test_known_phase_only_harmonic_space_limitation",
+        "line": 216
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_trend_change.py",
+    "name": "TrendChangeTests",
+    "line": 10,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_rolling_fit_against_independent_numpy_with_eviction",
+        "line": 11
+      },
+      {
+        "name": "test_all_clean_bends_and_piecewise_onset",
+        "line": 28
+      },
+      {
+        "name": "test_noise_cycles_steps_and_outliers_controls",
+        "line": 45
+      },
+      {
+        "name": "test_score_accumulates_and_adapts_not_a_permanent_alarm",
+        "line": 53
+      },
+      {
+        "name": "test_horizontal_angle_and_time_value_units",
+        "line": 61
+      },
+      {
+        "name": "test_prefix_causality_batch_and_reset",
+        "line": 73
+      },
+      {
+        "name": "test_parameter_validation_and_input_atomicity",
+        "line": 87
+      },
+      {
+        "name": "test_warmup_last_value_and_bounded_memory",
+        "line": 103
+      },
+      {
+        "name": "test_scale_invariance_and_large_constant_offset",
+        "line": 115
+      },
+      {
+        "name": "test_long_piecewise_cycle_needs_a_reference_covering_its_period",
+        "line": 128
+      },
+      {
+        "name": "test_breakpoint_matches_exhaustive_independent_least_squares",
+        "line": 138
+      },
+      {
+        "name": "test_fractional_bend_is_not_rejected_as_a_discontinuous_step",
+        "line": 161
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_trend_change_report.py",
+    "name": "TrendChangeReportTests",
+    "line": 22,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_replay_public_results_and_future_independence",
+        "line": 23
+      },
+      {
+        "name": "test_confirmation_is_not_backdated_and_unknown_is_not_control",
+        "line": 35
+      },
+      {
+        "name": "test_wrong_direction_and_missed_events_remain_in_denominator",
+        "line": 54
+      },
+      {
+        "name": "test_inherited_data_are_identical_and_unlabelled",
+        "line": 62
+      },
+      {
+        "name": "test_report_links_json_csv_last_sample_and_test_log",
+        "line": 71
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_trend_replay_appendices.py",
+    "name": "TrendReplayAppendixTests",
+    "line": 19,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_designed_teeth_are_one_sample_and_timestamps_are_fifteen_seconds",
+        "line": 20
+      },
+      {
+        "name": "test_corrected_screenshot_has_two_step_episodes_and_quiet_second_high_plateau",
+        "line": 32
+      },
+      {
+        "name": "test_appendix_replay_matches_public_api_and_is_causal",
+        "line": 47
+      },
+      {
+        "name": "test_flux_repeated_headers_and_frozen_snapshot_preserve_all_values",
+        "line": 58
+      },
+      {
+        "name": "test_appending_keeps_base_results_and_exports_real_values_decisions_links",
+        "line": 70
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_victoria_metrics.py",
+    "name": "CatalogTests",
+    "line": 17,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_filters_and_label_inventory",
+        "line": 18
+      },
+      {
+        "name": "test_selector_escaping_and_label_copy",
+        "line": 34
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_victoria_metrics.py",
+    "name": "ClientTests",
+    "line": 42,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_activity_all_states_chunks_and_actual_time_range",
+        "line": 43
+      },
+      {
+        "name": "test_http_form_and_cluster_prefix",
+        "line": 68
+      },
+      {
+        "name": "test_errors_are_not_empty_catalogs",
+        "line": 78
+      },
+      {
+        "name": "test_export_chunks_and_malformed_rows",
+        "line": 88
+      },
+      {
+        "name": "test_empty_and_active_catalog",
+        "line": 97
+      },
+      {
+        "name": "test_validation",
+        "line": 107
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/test_victoria_metrics_live.py",
+    "name": "VictoriaMetricsLiveTests",
+    "line": 17,
+    "bases": [
+      "unittest.TestCase"
+    ],
+    "methods": [
+      {
+        "name": "test_live_catalog_filters_and_recent_activity",
+        "line": 18
+      }
+    ]
+  },
+  {
+    "file": "detectors/tests/trend_change_scenarios.py",
+    "name": "Change",
+    "line": 9,
+    "bases": [],
+    "methods": []
+  },
+  {
+    "file": "detectors/tests/trend_change_scenarios.py",
+    "name": "Scenario",
+    "line": 16,
+    "bases": [],
+    "methods": []
+  }
+]

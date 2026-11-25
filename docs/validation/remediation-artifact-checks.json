@@ -1,0 +1,11 @@
+{
+  "python_files": 146,
+  "classes": 123,
+  "local_links": 107,
+  "rendered_diagrams": 13,
+  "svg_png_hashes_and_dimensions": "PASS",
+  "broken_links": [],
+  "ui_tests": 177,
+  "detector_tests_passed": 375,
+  "external_live_tests_skipped": 14
+}

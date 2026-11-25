@@ -1,0 +1,9 @@
+{
+  "ui_tests_passed": 192,
+  "diagrams": 14,
+  "links_checked": 128,
+  "broken_links": [],
+  "source_syntax": "PASS",
+  "docker_compose_smoke": "PASS",
+  "replay_live_postgres_account_isolation": "PASS"
+}

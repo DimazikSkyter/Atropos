@@ -1,0 +1,197 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "description": "Приблизительное восстановление четырёх рядов времени отклика по изображению. 5 октября 2026 года, 00:00–11:50, Europe/Moscow; шаг 15 секунд. Единица мс подтверждена пользователем. Вертикальная шкала на изображении обрезана: основные нижние уровни приняты за 40 мс, верхний — за 70 мс. Зелёный — service1, жёлтый — service2, оранжевый — service3, красный — service4. Голубая линия внизу — граница графика, не сервис. Имена условные, связи с ранее загруженным RPS не задаются.",
+  "editable": true,
+  "graphTooltip": 1,
+  "id": 3059722823168000,
+  "panels": [
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-replay"
+      },
+      "description": "Приблизительное восстановление четырёх рядов времени отклика по изображению. 5 октября 2026 года, 00:00–11:50, Europe/Moscow; шаг 15 секунд. Единица мс подтверждена пользователем. Вертикальная шкала на изображении обрезана: основные нижние уровни приняты за 40 мс, верхний — за 70 мс. Зелёный — service1, жёлтый — service2, оранжевый — service3, красный — service4. Голубая линия внизу — граница графика, не сервис. Имена условные, связи с ранее загруженным RPS не задаются.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "axisLabel": "мс",
+            "axisPlacement": "left",
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "decimals": 2,
+          "max": 100,
+          "min": 0,
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service1"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#73BF69",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service2"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#F2CC0C",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service3"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FF9830",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "D"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "service4"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#F2495C",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "interval": "15s",
+      "maxDataPoints": 20000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_response_time\" and r._field == \"value\" and r.service == \"service1\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_response_time\" and r._field == \"value\" and r.service == \"service2\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_response_time\" and r._field == \"value\" and r.service == \"service3\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-replay"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: date.add(d: 1ns, to: v.timeRangeStop))\n  |> filter(fn: (r) => r._measurement == \"service_response_time\" and r._field == \"value\" and r.service == \"service4\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> group(columns: [])\n  |> sort(columns: [\"_time\"])",
+          "refId": "D"
+        }
+      ],
+      "title": "Время отклика сервисов",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": [
+    "atropos",
+    "influxdb",
+    "replay",
+    "latency"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2026-10-04T21:00:00Z",
+    "to": "2026-10-05T08:50:00Z"
+  },
+  "timezone": "Europe/Moscow",
+  "title": "Время отклика сервисов — 05.10.2026",
+  "uid": "service-response-time-20261005",
+  "version": 1
+}

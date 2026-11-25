@@ -1,0 +1,46 @@
+{
+  "python_files_parsed": 140,
+  "syntax": "PASS",
+  "shared_service_modules": 12,
+  "top_level_relative_import_graph": {
+    "accounts": [
+      "configuration",
+      "datasources",
+      "metric_sets",
+      "postgres"
+    ],
+    "collection": [
+      "composition",
+      "metadata"
+    ],
+    "composition": [
+      "metadata"
+    ],
+    "configuration": [
+      "datasources",
+      "metric_transforms"
+    ],
+    "datasources": [],
+    "legacy_config": [
+      "configuration",
+      "datasources"
+    ],
+    "metadata": [],
+    "metric_sets": [],
+    "metric_transforms": [],
+    "metrics": [
+      "collection",
+      "composition",
+      "metadata"
+    ],
+    "postgres": [
+      "configuration",
+      "datasources"
+    ],
+    "reactions": []
+  },
+  "missing_local_imports": [],
+  "top_level_import_cycles": [],
+  "ui_imports_in_shared_services": [],
+  "scope_note": "Top-level relative imports between service modules only; package __init__, dynamic imports and local-function imports are not cycle-checked."
+}

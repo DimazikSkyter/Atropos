@@ -1,0 +1,1 @@
+{"id": "Correlation-lag16", "detector": "Correlation", "scenario": "events", "parameters": {"window": 64, "max_lag": 16, "reference_window": 256}, "cpu": 29, "fleet": 1, "width": 2, "category": "sensitivity"}

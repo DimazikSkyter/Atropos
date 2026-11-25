@@ -1,0 +1,58 @@
+         2606868 function calls in 0.628 seconds
+
+   Ordered by: cumulative time
+   List reduced from 31 to 24 due to restriction <24>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001    0.628    0.628 benchmark.py:173(batch)
+      255    0.005    0.000    0.628    0.002 detectors.py:1104(update)
+      255    0.021    0.000    0.558    0.002 detectors.py:1031(_profile)
+     8925    0.244    0.000    0.508    0.000 {built-in method math.fsum}
+  1962480    0.236    0.000    0.236    0.000 detectors.py:1045(<genexpr>)
+      255    0.003    0.000    0.059    0.000 detectors.py:1018(_location)
+      510    0.014    0.000    0.053    0.000 {built-in method builtins.any}
+     8415    0.009    0.000    0.028    0.000 {built-in method builtins.max}
+    65535    0.014    0.000    0.021    0.000 detectors.py:1029(<genexpr>)
+    65535    0.014    0.000    0.020    0.000 detectors.py:1034(<genexpr>)
+    65535    0.013    0.000    0.020    0.000 detectors.py:1025(<genexpr>)
+    65535    0.013    0.000    0.019    0.000 detectors.py:1038(<genexpr>)
+   130815    0.012    0.000    0.012    0.000 {built-in method math.isfinite}
+    73695    0.007    0.000    0.007    0.000 {built-in method builtins.abs}
+    65535    0.007    0.000    0.007    0.000 detectors.py:1042(<genexpr>)
+    65536    0.006    0.000    0.006    0.000 {built-in method builtins.len}
+     8670    0.002    0.000    0.003    0.000 detectors.py:1118(<genexpr>)
+     8160    0.002    0.000    0.002    0.000 {built-in method builtins.min}
+     8160    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+      255    0.000    0.000    0.001    0.000 detectors.py:1013(_number)
+      510    0.000    0.000    0.001    0.000 {built-in method builtins.isinstance}
+      255    0.001    0.000    0.001    0.000 <string>:2(__init__)
+      255    0.000    0.000    0.001    0.000 <frozen abc>:117(__instancecheck__)
+      255    0.001    0.000    0.001    0.000 {built-in method _abc._abc_instancecheck}
+
+
+         2606868 function calls in 0.628 seconds
+
+   Ordered by: internal time
+   List reduced from 31 to 18 due to restriction <18>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     8925    0.244    0.000    0.508    0.000 {built-in method math.fsum}
+  1962480    0.236    0.000    0.236    0.000 detectors.py:1045(<genexpr>)
+      255    0.021    0.000    0.558    0.002 detectors.py:1031(_profile)
+    65535    0.014    0.000    0.021    0.000 detectors.py:1029(<genexpr>)
+      510    0.014    0.000    0.053    0.000 {built-in method builtins.any}
+    65535    0.014    0.000    0.020    0.000 detectors.py:1034(<genexpr>)
+    65535    0.013    0.000    0.020    0.000 detectors.py:1025(<genexpr>)
+    65535    0.013    0.000    0.019    0.000 detectors.py:1038(<genexpr>)
+   130815    0.012    0.000    0.012    0.000 {built-in method math.isfinite}
+     8415    0.009    0.000    0.028    0.000 {built-in method builtins.max}
+    73695    0.007    0.000    0.007    0.000 {built-in method builtins.abs}
+    65535    0.007    0.000    0.007    0.000 detectors.py:1042(<genexpr>)
+    65536    0.006    0.000    0.006    0.000 {built-in method builtins.len}
+      255    0.005    0.000    0.628    0.002 detectors.py:1104(update)
+      255    0.003    0.000    0.059    0.000 detectors.py:1018(_location)
+     8670    0.002    0.000    0.003    0.000 detectors.py:1118(<genexpr>)
+     8160    0.002    0.000    0.002    0.000 {built-in method builtins.min}
+     8160    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+
+

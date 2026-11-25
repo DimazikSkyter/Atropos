@@ -1,0 +1,1363 @@
+{
+  "uid": "experiment4-gc-distribution",
+  "title": "Experiment4 · Minor GC → структура ВО",
+  "schemaVersion": 41,
+  "version": 1,
+  "editable": true,
+  "refresh": "2s",
+  "tags": [
+    "Atropos",
+    "experiment4"
+  ],
+  "timezone": "browser",
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "2s",
+      "5s",
+      "10s",
+      "30s",
+      "1m"
+    ]
+  },
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0,211,255,1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "templating": {
+    "list": []
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "text",
+      "title": "Experiment4 · Рост minor GC → изменение распределения времени отклика",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 4
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "**250 RPS постоянно; фиксированная работа ~8 ms thread CPU time.** 3 мин baseline → 15 мин плавного роста allocation → 3 мин hold. Timer Micrometer измеряет каждый `/work` от входа в обработчик до завершения записи HTTP-ответа. Главный heatmap показывает приращения **реальных SLO buckets**, а не распределение усредненных latency. Вторая полоса возможна при попадании части запросов в STW GC; ее наличие проверяется по сырым данным.\n\nОкно запросов: 60 с; scrape: 2 с. Выберите абсолютный диапазон запуска из `metadata.json`. **Sigma** вычислена из суммы квадратов индивидуальных наблюдений. CPU, очередь, major GC и dropped iterations помогают исключить другие причины."
+      }
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "01 · Allocation: плавное воздействие",
+      "description": "Линейно меняется только фоновая скорость аллокации. Выполняемая обработчиком работа и внешний RPS постоянны. После hold target возвращается к baseline.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "exp4_allocation_target_mib_per_second{experiment=\"experiment4\",service=\"java\"}",
+          "legendFormat": "target MiB/s",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum(rate(exp4_allocated_bytes_total{experiment=\"experiment4\",service=\"java\"}[60s])) / 1048576",
+          "legendFormat": "observed MiB/s",
+          "refId": "B",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "MiBs",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "02 · Minor GC: частота",
+      "description": "Тренд minor collections /s. Отдельный счетчик JVM MXBean, не скорость роста общего cumulative counter. Окно 60 с сглаживает отдельные collection bursts.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 4,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum(rate(exp4_gc_collections_total{experiment=\"experiment4\",service=\"java\",generation=\"minor\"}[60s]))",
+          "legendFormat": "minor collections/s",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": "heatmap",
+      "title": "03 · Структура ВО: Micrometer SLO buckets, 60 с",
+      "description": "Cumulative buckets → непересекающиеся интервалы преобразуются Prometheus datasource Format=Heatmap. Calculate from data=false: Grafana не перебакетирует наблюдения. Значение цвета — requests/s в данном интервале; Y — upper bound в секундах с форматированием времени. Buckets >50ms и +Inf исключены из картинки, доля overflow видна ниже. Верхняя граница 50 ms служит увеличением области возможных мод, buckets до 1 s сохранены в VM.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 12,
+        "w": 24,
+        "h": 12
+      },
+      "interval": "2s",
+      "maxDataPoints": 2000,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "format": "heatmap",
+          "expr": "sum by (le) (rate(exp4_request_duration_seconds_bucket{experiment=\"experiment4\",service=\"java\",status=\"200\",le!~\"\\\\+Inf|1\\\\.0|0\\\\.(06|075|1|15|25|5)\"}[60s]))",
+          "legendFormat": "{{le}}",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            },
+            "scaleDistribution": {
+              "type": "linear"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "calculate": false,
+        "cellGap": 0,
+        "cellValues": {
+          "unit": "reqps",
+          "decimals": 1
+        },
+        "color": {
+          "mode": "scheme",
+          "scheme": "Oranges",
+          "steps": 128,
+          "reverse": false,
+          "scale": "exponential",
+          "exponent": 0.5,
+          "min": 0,
+          "fill": "dark-orange"
+        },
+        "exemplars": {
+          "color": "rgba(255,0,255,0.7)"
+        },
+        "filterValues": {
+          "le": 0
+        },
+        "legend": {
+          "show": true
+        },
+        "rowsFrame": {
+          "layout": "auto"
+        },
+        "showValue": "never",
+        "tooltip": {
+          "mode": "single",
+          "showColorScale": true,
+          "yHistogram": false
+        },
+        "yAxis": {
+          "axisPlacement": "left",
+          "unit": "s",
+          "min": 0,
+          "max": 0.05,
+          "reverse": false,
+          "decimals": 3
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "04 · Sigma и mean индивидуальных ВО",
+      "description": "Sigma = sqrt(E[x²]−E[x]²), x — индивидуальное время серверного /work в секундах. exp4_request_duration_seconds_squared_sum — накопленная сумма квадратов, а не sigma по усредненным точкам. Окно 60 с. Рост sigma сам по себе не доказывает бимодальность.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sqrt(clamp_min(sum(rate(exp4_request_duration_seconds_squared_sum{experiment=\"experiment4\",service=\"java\",status=\"200\"}[60s])) / sum(rate(exp4_request_duration_seconds_count{experiment=\"experiment4\",service=\"java\",status=\"200\"}[60s])) - (sum(rate(exp4_request_duration_seconds_sum{experiment=\"experiment4\",service=\"java\",status=\"200\"}[60s])) / sum(rate(exp4_request_duration_seconds_count{experiment=\"experiment4\",service=\"java\",status=\"200\"}[60s]))) ^ 2, 0))",
+          "legendFormat": "sigma",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum(rate(exp4_request_duration_seconds_sum{experiment=\"experiment4\",service=\"java\",status=\"200\"}[60s])) / sum(rate(exp4_request_duration_seconds_count{experiment=\"experiment4\",service=\"java\",status=\"200\"}[60s]))",
+          "legendFormat": "mean",
+          "refId": "B",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "05 · Квантили ВО из Micrometer buckets",
+      "description": "Приближенные квантили, интерполируемые внутри SLO buckets. Для доказательства формы распределения используйте heatmap и requests.csv. p50 остается близко к основной моде, пока замедленных запросов меньше половины.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "histogram_quantile(0.50, sum by (le) (rate(exp4_request_duration_seconds_bucket{experiment=\"experiment4\",service=\"java\",status=\"200\"}[60s])))",
+          "legendFormat": "p50",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "histogram_quantile(0.95, sum by (le) (rate(exp4_request_duration_seconds_bucket{experiment=\"experiment4\",service=\"java\",status=\"200\"}[60s])))",
+          "legendFormat": "p95",
+          "refId": "B",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "histogram_quantile(0.99, sum by (le) (rate(exp4_request_duration_seconds_bucket{experiment=\"experiment4\",service=\"java\",status=\"200\"}[60s])))",
+          "legendFormat": "p99",
+          "refId": "C",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "title": "06 · Minor GC: pause occupancy",
+      "description": "Доля секунд окна, потраченная JVM MXBean на minor collections. Окно 60 с. JVM collectionTime может иметь миллисекундную дискретность; индивидуальные GC события отдельно сохраняются из JVM notifications в gc-events.csv с миллисекундной точностью.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 32,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "100 * sum(rate(exp4_gc_pause_seconds_total{experiment=\"experiment4\",service=\"java\",generation=\"minor\"}[60s]))",
+          "legendFormat": "minor GC % of time",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "07 · Minor GC: средняя длительность паузы",
+      "description": "Среднее время collection = delta(collectionTime) / delta(collectionCount). Это агрегат JVM; индивидуальные интервалы unified JVM GC log нужны, чтобы установить overlap GC и /work.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 32,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum(rate(exp4_gc_pause_seconds_total{experiment=\"experiment4\",service=\"java\",generation=\"minor\"}[60s])) / sum(rate(exp4_gc_collections_total{experiment=\"experiment4\",service=\"java\",generation=\"minor\"}[60s]))",
+          "legendFormat": "mean minor pause",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "type": "timeseries",
+      "title": "08 · Постоянный RPS и dropped iterations",
+      "description": "Открытая модель k6 задает поступление запросов независимо от предыдущих ответов. Рост latency не должен уменьшать RPS. Если появляются dropped iterations или ошибки, опыт нельзя считать чистой проверкой влияния GC.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 40,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum(rate(k6_http_reqs_total{experiment=\"experiment4\",name=\"work\",scenario=\"constant_workload\"}[60s]))",
+          "legendFormat": "k6 offered RPS",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum(rate(exp4_request_duration_seconds_count{experiment=\"experiment4\",service=\"java\",status=\"200\"}[60s]))",
+          "legendFormat": "server completed RPS",
+          "refId": "B",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum(rate(k6_dropped_iterations_total{experiment=\"experiment4\",scenario=\"constant_workload\"}[60s]))",
+          "legendFormat": "k6 dropped/s",
+          "refId": "C",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "type": "timeseries",
+      "title": "09 · CPU и throttling контейнера",
+      "description": "Process CPU измерен MXBean JVM: 0–1 доля доступной процессу мощности. cgroup.cpu.stat дополнительно измеряет throttled seconds/s. cAdvisor показывает использованные ядра / limit4 и долю throttled periods; эти серии доступны, если Docker Desktop их экспортирует. Сильное throttling или saturation загрязняют опыт.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 40,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "100 * exp4_process_cpu_usage{experiment=\"experiment4\",service=\"java\"}",
+          "legendFormat": "JVM process CPU %",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "100 * sum(rate(container_cpu_usage_seconds_total{container_label_com_docker_compose_project=\"atropos-experiment4\",container_label_com_docker_compose_service=\"java\"}[60s])) / 4",
+          "legendFormat": "container CPU / 4 cores %",
+          "refId": "B",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "100 * sum(rate(container_cpu_cfs_throttled_periods_total{container_label_com_docker_compose_project=\"atropos-experiment4\",container_label_com_docker_compose_service=\"java\"}[60s])) / sum(rate(container_cpu_cfs_periods_total{container_label_com_docker_compose_project=\"atropos-experiment4\",container_label_com_docker_compose_service=\"java\"}[60s]))",
+          "legendFormat": "throttled periods %",
+          "refId": "C",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "100 * rate(exp4_cgroup_cpu_throttled_seconds_total{experiment=\"experiment4\",service=\"java\"}[60s])",
+          "legendFormat": "cgroup throttled time %",
+          "refId": "D",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "type": "timeseries",
+      "title": "10 · Heap и удерживаемые массивы",
+      "description": "Пулы позволяют заметить рост old generation или full GC. Heap фиксирован JVM flags. Если old generation постоянно растет, это уже не изолированное воздействие minor GC.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 48,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "exp4_jvm_heap_used_bytes{experiment=\"experiment4\",service=\"java\"}",
+          "legendFormat": "heap used",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "exp4_jvm_heap_committed_bytes{experiment=\"experiment4\",service=\"java\"}",
+          "legendFormat": "heap committed",
+          "refId": "B",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "exp4_jvm_heap_max_bytes{experiment=\"experiment4\",service=\"java\"}",
+          "legendFormat": "heap max",
+          "refId": "C",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "exp4_retained_bytes{experiment=\"experiment4\",service=\"java\"}",
+          "legendFormat": "retained ballast",
+          "refId": "D",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "exp4_jvm_memory_pool_used_bytes{experiment=\"experiment4\",service=\"java\"}",
+          "legendFormat": "{{pool}} used",
+          "refId": "E",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "type": "timeseries",
+      "title": "11 · Очередь обработчика и запросы",
+      "description": "Ожидание до входа в обработчик не включено в серверный Timer. Сравните его с клиентскими k6 timings и проверьте queue. Значимая очередь или исчерпание потоков добавляет другую причину деградации.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 48,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "exp4_http_executor_queued_tasks{experiment=\"experiment4\",service=\"java\"}",
+          "legendFormat": "HTTP executor queued",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "exp4_http_executor_active_threads{experiment=\"experiment4\",service=\"java\"}",
+          "legendFormat": "HTTP active threads",
+          "refId": "B",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "exp4_requests_inflight{experiment=\"experiment4\",service=\"java\"}",
+          "legendFormat": "work requests inflight",
+          "refId": "C",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 13,
+      "type": "timeseries",
+      "title": "12 · Major GC и ошибки",
+      "description": "Major collections должны оставаться близко к нулю. Рост major означает, что результат нельзя приписывать только minor GC. Ошибки k6 также проверяются thresholds и verify.py.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 56,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum(rate(exp4_gc_collections_total{experiment=\"experiment4\",service=\"java\",generation=\"major\"}[60s]))",
+          "legendFormat": "major collections/s",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum(k6_http_req_failed_rate{experiment=\"experiment4\",scenario=\"constant_workload\"})",
+          "legendFormat": "k6 failed fraction",
+          "refId": "B",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "type": "timeseries",
+      "title": "13 · Клиентское ВО k6",
+      "description": "Клиентский end-to-end http_req_duration включает сетевой обмен; серверный Micrometer Timer наблюдает обработчик. Они имеют разные границы измерения. k6 remote-write trend percentile — агрегат k6 процесса, главным доказательством структуры остается Timer buckets.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 56,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "k6_http_req_duration_seconds_p50{experiment=\"experiment4\",name=\"work\",scenario=\"constant_workload\"}",
+          "legendFormat": "k6 p50",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "k6_http_req_duration_seconds_p95{experiment=\"experiment4\",name=\"work\",scenario=\"constant_workload\"}",
+          "legendFormat": "k6 p95",
+          "refId": "B",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "k6_http_req_duration_seconds_p99{experiment=\"experiment4\",name=\"work\",scenario=\"constant_workload\"}",
+          "legendFormat": "k6 p99",
+          "refId": "C",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "type": "timeseries",
+      "title": "14 · Фаза опыта",
+      "description": "0 idle, 1 baseline, 2 ramp, 3 hold, 4 finished. finished возвращает allocator к baseline. Исторические окна задавайте по metadata.json: default21 минут, pilot140с только для калибровки.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 64,
+        "w": 12,
+        "h": 7
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "exp4_experiment_phase{experiment=\"experiment4\",service=\"java\"}",
+          "legendFormat": "phase",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 16,
+      "type": "timeseries",
+      "title": "15 · Целостность данных и overflow",
+      "description": "Ненулевые dropped logs нарушают сопоставление сырых request/GC наблюдений. Overflow >1s — разность count и последнего finite bucket. Эти наблюдения учитываются count/sum/σ, но не помещаются на heatmap с finite boundaries.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoria-metrics"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 64,
+        "w": 12,
+        "h": 7
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum by (file) (exp4_logs_dropped_total{experiment=\"experiment4\",service=\"java\"})",
+          "legendFormat": "{{file}} dropped",
+          "refId": "A",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoria-metrics"
+          },
+          "expr": "sum(rate(exp4_request_duration_seconds_count{experiment=\"experiment4\",service=\"java\",status=\"200\"}[60s])) - sum(rate(exp4_request_duration_seconds_bucket{experiment=\"experiment4\",service=\"java\",status=\"200\",le=~\"1(\\\\.0)?\"}[60s]))",
+          "legendFormat": "responses > 1s per second",
+          "refId": "B",
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    }
+  ]
+}

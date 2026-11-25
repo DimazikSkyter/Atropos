@@ -1,0 +1,1 @@
+{"id": "Correlation-alignment2", "detector": "Correlation", "scenario": "events", "parameters": {"alignment_tolerance": 2}, "cpu": 29, "fleet": 1, "width": 2, "category": "sensitivity"}

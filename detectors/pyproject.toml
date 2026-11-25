@@ -1,0 +1,16 @@
+[project]
+name = "detectors"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.0,<3",
+    "pandas>=2.2,<4",
+    "scipy>=1.13,<2",
+    "statsmodels>=0.14,<0.16",
+    "psycopg[binary]>=3.2,<4",
+]
+
+[dependency-groups]
+dev = [
+    "matplotlib>=3.9,<4",
+]
